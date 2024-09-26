@@ -27,7 +27,7 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
         setTitle("Catalogo Peliculas");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanelCatalogoPeliculas.setBackground(new java.awt.Color(0, 51, 153));
+        jPanelCatalogoPeliculas.setBackground(new java.awt.Color(58, 107, 203));
         jPanelCatalogoPeliculas.setPreferredSize(new java.awt.Dimension(920, 600));
         jPanelCatalogoPeliculas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

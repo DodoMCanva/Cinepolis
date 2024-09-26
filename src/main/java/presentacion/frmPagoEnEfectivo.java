@@ -23,60 +23,60 @@ public class frmPagoEnEfectivo extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabelTotal = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabelTotalEntradas = new javax.swing.JLabel();
-        jLabelTotalEntradas2 = new javax.swing.JLabel();
+        lblTituloPagoEfectivo = new javax.swing.JLabel();
+        lblTotalEfectivo = new javax.swing.JLabel();
+        lblSubtituloPagoEfectivo = new javax.swing.JLabel();
+        lblTitulototalEntradasEfect = new javax.swing.JLabel();
+        lblTotalEntradasEfect = new javax.swing.JLabel();
+        lblTituloTotalEfectivo = new javax.swing.JLabel();
         btnVolverC1 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnGenerarQR = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel1.setBackground(new java.awt.Color(58, 107, 203));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Efectivo");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
+        lblTituloPagoEfectivo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTituloPagoEfectivo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloPagoEfectivo.setText("Efectivo");
+        jPanel1.add(lblTituloPagoEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
 
-        jLabelTotal.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelTotal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelTotal.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTotal.setText("$0.00");
-        jLabelTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 120, -1));
+        lblTotalEfectivo.setBackground(new java.awt.Color(255, 255, 255));
+        lblTotalEfectivo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTotalEfectivo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTotalEfectivo.setText("$0.00");
+        lblTotalEfectivo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(lblTotalEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 120, -1));
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Pago realizado con tarjeta");
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
+        lblSubtituloPagoEfectivo.setBackground(new java.awt.Color(255, 255, 255));
+        lblSubtituloPagoEfectivo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblSubtituloPagoEfectivo.setForeground(new java.awt.Color(255, 255, 255));
+        lblSubtituloPagoEfectivo.setText("Pago realizado con efectivo");
+        lblSubtituloPagoEfectivo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(lblSubtituloPagoEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Total de entradas:");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        lblTitulototalEntradasEfect.setBackground(new java.awt.Color(255, 255, 255));
+        lblTitulototalEntradasEfect.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTitulototalEntradasEfect.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulototalEntradasEfect.setText("Total de entradas:");
+        lblTitulototalEntradasEfect.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(lblTitulototalEntradasEfect, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
-        jLabelTotalEntradas.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelTotalEntradas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelTotalEntradas.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTotalEntradas.setText("Total entradas");
-        jLabelTotalEntradas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabelTotalEntradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
+        lblTotalEntradasEfect.setBackground(new java.awt.Color(255, 255, 255));
+        lblTotalEntradasEfect.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTotalEntradasEfect.setForeground(new java.awt.Color(255, 255, 255));
+        lblTotalEntradasEfect.setText("Total entradas");
+        lblTotalEntradasEfect.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(lblTotalEntradasEfect, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, -1));
 
-        jLabelTotalEntradas2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelTotalEntradas2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelTotalEntradas2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTotalEntradas2.setText("Total:");
-        jLabelTotalEntradas2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabelTotalEntradas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+        lblTituloTotalEfectivo.setBackground(new java.awt.Color(255, 255, 255));
+        lblTituloTotalEfectivo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTituloTotalEfectivo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloTotalEfectivo.setText("Total:");
+        lblTituloTotalEfectivo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(lblTituloTotalEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
 
         btnVolverC1.setBackground(new java.awt.Color(153, 204, 255));
         btnVolverC1.setText("Volver");
@@ -87,10 +87,10 @@ public class frmPagoEnEfectivo extends javax.swing.JFrame {
         });
         jPanel1.add(btnVolverC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Generar QR");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
+        btnGenerarQR.setBackground(new java.awt.Color(255, 255, 102));
+        btnGenerarQR.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGenerarQR.setText("Generar QR");
+        jPanel1.add(btnGenerarQR, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 350));
 
@@ -139,14 +139,14 @@ public class frmPagoEnEfectivo extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGenerarQR;
     private javax.swing.JButton btnVolverC1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabelTotal;
-    private javax.swing.JLabel jLabelTotalEntradas;
-    private javax.swing.JLabel jLabelTotalEntradas2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblSubtituloPagoEfectivo;
+    private javax.swing.JLabel lblTituloPagoEfectivo;
+    private javax.swing.JLabel lblTituloTotalEfectivo;
+    private javax.swing.JLabel lblTitulototalEntradasEfect;
+    private javax.swing.JLabel lblTotalEfectivo;
+    private javax.swing.JLabel lblTotalEntradasEfect;
     // End of variables declaration//GEN-END:variables
 }

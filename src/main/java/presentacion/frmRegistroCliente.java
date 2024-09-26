@@ -26,85 +26,85 @@ public class frmRegistroCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         RegistroCliente = new javax.swing.JPanel();
-        txtApMaterno = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
-        txtApPaterno = new javax.swing.JTextField();
-        txtNumCelular = new javax.swing.JTextField();
-        txtConfContraseña = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        txtContraseña = new javax.swing.JTextField();
-        txtFechaNacimiento = new javax.swing.JTextField();
+        txtApMaternoRegistro = new javax.swing.JTextField();
+        txtCorreoResgirstro = new javax.swing.JTextField();
+        txtApPaternoRegitro = new javax.swing.JTextField();
+        txtNumCelularRegistro = new javax.swing.JTextField();
+        txtConfContraseñaRegistro = new javax.swing.JTextField();
+        txtNombreRegistro = new javax.swing.JTextField();
+        txtContraseñaRegistro = new javax.swing.JTextField();
+        txtFechaNacimientoRegistro = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
         btnRegistrarse = new javax.swing.JButton();
-        jLaberRegistro = new javax.swing.JLabel();
+        lblTituloRegistro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro");
         setName("Registro"); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        RegistroCliente.setBackground(new java.awt.Color(0, 51, 153));
+        RegistroCliente.setBackground(new java.awt.Color(58, 107, 203));
         RegistroCliente.setMinimumSize(new java.awt.Dimension(500, 340));
         RegistroCliente.setPreferredSize(new java.awt.Dimension(500, 340));
         RegistroCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtApMaterno.setBackground(new java.awt.Color(0, 51, 153));
-        txtApMaterno.setForeground(new java.awt.Color(255, 255, 255));
-        txtApMaterno.setText("Apellido materno");
-        txtApMaterno.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
-        txtApMaterno.addActionListener(new java.awt.event.ActionListener() {
+        txtApMaternoRegistro.setBackground(new java.awt.Color(0, 51, 153));
+        txtApMaternoRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        txtApMaternoRegistro.setText("Apellido materno");
+        txtApMaternoRegistro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
+        txtApMaternoRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApMaternoActionPerformed(evt);
+                txtApMaternoRegistroActionPerformed(evt);
             }
         });
-        RegistroCliente.add(txtApMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 170, 30));
+        RegistroCliente.add(txtApMaternoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 170, 30));
 
-        txtCorreo.setBackground(new java.awt.Color(0, 51, 153));
-        txtCorreo.setForeground(new java.awt.Color(255, 255, 255));
-        txtCorreo.setText("Correo");
-        txtCorreo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
-        RegistroCliente.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 170, 30));
+        txtCorreoResgirstro.setBackground(new java.awt.Color(0, 51, 153));
+        txtCorreoResgirstro.setForeground(new java.awt.Color(255, 255, 255));
+        txtCorreoResgirstro.setText("Correo");
+        txtCorreoResgirstro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
+        RegistroCliente.add(txtCorreoResgirstro, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 170, 30));
 
-        txtApPaterno.setBackground(new java.awt.Color(0, 51, 153));
-        txtApPaterno.setForeground(new java.awt.Color(255, 255, 255));
-        txtApPaterno.setText("Apellido paterno");
-        txtApPaterno.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
-        txtApPaterno.addActionListener(new java.awt.event.ActionListener() {
+        txtApPaternoRegitro.setBackground(new java.awt.Color(0, 51, 153));
+        txtApPaternoRegitro.setForeground(new java.awt.Color(255, 255, 255));
+        txtApPaternoRegitro.setText("Apellido paterno");
+        txtApPaternoRegitro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
+        txtApPaternoRegitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApPaternoActionPerformed(evt);
+                txtApPaternoRegitroActionPerformed(evt);
             }
         });
-        RegistroCliente.add(txtApPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 170, 30));
+        RegistroCliente.add(txtApPaternoRegitro, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 170, 30));
 
-        txtNumCelular.setBackground(new java.awt.Color(0, 51, 153));
-        txtNumCelular.setForeground(new java.awt.Color(255, 255, 255));
-        txtNumCelular.setText("Numero celular");
-        txtNumCelular.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
-        RegistroCliente.add(txtNumCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 170, 30));
+        txtNumCelularRegistro.setBackground(new java.awt.Color(0, 51, 153));
+        txtNumCelularRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        txtNumCelularRegistro.setText("Numero celular");
+        txtNumCelularRegistro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
+        RegistroCliente.add(txtNumCelularRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 170, 30));
 
-        txtConfContraseña.setBackground(new java.awt.Color(0, 51, 153));
-        txtConfContraseña.setForeground(new java.awt.Color(255, 255, 255));
-        txtConfContraseña.setText("Confirmar contraseña");
-        txtConfContraseña.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
-        RegistroCliente.add(txtConfContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 170, 30));
+        txtConfContraseñaRegistro.setBackground(new java.awt.Color(0, 51, 153));
+        txtConfContraseñaRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        txtConfContraseñaRegistro.setText("Confirmar contraseña");
+        txtConfContraseñaRegistro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
+        RegistroCliente.add(txtConfContraseñaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 170, 30));
 
-        txtNombre.setBackground(new java.awt.Color(0, 51, 153));
-        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
-        txtNombre.setText("Nombre");
-        txtNombre.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
-        RegistroCliente.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 170, 30));
+        txtNombreRegistro.setBackground(new java.awt.Color(0, 51, 153));
+        txtNombreRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombreRegistro.setText("Nombre");
+        txtNombreRegistro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
+        RegistroCliente.add(txtNombreRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 170, 30));
 
-        txtContraseña.setBackground(new java.awt.Color(0, 51, 153));
-        txtContraseña.setForeground(new java.awt.Color(255, 255, 255));
-        txtContraseña.setText("Contraseña");
-        txtContraseña.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
-        RegistroCliente.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 170, 30));
+        txtContraseñaRegistro.setBackground(new java.awt.Color(0, 51, 153));
+        txtContraseñaRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        txtContraseñaRegistro.setText("Contraseña");
+        txtContraseñaRegistro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
+        RegistroCliente.add(txtContraseñaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 170, 30));
 
-        txtFechaNacimiento.setBackground(new java.awt.Color(0, 51, 153));
-        txtFechaNacimiento.setForeground(new java.awt.Color(255, 255, 255));
-        txtFechaNacimiento.setText("Fecha de nacimiento");
-        txtFechaNacimiento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
-        RegistroCliente.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 170, 30));
+        txtFechaNacimientoRegistro.setBackground(new java.awt.Color(0, 51, 153));
+        txtFechaNacimientoRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        txtFechaNacimientoRegistro.setText("Fecha de nacimiento");
+        txtFechaNacimientoRegistro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
+        RegistroCliente.add(txtFechaNacimientoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 170, 30));
 
         btnVolver.setBackground(new java.awt.Color(153, 204, 255));
         btnVolver.setText("Volver");
@@ -125,10 +125,10 @@ public class frmRegistroCliente extends javax.swing.JFrame {
         });
         RegistroCliente.add(btnRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 120, 30));
 
-        jLaberRegistro.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLaberRegistro.setForeground(new java.awt.Color(255, 255, 255));
-        jLaberRegistro.setText("Registro");
-        RegistroCliente.add(jLaberRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
+        lblTituloRegistro.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblTituloRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloRegistro.setText("Registro");
+        RegistroCliente.add(lblTituloRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
         getContentPane().add(RegistroCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 380));
         RegistroCliente.getAccessibleContext().setAccessibleName("");
@@ -137,13 +137,13 @@ public class frmRegistroCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtApMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApMaternoActionPerformed
+    private void txtApMaternoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApMaternoRegistroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtApMaternoActionPerformed
+    }//GEN-LAST:event_txtApMaternoRegistroActionPerformed
 
-    private void txtApPaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApPaternoActionPerformed
+    private void txtApPaternoRegitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApPaternoRegitroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtApPaternoActionPerformed
+    }//GEN-LAST:event_txtApPaternoRegitroActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         frmInicioSesionCliente regresar = new frmInicioSesionCliente();
@@ -194,14 +194,14 @@ public class frmRegistroCliente extends javax.swing.JFrame {
     private javax.swing.JPanel RegistroCliente;
     private javax.swing.JButton btnRegistrarse;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JLabel jLaberRegistro;
-    private javax.swing.JTextField txtApMaterno;
-    private javax.swing.JTextField txtApPaterno;
-    private javax.swing.JTextField txtConfContraseña;
-    private javax.swing.JTextField txtContraseña;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtFechaNacimiento;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNumCelular;
+    private javax.swing.JLabel lblTituloRegistro;
+    private javax.swing.JTextField txtApMaternoRegistro;
+    private javax.swing.JTextField txtApPaternoRegitro;
+    private javax.swing.JTextField txtConfContraseñaRegistro;
+    private javax.swing.JTextField txtContraseñaRegistro;
+    private javax.swing.JTextField txtCorreoResgirstro;
+    private javax.swing.JTextField txtFechaNacimientoRegistro;
+    private javax.swing.JTextField txtNombreRegistro;
+    private javax.swing.JTextField txtNumCelularRegistro;
     // End of variables declaration//GEN-END:variables
 }

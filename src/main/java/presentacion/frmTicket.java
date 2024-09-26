@@ -50,6 +50,8 @@ public class frmTicket extends javax.swing.JFrame {
         lblLinea4 = new javax.swing.JLabel();
         lblTotalTicket = new javax.swing.JLabel();
         lblLogoCinepoli = new javax.swing.JLabel();
+        lblTituloTipoDePagoTicket = new javax.swing.JLabel();
+        lblTipoDePago = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,6 +144,12 @@ public class frmTicket extends javax.swing.JFrame {
         lblLogoCinepoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logocine.png"))); // NOI18N
         jPanel1.add(lblLogoCinepoli, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, -1, -1));
 
+        lblTituloTipoDePagoTicket.setText("Tipo De Pago:");
+        jPanel1.add(lblTituloTipoDePagoTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+
+        lblTipoDePago.setText("TIpo de pago");
+        jPanel1.add(lblTipoDePago, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,12 +181,14 @@ public class frmTicket extends javax.swing.JFrame {
     private javax.swing.JLabel lblPeliculaTicket;
     private javax.swing.JLabel lblSalaTicket;
     private javax.swing.JLabel lblSucursalTicket;
+    private javax.swing.JLabel lblTipoDePago;
     private javax.swing.JLabel lblTipoEntradaTicket;
     private javax.swing.JLabel lblTituloClaseTicket;
     private javax.swing.JLabel lblTituloHorarioTicket;
     private javax.swing.JLabel lblTituloPeliculaTicket;
     private javax.swing.JLabel lblTituloTicketSala;
     private javax.swing.JLabel lblTituloTicketsucursal;
+    private javax.swing.JLabel lblTituloTipoDePagoTicket;
     private javax.swing.JLabel lblTituloTipoEntradaTicket;
     private javax.swing.JLabel lblTituloTotalTicket;
     private javax.swing.JLabel lblTituloUsuarioTicket;
