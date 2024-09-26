@@ -108,23 +108,23 @@ public class frmCartelera extends javax.swing.JFrame {
         btnAtras1.setText("Atras");
         jPanel1.add(btnAtras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
 
-        btnAtras2.setBackground(new java.awt.Color(255, 255, 0));
+        btnAtras2.setBackground(new java.awt.Color(255, 225, 0));
         btnAtras2.setText("Seleccionar");
         jPanel1.add(btnAtras2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, -1, -1));
 
-        btnAtras3.setBackground(new java.awt.Color(255, 255, 0));
+        btnAtras3.setBackground(new java.awt.Color(255, 225, 0));
         btnAtras3.setText("Seleccionar");
         jPanel1.add(btnAtras3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
 
-        btnAtras4.setBackground(new java.awt.Color(255, 255, 0));
+        btnAtras4.setBackground(new java.awt.Color(255, 225, 0));
         btnAtras4.setText("Seleccionar");
         jPanel1.add(btnAtras4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
 
-        btnAtras5.setBackground(new java.awt.Color(255, 255, 0));
+        btnAtras5.setBackground(new java.awt.Color(255, 225, 0));
         btnAtras5.setText("Seleccionar");
         jPanel1.add(btnAtras5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
 
-        btnAtras6.setBackground(new java.awt.Color(255, 255, 0));
+        btnAtras6.setBackground(new java.awt.Color(255, 225, 0));
         btnAtras6.setText("Seleccionar");
         jPanel1.add(btnAtras6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, -1));
 
