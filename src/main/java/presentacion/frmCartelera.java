@@ -25,27 +25,27 @@ public class frmCartelera extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnVolverC = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblTituloCartelera = new javax.swing.JLabel();
         jLPelicula4 = new javax.swing.JLabel();
         cbxCiudad = new javax.swing.JComboBox<>();
         cbxSucursal = new javax.swing.JComboBox<>();
-        btnAtras = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
         jLPelicula3 = new javax.swing.JLabel();
         jLbPelicula1 = new javax.swing.JLabel();
         jLPelicula5 = new javax.swing.JLabel();
         jLbPelicula2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         btnAtras1 = new javax.swing.JButton();
-        btnAtras2 = new javax.swing.JButton();
-        btnAtras3 = new javax.swing.JButton();
-        btnAtras4 = new javax.swing.JButton();
-        btnAtras5 = new javax.swing.JButton();
-        btnAtras6 = new javax.swing.JButton();
+        btnSeleccionar5 = new javax.swing.JButton();
+        btnSeleccionar1 = new javax.swing.JButton();
+        btnSeleccionar2 = new javax.swing.JButton();
+        btnSeleccionar3 = new javax.swing.JButton();
+        bntSeleccionar4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel1.setBackground(new java.awt.Color(58, 107, 203));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnVolverC.setBackground(new java.awt.Color(153, 204, 255));
@@ -57,10 +57,10 @@ public class frmCartelera extends javax.swing.JFrame {
         });
         jPanel1.add(btnVolverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cartelera");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        lblTituloCartelera.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTituloCartelera.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloCartelera.setText("Cartelera");
+        jPanel1.add(lblTituloCartelera, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         jLPelicula4.setForeground(new java.awt.Color(255, 255, 255));
         jLPelicula4.setText("Pelicula4");
@@ -69,13 +69,13 @@ public class frmCartelera extends javax.swing.JFrame {
         jPanel1.add(jLPelicula4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 90, 120));
 
         cbxCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cbxCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 90, -1));
+        jPanel1.add(cbxCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 90, -1));
 
         cbxSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cbxSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 90, -1));
+        jPanel1.add(cbxSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 90, -1));
 
-        btnAtras.setText("Siguiente");
-        jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, -1, -1));
+        btnSiguiente.setText("Siguiente");
+        jPanel1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, -1, -1));
 
         jLPelicula3.setBackground(new java.awt.Color(204, 204, 204));
         jLPelicula3.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,30 +103,30 @@ public class frmCartelera extends javax.swing.JFrame {
         jPanel1.add(jLbPelicula2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 90, 120));
 
         jButton2.setText("Buscar");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, -1, -1));
 
         btnAtras1.setText("Atras");
         jPanel1.add(btnAtras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
 
-        btnAtras2.setBackground(new java.awt.Color(255, 225, 0));
-        btnAtras2.setText("Seleccionar");
-        jPanel1.add(btnAtras2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, -1, -1));
+        btnSeleccionar5.setBackground(new java.awt.Color(255, 225, 0));
+        btnSeleccionar5.setText("Seleccionar");
+        jPanel1.add(btnSeleccionar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, -1, -1));
 
-        btnAtras3.setBackground(new java.awt.Color(255, 225, 0));
-        btnAtras3.setText("Seleccionar");
-        jPanel1.add(btnAtras3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
+        btnSeleccionar1.setBackground(new java.awt.Color(255, 225, 0));
+        btnSeleccionar1.setText("Seleccionar");
+        jPanel1.add(btnSeleccionar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
 
-        btnAtras4.setBackground(new java.awt.Color(255, 225, 0));
-        btnAtras4.setText("Seleccionar");
-        jPanel1.add(btnAtras4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+        btnSeleccionar2.setBackground(new java.awt.Color(255, 225, 0));
+        btnSeleccionar2.setText("Seleccionar");
+        jPanel1.add(btnSeleccionar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
 
-        btnAtras5.setBackground(new java.awt.Color(255, 225, 0));
-        btnAtras5.setText("Seleccionar");
-        jPanel1.add(btnAtras5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
+        btnSeleccionar3.setBackground(new java.awt.Color(255, 225, 0));
+        btnSeleccionar3.setText("Seleccionar");
+        jPanel1.add(btnSeleccionar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
 
-        btnAtras6.setBackground(new java.awt.Color(255, 225, 0));
-        btnAtras6.setText("Seleccionar");
-        jPanel1.add(btnAtras6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, -1));
+        bntSeleccionar4.setBackground(new java.awt.Color(255, 225, 0));
+        bntSeleccionar4.setText("Seleccionar");
+        jPanel1.add(bntSeleccionar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 380));
 
@@ -176,13 +176,13 @@ public class frmCartelera extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAtras;
+    private javax.swing.JButton bntSeleccionar4;
     private javax.swing.JButton btnAtras1;
-    private javax.swing.JButton btnAtras2;
-    private javax.swing.JButton btnAtras3;
-    private javax.swing.JButton btnAtras4;
-    private javax.swing.JButton btnAtras5;
-    private javax.swing.JButton btnAtras6;
+    private javax.swing.JButton btnSeleccionar1;
+    private javax.swing.JButton btnSeleccionar2;
+    private javax.swing.JButton btnSeleccionar3;
+    private javax.swing.JButton btnSeleccionar5;
+    private javax.swing.JButton btnSiguiente;
     private javax.swing.JButton btnVolverC;
     private javax.swing.JComboBox<String> cbxCiudad;
     private javax.swing.JComboBox<String> cbxSucursal;
@@ -190,9 +190,9 @@ public class frmCartelera extends javax.swing.JFrame {
     private javax.swing.JLabel jLPelicula3;
     private javax.swing.JLabel jLPelicula4;
     private javax.swing.JLabel jLPelicula5;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLbPelicula1;
     private javax.swing.JLabel jLbPelicula2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblTituloCartelera;
     // End of variables declaration//GEN-END:variables
 }
