@@ -60,7 +60,7 @@ public class frmCartelera extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cartelera");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         jLPelicula4.setForeground(new java.awt.Color(255, 255, 255));
         jLPelicula4.setText("Pelicula4");
@@ -69,10 +69,10 @@ public class frmCartelera extends javax.swing.JFrame {
         jPanel1.add(jLPelicula4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 90, 120));
 
         cbxCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cbxCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 90, -1));
+        jPanel1.add(cbxCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 90, -1));
 
         cbxSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cbxSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 90, -1));
+        jPanel1.add(cbxSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 90, -1));
 
         btnAtras.setText("Siguiente");
         jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, -1, -1));
@@ -103,7 +103,7 @@ public class frmCartelera extends javax.swing.JFrame {
         jPanel1.add(jLbPelicula2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 90, 120));
 
         jButton2.setText("Buscar");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
 
         btnAtras1.setText("Atras");
         jPanel1.add(btnAtras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));

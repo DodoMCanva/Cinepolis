@@ -9,6 +9,10 @@ presentacion\frmCatalogoPeliculas.class
 presentacion\frmPagoConTarjeta$1.class
 presentacion\frmPagoConTarjeta.class
 presentacion\frmCatalogoSucursales$3.class
+<<<<<<< Updated upstream
+=======
+presentacion\frmCatalogoSalas$1.class
+>>>>>>> Stashed changes
 presentacion\frmHorarios$1.class
 presentacion\frmInicioSesionCliente$2.class
 presentacion\frmResumenCompra$2.class
@@ -20,9 +24,15 @@ presentacion\frmCatalogoPeliculas$1.class
 presentacion\frmInicioSesionCliente.class
 presentacion\frmCatalogoClientes$1.class
 presentacion\frmPagoEnEfectivo.class
+presentacion\frmCatalogoSalas$3.class
 presentacion\frmResumenCompra.class
+<<<<<<< Updated upstream
 presentacion\frmCatalogoClientes.class
 presentacion\frmDatosSucursal$1.class
+=======
+presentacion\frmDatosSucursal$1.class
+presentacion\frmCatalogoSalas.class
+>>>>>>> Stashed changes
 presentacion\frmHorarios$2.class
 presentacion\frmResumenCompra$1.class
 presentacion\frmRegistroCliente$3.class
@@ -32,13 +42,21 @@ presentacion\frmCartelera.class
 presentacion\frmCatalogoFunciones$1.class
 presentacion\frmCatalogoPeliculas$2.class
 presentacion\frmRegistroCliente$4.class
+<<<<<<< Updated upstream
 presentacion\frmCatalogoClientes$2.class
+=======
+presentacion\frmCatalogoSalas$2.class
+>>>>>>> Stashed changes
 presentacion\frmPagoEnEfectivo$1.class
 persistencia\IConexionBD.class
 presentacion\frmCatalogoSucursales$2.class
 presentacion\frmInicioSesionCliente$3.class
+<<<<<<< Updated upstream
 presentacion\frmTicket.class
 presentacion\frmCatalogoFunciones.class
 persistencia\ConexionBD.class
+=======
+presentacion\frmCatalogoFunciones.class
+>>>>>>> Stashed changes
 presentacion\frmDatosSucursal.class
 presentacion\frmRegistroCliente$1.class

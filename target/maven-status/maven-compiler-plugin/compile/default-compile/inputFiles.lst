@@ -1,16 +1,25 @@
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmPagoConTarjeta.java
+<<<<<<< Updated upstream
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\persistencia\ConexionBD.java
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\persistencia\IConexionBD.java
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmDatosSucursal.java
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmRegistroCliente.java
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmTicket.java
+=======
+C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmDatosSucursal.java
+C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmCatalogoSalas.java
+C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmRegistroCliente.java
+>>>>>>> Stashed changes
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmCatalogoSucursales.java
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmPagoEnEfectivo.java
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmCatalogoPeliculas.java
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmDatosPelicula.java
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmInicioSesionCliente.java
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmMetodosPagos.java
+<<<<<<< Updated upstream
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmCatalogoClientes.java
+=======
+>>>>>>> Stashed changes
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmCartelera.java
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmHorarios.java
 C:\Users\Valeria\Documents\GitHub\Cinepolis\src\main\java\presentacion\frmCatalogoFunciones.java
