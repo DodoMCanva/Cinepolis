@@ -49,7 +49,7 @@ public class frmTicket extends javax.swing.JFrame {
         lblTituloTotalTicket = new javax.swing.JLabel();
         lblLinea4 = new javax.swing.JLabel();
         lblTotalTicket = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblLogoCinepoli = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,8 +139,8 @@ public class frmTicket extends javax.swing.JFrame {
         lblTotalTicket.setText("totalCompra");
         jPanel1.add(lblTotalTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, -1, -1));
 
-        jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, -1, -1));
+        lblLogoCinepoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logocine.png"))); // NOI18N
+        jPanel1.add(lblLogoCinepoli, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,7 +160,6 @@ public class frmTicket extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblClaseTicket;
     private javax.swing.JLabel lblHorarioTicket;
@@ -169,6 +168,7 @@ public class frmTicket extends javax.swing.JFrame {
     private javax.swing.JLabel lblLinea3;
     private javax.swing.JLabel lblLinea4;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblLogoCinepoli;
     private javax.swing.JLabel lblNombreUsuarioTicket;
     private javax.swing.JLabel lblPeliculaTicket;
     private javax.swing.JLabel lblSalaTicket;
