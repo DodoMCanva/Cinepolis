@@ -1,6 +1,7 @@
 presentacion\frmDatosPelicula$2.class
 presentacion\frmCatalogoSucursales.class
 presentacion\frmDatosPelicula.class
+presentacion\frmDatosSucursal$2.class
 presentacion\frmInicioSesionCliente$1.class
 presentacion\frmMetodosPagos.class
 presentacion\frmCatalogoPeliculas.class
@@ -16,15 +17,18 @@ presentacion\frmCatalogoPeliculas$1.class
 presentacion\frmInicioSesionCliente.class
 presentacion\frmPagoEnEfectivo.class
 presentacion\frmResumenCompra.class
+presentacion\frmDatosSucursal$1.class
 presentacion\frmResumenCompra$1.class
-com\mycompany\proyecto1_cinepolis\Proyecto1_Cinepolis.class
 presentacion\frmRegistroCliente$3.class
 presentacion\frmDatosPelicula$1.class
 presentacion\frmCartelera$1.class
 presentacion\frmCartelera.class
+presentacion\frmTicket$1.class
 presentacion\frmCatalogoPeliculas$2.class
 presentacion\frmRegistroCliente$4.class
 presentacion\frmPagoEnEfectivo$1.class
 presentacion\frmCatalogoSucursales$2.class
 presentacion\frmInicioSesionCliente$3.class
+presentacion\frmTicket.class
+presentacion\frmDatosSucursal.class
 presentacion\frmRegistroCliente$1.class
