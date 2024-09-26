@@ -27,32 +27,161 @@ public class frmTicket extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblLinea1 = new javax.swing.JLabel();
+        lblTituloTicketsucursal = new javax.swing.JLabel();
+        lblSucursalTicket = new javax.swing.JLabel();
+        lblLinea2 = new javax.swing.JLabel();
+        lblTituloTicketSala = new javax.swing.JLabel();
+        lblSalaTicket = new javax.swing.JLabel();
+        lblTituloPeliculaTicket = new javax.swing.JLabel();
+        lblTituloClaseTicket = new javax.swing.JLabel();
+        lblPeliculaTicket = new javax.swing.JLabel();
+        lblClaseTicket = new javax.swing.JLabel();
+        lblTituloHorarioTicket = new javax.swing.JLabel();
+        lblHorarioTicket = new javax.swing.JLabel();
+        lblTituloTipoEntradaTicket = new javax.swing.JLabel();
+        lblTipoEntradaTicket = new javax.swing.JLabel();
+        lblTituloUsuarioTicket = new javax.swing.JLabel();
+        lblNombreUsuarioTicket = new javax.swing.JLabel();
+        lblLinea3 = new javax.swing.JLabel();
+        lblTituloTotalTicket = new javax.swing.JLabel();
+        lblLinea4 = new javax.swing.JLabel();
+        lblTotalTicket = new javax.swing.JLabel();
+        lblLogoCinepoli = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cinepolis_Logo.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cinepolis_Logo.png"))); // NOI18N
+        jPanel1.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Ticket de compra");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 180, 60));
+
+        lblLinea1.setText("---------------------------------------------------------");
+        jPanel1.add(lblLinea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
+
+        lblTituloTicketsucursal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTituloTicketsucursal.setText("Sucursal: ");
+        jPanel1.add(lblTituloTicketsucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
+
+        lblSucursalTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblSucursalTicket.setText("nombre sucursal");
+        jPanel1.add(lblSucursalTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
+
+        lblLinea2.setText("---------------------------------------------------------");
+        jPanel1.add(lblLinea2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
+
+        lblTituloTicketSala.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTituloTicketSala.setText("Sala:");
+        jPanel1.add(lblTituloTicketSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+
+        lblSalaTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblSalaTicket.setText("nombreSala");
+        jPanel1.add(lblSalaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
+
+        lblTituloPeliculaTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTituloPeliculaTicket.setText("Pelicula:");
+        jPanel1.add(lblTituloPeliculaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+
+        lblTituloClaseTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTituloClaseTicket.setText("Clase:");
+        jPanel1.add(lblTituloClaseTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+
+        lblPeliculaTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPeliculaTicket.setText("nombrePelicula");
+        jPanel1.add(lblPeliculaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, -1));
+
+        lblClaseTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblClaseTicket.setText("nombreClase");
+        jPanel1.add(lblClaseTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
+
+        lblTituloHorarioTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTituloHorarioTicket.setText("Horario:");
+        jPanel1.add(lblTituloHorarioTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
+
+        lblHorarioTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblHorarioTicket.setText("Horario");
+        jPanel1.add(lblHorarioTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
+
+        lblTituloTipoEntradaTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTituloTipoEntradaTicket.setText("Tipo de entrada:");
+        jPanel1.add(lblTituloTipoEntradaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+
+        lblTipoEntradaTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTipoEntradaTicket.setText("tipoEntrada");
+        jPanel1.add(lblTipoEntradaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
+
+        lblTituloUsuarioTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTituloUsuarioTicket.setText("Usuario:");
+        jPanel1.add(lblTituloUsuarioTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
+
+        lblNombreUsuarioTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNombreUsuarioTicket.setText("nombreUsuario");
+        jPanel1.add(lblNombreUsuarioTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, -1));
+
+        lblLinea3.setText("---------------------------------------------------------");
+        jPanel1.add(lblLinea3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
+
+        lblTituloTotalTicket.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTituloTotalTicket.setText("Total:");
+        jPanel1.add(lblTituloTotalTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, -1, -1));
+
+        lblLinea4.setText("--------------------------------------------------------");
+        jPanel1.add(lblLinea4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, -1, -1));
+
+        lblTotalTicket.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTotalTicket.setText("totalCompra");
+        jPanel1.add(lblTotalTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, -1, -1));
+
+        lblLogoCinepoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logocine.png"))); // NOI18N
+        jPanel1.add(lblLogoCinepoli, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblClaseTicket;
+    private javax.swing.JLabel lblHorarioTicket;
+    private javax.swing.JLabel lblLinea1;
+    private javax.swing.JLabel lblLinea2;
+    private javax.swing.JLabel lblLinea3;
+    private javax.swing.JLabel lblLinea4;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblLogoCinepoli;
+    private javax.swing.JLabel lblNombreUsuarioTicket;
+    private javax.swing.JLabel lblPeliculaTicket;
+    private javax.swing.JLabel lblSalaTicket;
+    private javax.swing.JLabel lblSucursalTicket;
+    private javax.swing.JLabel lblTipoEntradaTicket;
+    private javax.swing.JLabel lblTituloClaseTicket;
+    private javax.swing.JLabel lblTituloHorarioTicket;
+    private javax.swing.JLabel lblTituloPeliculaTicket;
+    private javax.swing.JLabel lblTituloTicketSala;
+    private javax.swing.JLabel lblTituloTicketsucursal;
+    private javax.swing.JLabel lblTituloTipoEntradaTicket;
+    private javax.swing.JLabel lblTituloTotalTicket;
+    private javax.swing.JLabel lblTituloUsuarioTicket;
+    private javax.swing.JLabel lblTotalTicket;
     // End of variables declaration//GEN-END:variables
 }
