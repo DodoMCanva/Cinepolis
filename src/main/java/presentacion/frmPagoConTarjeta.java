@@ -24,14 +24,14 @@ public class frmPagoConTarjeta extends javax.swing.JFrame {
 
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabelTotal = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabelTotalEntradas1 = new javax.swing.JLabel();
-        jLabelTotalEntradas2 = new javax.swing.JLabel();
+        lblTituloPagoConTarjeta = new javax.swing.JLabel();
+        lblTotalPagoTarjeta = new javax.swing.JLabel();
+        lblSubtituloTarjeta = new javax.swing.JLabel();
+        lblTituloTotalEntradas = new javax.swing.JLabel();
+        lblTotalEntradas = new javax.swing.JLabel();
+        lblTituloTotalPagoTarjeta = new javax.swing.JLabel();
         btnVolverC1 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnimprimirTicket = new javax.swing.JButton();
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -42,50 +42,50 @@ public class frmPagoConTarjeta extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel1.setBackground(new java.awt.Color(58, 107, 203));
         jPanel1.setMinimumSize(new java.awt.Dimension(480, 350));
         jPanel1.setPreferredSize(new java.awt.Dimension(480, 350));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Tarjeta Credito / Debito");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+        lblTituloPagoConTarjeta.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTituloPagoConTarjeta.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloPagoConTarjeta.setText("Tarjeta Credito / Debito");
+        jPanel1.add(lblTituloPagoConTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
-        jLabelTotal.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelTotal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelTotal.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTotal.setText("$0.00");
-        jLabelTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 80, -1));
+        lblTotalPagoTarjeta.setBackground(new java.awt.Color(255, 255, 255));
+        lblTotalPagoTarjeta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTotalPagoTarjeta.setForeground(new java.awt.Color(255, 255, 255));
+        lblTotalPagoTarjeta.setText("$0.00");
+        lblTotalPagoTarjeta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(lblTotalPagoTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 80, -1));
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Pago realizado con tarjeta");
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
+        lblSubtituloTarjeta.setBackground(new java.awt.Color(255, 255, 255));
+        lblSubtituloTarjeta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblSubtituloTarjeta.setForeground(new java.awt.Color(255, 255, 255));
+        lblSubtituloTarjeta.setText("Pago realizado con tarjeta");
+        lblSubtituloTarjeta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(lblSubtituloTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Total de entradas:");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        lblTituloTotalEntradas.setBackground(new java.awt.Color(255, 255, 255));
+        lblTituloTotalEntradas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTituloTotalEntradas.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloTotalEntradas.setText("Total de entradas:");
+        lblTituloTotalEntradas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(lblTituloTotalEntradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
 
-        jLabelTotalEntradas1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelTotalEntradas1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelTotalEntradas1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTotalEntradas1.setText("Total entradas");
-        jLabelTotalEntradas1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabelTotalEntradas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
+        lblTotalEntradas.setBackground(new java.awt.Color(255, 255, 255));
+        lblTotalEntradas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTotalEntradas.setForeground(new java.awt.Color(255, 255, 255));
+        lblTotalEntradas.setText("Total entradas");
+        lblTotalEntradas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(lblTotalEntradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, -1));
 
-        jLabelTotalEntradas2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelTotalEntradas2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelTotalEntradas2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTotalEntradas2.setText("Total:");
-        jLabelTotalEntradas2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabelTotalEntradas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+        lblTituloTotalPagoTarjeta.setBackground(new java.awt.Color(255, 255, 255));
+        lblTituloTotalPagoTarjeta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTituloTotalPagoTarjeta.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloTotalPagoTarjeta.setText("Total:");
+        lblTituloTotalPagoTarjeta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(lblTituloTotalPagoTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
 
         btnVolverC1.setBackground(new java.awt.Color(153, 204, 255));
         btnVolverC1.setText("Volver");
@@ -96,10 +96,10 @@ public class frmPagoConTarjeta extends javax.swing.JFrame {
         });
         jPanel1.add(btnVolverC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Imprimir Ticket");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, -1, -1));
+        btnimprimirTicket.setBackground(new java.awt.Color(255, 255, 51));
+        btnimprimirTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnimprimirTicket.setText("Imprimir Ticket");
+        jPanel1.add(btnimprimirTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 350));
 
@@ -150,14 +150,14 @@ public class frmPagoConTarjeta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVolverC1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton btnimprimirTicket;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabelTotal;
-    private javax.swing.JLabel jLabelTotalEntradas1;
-    private javax.swing.JLabel jLabelTotalEntradas2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblSubtituloTarjeta;
+    private javax.swing.JLabel lblTituloPagoConTarjeta;
+    private javax.swing.JLabel lblTituloTotalEntradas;
+    private javax.swing.JLabel lblTituloTotalPagoTarjeta;
+    private javax.swing.JLabel lblTotalEntradas;
+    private javax.swing.JLabel lblTotalPagoTarjeta;
     // End of variables declaration//GEN-END:variables
 }

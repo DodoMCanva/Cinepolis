@@ -27,7 +27,7 @@ public class frmResumenCompra extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         DatosPelicula = new javax.swing.JPanel();
         jLInicio = new javax.swing.JLabel();
-        jLabelTotal = new javax.swing.JLabel();
+        jLabelTotalResumenCompra = new javax.swing.JLabel();
         jLabelHoraFin = new javax.swing.JLabel();
         jLFin = new javax.swing.JLabel();
         jLPeli = new javax.swing.JLabel();
@@ -46,7 +46,7 @@ public class frmResumenCompra extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 51, 153));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel1.setBackground(new java.awt.Color(58, 107, 203));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -60,33 +60,33 @@ public class frmResumenCompra extends javax.swing.JFrame {
         jLInicio.setText("Horario inicio:");
         DatosPelicula.add(jLInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 80, 25));
 
-        jLabelTotal.setText("Total: ");
-        DatosPelicula.add(jLabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 70, 25));
+        jLabelTotalResumenCompra.setText("Total");
+        DatosPelicula.add(jLabelTotalResumenCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 70, 25));
 
         jLabelHoraFin.setText("Fin");
-        DatosPelicula.add(jLabelHoraFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 120, 25));
+        DatosPelicula.add(jLabelHoraFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 120, 25));
         jLabelHoraFin.getAccessibleContext().setAccessibleName("Pelicula");
 
         jLFin.setText("Horario fin:");
-        DatosPelicula.add(jLFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 60, 25));
+        DatosPelicula.add(jLFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 60, 25));
 
         jLPeli.setText("Película: ");
-        DatosPelicula.add(jLPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 50, 25));
+        DatosPelicula.add(jLPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 50, 25));
 
         jLabelPelicula.setText("Pelicula");
-        DatosPelicula.add(jLabelPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 120, 25));
+        DatosPelicula.add(jLabelPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 120, 25));
 
         jLabelTipoEntrada.setText("Entrada");
         DatosPelicula.add(jLabelTipoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 120, 25));
 
         jLabelHoraInicio.setText("Inicio");
-        DatosPelicula.add(jLabelHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 120, 25));
+        DatosPelicula.add(jLabelHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 120, 25));
 
         jLEntrada.setText("Tipo de entrada:");
         DatosPelicula.add(jLEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 90, 25));
 
         jLTotal.setText("Costo total: ");
-        DatosPelicula.add(jLTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 70, 25));
+        DatosPelicula.add(jLTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 70, 25));
 
         btnMetodoPago.setBackground(new java.awt.Color(153, 204, 255));
         btnMetodoPago.setText("Método de pago");
@@ -183,7 +183,7 @@ public class frmResumenCompra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelHoraInicio;
     private javax.swing.JLabel jLabelPelicula;
     private javax.swing.JLabel jLabelTipoEntrada;
-    private javax.swing.JLabel jLabelTotal;
+    private javax.swing.JLabel jLabelTotalResumenCompra;
     private javax.swing.JLabel jLbPelicula1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
