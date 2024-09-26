@@ -1,19 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package presentacion;
 
 /**
  *
  * @author Valeria
  */
-public class frmCatalogoSucursales extends javax.swing.JFrame {
+public class frmCatalogoSalas extends javax.swing.JFrame {
 
     /**
-     * Creates new form frmCatalogoSucursales
+     * Creates new form frmCatalogoSalas
      */
-    public frmCatalogoSucursales() {
+    public frmCatalogoSalas() {
         initComponents();
     }
 
@@ -28,11 +25,11 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
 
         jPanelCatalogoSucursales = new javax.swing.JPanel();
         btnVolver = new javax.swing.JButton();
-        txtBuscar = new javax.swing.JTextField();
+        txtBuscarSala = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSucursales = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
+        btnBuscarSala = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,20 +47,22 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
             }
         });
         jPanelCatalogoSucursales.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
-        jPanelCatalogoSucursales.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 490, 25));
+
+        txtBuscarSala.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanelCatalogoSucursales.add(txtBuscarSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 590, 25));
 
         jScrollPane1.setBackground(new java.awt.Color(153, 204, 255));
 
         jTableSucursales.setBackground(new java.awt.Color(153, 204, 255));
         jTableSucursales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Nombre", "Direccion", "Funcion", "Salas", "Eliminar"
+                "Nombre", "Eliminar"
             }
         ));
         jScrollPane1.setViewportView(jTableSucursales);
@@ -80,14 +79,14 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
         });
         jPanelCatalogoSucursales.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 550, 100, 30));
 
-        btnBuscar.setBackground(new java.awt.Color(153, 204, 255));
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarSala.setBackground(new java.awt.Color(153, 204, 255));
+        btnBuscarSala.setText("Buscar");
+        btnBuscarSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+                btnBuscarSalaActionPerformed(evt);
             }
         });
-        jPanelCatalogoSucursales.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, -1, -1));
+        jPanelCatalogoSucursales.add(btnBuscarSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -97,7 +96,6 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
         getContentPane().add(jPanelCatalogoSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 600));
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -112,53 +110,20 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+    private void btnBuscarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarSalaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    }//GEN-LAST:event_btnBuscarSalaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    /*    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
- /*     try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmCatalogoSucursales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmCatalogoSucursales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmCatalogoSucursales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmCatalogoSucursales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
- /*    java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmCatalogoSucursales().setVisible(true);
-            }
-        });
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscarSala;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelCatalogoSucursales;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableSucursales;
-    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtBuscarSala;
     // End of variables declaration//GEN-END:variables
 }
