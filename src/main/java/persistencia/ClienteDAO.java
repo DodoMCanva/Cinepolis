@@ -17,13 +17,13 @@ public class ClienteDAO implements IClienteDAO {
     public ClienteDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
     }
-    
+
     @Override
     public void guardar(ClienteEntidad cliente) throws PersistenciaException {
         // Consulta SQL para insertar en la tabla Cliente
-        String consultaCliente = "INSERT INTO Clientes (correoElectronico, fechaNacimiento, geolcl, psswrd) VALUES (?, ?, ?, ?)";
-        String consultaNombreCliente = "INSERT INTO NombreCliente (ID, nombre, apellidoPaterno, apellidoMaterno) VALUES (?, ?, ?, ?)";
-        System.out.println(cliente.getFechaNacimiento());
+        String consultaCliente = "INSERT INTO Cliente (correoElectronico, fechaNacimiento, geolcl, psswrd, celular) VALUES (?, ?, ?, ?,?)";
+        String consultaNombreCliente = "INSERT INTO NombreCliente (ID, Nombre, apellidoPaterno, apellidoMaterno) VALUES (?, ?, ?, ?)";
+
         try (Connection connection = conexionBD.crearConexion()) {
             // Habilitar la generación de claves para obtener el ID del cliente insertado
             try (PreparedStatement psCliente = connection.prepareStatement(consultaCliente, Statement.RETURN_GENERATED_KEYS)) {
@@ -32,6 +32,8 @@ public class ClienteDAO implements IClienteDAO {
                 psCliente.setString(2, cliente.getFechaNacimiento());
                 psCliente.setString(3, cliente.getGeolocalizacion());
                 psCliente.setString(4, cliente.getContrasena());
+                psCliente.setString(4, cliente.getCelular());
+                
 
                 // Ejecutamos la consulta para guardar el cliente
                 psCliente.executeUpdate();
@@ -79,8 +81,8 @@ public class ClienteDAO implements IClienteDAO {
         }
     }
 
-  // @Override
-public String obtenerID(int ID_Cliente) throws PersistenciaException {
+   @Override
+public String obtenerNombre(int ID_Cliente) throws PersistenciaException {
     String nombreCompleto = null;
     // Consulta SQL para buscar el nombre completo del cliente por su ID
     String consulta = "SELECT Nombre, Apellido_Paterno, Apellido_Materno FROM NombreCliente WHERE ID = ?";
@@ -176,11 +178,6 @@ public String obtenerID(int ID_Cliente) throws PersistenciaException {
         }
 
         return listaClientes;
-    }
-
-    @Override
-    public String obtenerNombre(int ID_Cliente) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
