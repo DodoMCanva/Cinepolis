@@ -80,7 +80,7 @@ public class ClienteDAO implements IClienteDAO {
     }
 
    @Override
-public String obtenerNombre(int ID_Cliente) throws PersistenciaException {
+public String obtenerID(int ID_Cliente) throws PersistenciaException {
     String nombreCompleto = null;
     // Consulta SQL para buscar el nombre completo del cliente por su ID
     String consulta = "SELECT Nombre, Apellido_Paterno, Apellido_Materno FROM NombreCliente WHERE ID = ?";
