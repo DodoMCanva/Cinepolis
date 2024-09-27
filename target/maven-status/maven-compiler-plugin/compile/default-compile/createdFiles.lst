@@ -1,11 +1,9 @@
 negocio\ClienteNegocio.class
 persistencia\ISurcursalDAO.class
-utilerias\Reportes.class
 presentacion\frmPagoConTarjeta$1.class
 presentacion\frmPagoConTarjeta.class
 presentacion\frmCatalogoSucursales$3.class
 presentacion\frmInicioSesionCliente$2.class
-presentacion\frmMenu$1.class
 presentacion\frmCatalogoFunciones$2.class
 dto\ClienteDTO.class
 presentacion\frmCatalogoPeliculas$1.class
@@ -15,10 +13,8 @@ presentacion\frmDatosSucursal$1.class
 presentacion\frmInicioSesionCliente$5.class
 persistencia\IPeliculaDAO.class
 persistencia\ClienteDAO.class
-presentacion\frmCatalogoSalas.class
 presentacion\frmHorarios$2.class
 negocio\IClienteNegocio.class
-presentacion\frmCatalogoSalas$2.class
 persistencia\IConexionBD.class
 presentacion\frmTicket.class
 presentacion\frmOpcionReprtes$2.class
@@ -36,7 +32,6 @@ negocio\NegocioException.class
 presentacion\frmRegistroCliente.class
 presentacion\frmCatalogoSucursales$1.class
 presentacion\frmRegistroCliente$5.class
-presentacion\frmDatosPelicula$3.class
 entidad\SucursalEntidad.class
 utilerias\JButtonRenderer.class
 presentacion\frmOpcionReprtes$1.class
@@ -50,18 +45,15 @@ persistencia\ConexionBD.class
 presentacion\frmDatosPelicula$2.class
 persistencia\ISalaDAO.class
 utilerias\Utilidades.class
-negocio\PeliculaNegocio.class
 presentacion\frmHorarios.class
 utilerias\ComboItems.class
 presentacion\frmHorarios$1.class
 persistencia\IClienteDAO.class
 dto\ClienteFiltroTablaDTO.class
 utilerias\JButtonCellEditor.class
-presentacion\frmCatalogoSalas$3.class
 presentacion\frmResumenCompra.class
 persistencia\PeliculaDAO.class
 presentacion\frmOpcionReprtes.class
-negocio\IPeliculaNegocio.class
 negocio\SucursalNegocio.class
 presentacion\frmRegistroCliente$3.class
 presentacion\frmCatalogoPeliculas$2.class
@@ -72,9 +64,7 @@ presentacion\frmCatalogoSucursales.class
 dto\PeliculaDTO.class
 presentacion\frmInicioSesionCliente$4.class
 presentacion\frmMetodosPagos.class
-presentacion\frmMenu.class
 entidad\SalaEntidad.class
-presentacion\frmCatalogoSalas$1.class
 presentacion\frmRegistroCliente$2.class
 presentacion\frmInicioSesionCliente.class
 presentacion\frmCatalogoClientes$1.class
@@ -92,5 +82,4 @@ persistencia\SucursalDAO.class
 utilerias\Tabla.class
 presentacion\frmInicioSesionCliente$3.class
 presentacion\frmCatalogoFunciones.class
-presentacion\frmMenu$2.class
 presentacion\frmRegistroCliente$1.class

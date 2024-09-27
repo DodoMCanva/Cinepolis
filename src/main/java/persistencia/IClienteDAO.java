@@ -2,7 +2,7 @@ package persistencia;
 
 import entidad.ClienteEntidad;
 import java.util.List;
-import dto.ClienteFiltroTablaDTO;
+import dto.FiltroTablaDTO;
 import utilerias.Tabla;
 
 public interface IClienteDAO {
@@ -15,6 +15,6 @@ public interface IClienteDAO {
 
     ClienteEntidad buscarPorId(int idCliente) throws PersistenciaException;
 
-    public List<ClienteEntidad> buscarClientesPorFiltro(ClienteFiltroTablaDTO filtro) throws PersistenciaException;
+    public List<ClienteEntidad> buscarClientesPorFiltro(FiltroTablaDTO filtro) throws PersistenciaException;
 
 }
