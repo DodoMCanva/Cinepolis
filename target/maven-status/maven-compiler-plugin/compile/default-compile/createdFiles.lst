@@ -12,6 +12,7 @@ presentacion\frmHorarios$1.class
 presentacion\frmInicioSesionCliente$2.class
 persistencia\IClienteDAO.class
 presentacion\frmCatalogoFunciones$2.class
+dto\ClienteFiltroTablaDTO.class
 dto\ClienteDTO.class
 utilerias\JButtonCellEditor.class
 presentacion\frmCatalogoPeliculas$1.class
