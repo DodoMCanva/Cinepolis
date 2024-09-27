@@ -255,9 +255,43 @@ public class frmRegistroCliente extends javax.swing.JFrame {
         String apellidoMaterno = txtApMaternoRegistro.getText();
         String celular = txtNumCelularRegistro.getText();
         String correo = txtCorreoResgirstro.getText();
-        Date fechaNacimientoDate = dcFechaNacimiento.getDate(); 
+        Date fechaNacimientoDate = dcFechaNacimiento.getDate();
         String contrasena = txtContraseñaRegistro.getText();
         String confContrasena = txtConfContraseñaRegistro.getText();
+
+        // Validación de campos vacíos
+        if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese su nombre.");
+            return;
+        }
+        if (apellidoPaterno.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese su apellido paterno.");
+            return;
+        }
+        if (apellidoMaterno.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese su apellido materno.");
+            return;
+        }
+        if (celular.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese su número de celular.");
+            return;
+        }
+        if (correo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese su correo electrónico.");
+            return;
+        }
+        if (fechaNacimientoDate == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha de nacimiento válida.");
+            return;
+        }
+        if (contrasena.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una contraseña.");
+            return;
+        }
+        if (confContrasena.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, confirme su contraseña.");
+            return;
+        }
 
         // Validación de contraseñas
         if (!contrasena.equals(confContrasena)) {
@@ -293,6 +327,7 @@ public class frmRegistroCliente extends javax.swing.JFrame {
         } catch (NegocioException e) {
             JOptionPane.showMessageDialog(this, "Error al registrar el cliente: " + e.getMessage());
         }
+
 
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
