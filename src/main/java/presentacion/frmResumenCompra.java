@@ -24,22 +24,22 @@ public class frmResumenCompra extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         DatosPelicula = new javax.swing.JPanel();
         jLInicio = new javax.swing.JLabel();
-        jLabelTotalResumenCompra = new javax.swing.JLabel();
-        jLabelHoraFin = new javax.swing.JLabel();
+        lblTotalResumenCompra = new javax.swing.JLabel();
+        lblHoraFin = new javax.swing.JLabel();
         jLFin = new javax.swing.JLabel();
         jLPeli = new javax.swing.JLabel();
-        jLabelPelicula = new javax.swing.JLabel();
-        jLabelTipoEntrada = new javax.swing.JLabel();
-        jLabelHoraInicio = new javax.swing.JLabel();
+        lblPelicula = new javax.swing.JLabel();
+        lblEntrada = new javax.swing.JLabel();
+        lblHoraInicio = new javax.swing.JLabel();
         jLEntrada = new javax.swing.JLabel();
         jLTotal = new javax.swing.JLabel();
         btnMetodoPago = new javax.swing.JButton();
-        btnVolverC1 = new javax.swing.JButton();
-        jLbPelicula1 = new javax.swing.JLabel();
-        infPelicula = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
+        lblPoster = new javax.swing.JLabel();
+        lblInfPelicula = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Resumen de compra");
@@ -49,38 +49,38 @@ public class frmResumenCompra extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(58, 107, 203));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Resumen de compra");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setText("Resumen de compra");
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
 
         DatosPelicula.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         DatosPelicula.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLInicio.setText("Horario inicio:");
-        DatosPelicula.add(jLInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 80, 25));
+        DatosPelicula.add(jLInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 80, 25));
 
-        jLabelTotalResumenCompra.setText("Total");
-        DatosPelicula.add(jLabelTotalResumenCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 70, 25));
+        lblTotalResumenCompra.setText("Total");
+        DatosPelicula.add(lblTotalResumenCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 70, 25));
 
-        jLabelHoraFin.setText("Fin");
-        DatosPelicula.add(jLabelHoraFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 120, 25));
-        jLabelHoraFin.getAccessibleContext().setAccessibleName("Pelicula");
+        lblHoraFin.setText("Fin");
+        DatosPelicula.add(lblHoraFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 120, 25));
+        lblHoraFin.getAccessibleContext().setAccessibleName("Pelicula");
 
         jLFin.setText("Horario fin:");
         DatosPelicula.add(jLFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 60, 25));
 
         jLPeli.setText("Película: ");
-        DatosPelicula.add(jLPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 50, 25));
+        DatosPelicula.add(jLPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 50, 25));
 
-        jLabelPelicula.setText("Pelicula");
-        DatosPelicula.add(jLabelPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 120, 25));
+        lblPelicula.setText("Pelicula");
+        DatosPelicula.add(lblPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 120, 25));
 
-        jLabelTipoEntrada.setText("Entrada");
-        DatosPelicula.add(jLabelTipoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 120, 25));
+        lblEntrada.setText("Entrada");
+        DatosPelicula.add(lblEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 120, 25));
 
-        jLabelHoraInicio.setText("Inicio");
-        DatosPelicula.add(jLabelHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 120, 25));
+        lblHoraInicio.setText("Inicio");
+        DatosPelicula.add(lblHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 120, 25));
 
         jLEntrada.setText("Tipo de entrada:");
         DatosPelicula.add(jLEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 90, 25));
@@ -99,23 +99,24 @@ public class frmResumenCompra extends javax.swing.JFrame {
 
         jPanel1.add(DatosPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 270, 250));
 
-        btnVolverC1.setBackground(new java.awt.Color(153, 204, 255));
-        btnVolverC1.setText("Volver");
-        btnVolverC1.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setBackground(new java.awt.Color(153, 204, 255));
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverC1ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolverC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
-        jLbPelicula1.setForeground(new java.awt.Color(255, 255, 255));
-        jLbPelicula1.setText("Pelicula1");
-        jLbPelicula1.setToolTipText("");
-        jPanel1.add(jLbPelicula1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 140, 180));
+        lblPoster.setForeground(new java.awt.Color(255, 255, 255));
+        lblPoster.setText("PosterPelicula");
+        lblPoster.setToolTipText("");
+        lblPoster.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel1.add(lblPoster, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 140, 180));
 
-        infPelicula.setForeground(new java.awt.Color(255, 255, 255));
-        infPelicula.setText("Informacion de la pelicula");
-        jPanel1.add(infPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 160, 40));
+        lblInfPelicula.setForeground(new java.awt.Color(255, 255, 255));
+        lblInfPelicula.setText("Informacion de la pelicula");
+        jPanel1.add(lblInfPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 160, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 380));
 
@@ -129,9 +130,9 @@ public class frmResumenCompra extends javax.swing.JFrame {
 //        this.dispose();
     }//GEN-LAST:event_btnMetodoPagoActionPerformed
 
-    private void btnVolverC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverC1ActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         
-    }//GEN-LAST:event_btnVolverC1ActionPerformed
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,20 +172,20 @@ public class frmResumenCompra extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DatosPelicula;
     private javax.swing.JButton btnMetodoPago;
-    private javax.swing.JButton btnVolverC1;
-    private javax.swing.JLabel infPelicula;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLEntrada;
     private javax.swing.JLabel jLFin;
     private javax.swing.JLabel jLInicio;
     private javax.swing.JLabel jLPeli;
     private javax.swing.JLabel jLTotal;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelHoraFin;
-    private javax.swing.JLabel jLabelHoraInicio;
-    private javax.swing.JLabel jLabelPelicula;
-    private javax.swing.JLabel jLabelTipoEntrada;
-    private javax.swing.JLabel jLabelTotalResumenCompra;
-    private javax.swing.JLabel jLbPelicula1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblEntrada;
+    private javax.swing.JLabel lblHoraFin;
+    private javax.swing.JLabel lblHoraInicio;
+    private javax.swing.JLabel lblInfPelicula;
+    private javax.swing.JLabel lblPelicula;
+    private javax.swing.JLabel lblPoster;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTotalResumenCompra;
     // End of variables declaration//GEN-END:variables
 }

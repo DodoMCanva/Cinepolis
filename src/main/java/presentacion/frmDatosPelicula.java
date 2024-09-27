@@ -35,15 +35,15 @@ public class frmDatosPelicula extends javax.swing.JFrame {
         lblTituloTitulo = new javax.swing.JLabel();
         lblTituloPais = new javax.swing.JLabel();
         lblTituloSinopsis = new javax.swing.JLabel();
-        jCBClasificacion = new javax.swing.JComboBox<>();
+        cbxClasificacion = new javax.swing.JComboBox<>();
         txtDuracion = new javax.swing.JTextField();
-        jCBGenero = new javax.swing.JComboBox<>();
+        cbxGenero = new javax.swing.JComboBox<>();
         txtTitulo = new javax.swing.JTextField();
         txtPais = new javax.swing.JTextField();
         txtSinopsis = new javax.swing.JTextField();
         txtLinkTrailer = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
+        lblPoster = new javax.swing.JLabel();
         btnGuardarDatosPeli = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,12 +65,12 @@ public class frmDatosPelicula extends javax.swing.JFrame {
         lblTituloLinkTrailer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblTituloLinkTrailer.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloLinkTrailer.setText("Link trailer");
-        jPanel1.add(lblTituloLinkTrailer, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 110, 30));
+        jPanel1.add(lblTituloLinkTrailer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 80, 30));
 
         lblTituloClasifi.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblTituloClasifi.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloClasifi.setText("Clasificasón");
-        jPanel1.add(lblTituloClasifi, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 110, 30));
+        jPanel1.add(lblTituloClasifi, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 90, 30));
 
         lblTituloDuracion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblTituloDuracion.setForeground(new java.awt.Color(255, 255, 255));
@@ -80,61 +80,61 @@ public class frmDatosPelicula extends javax.swing.JFrame {
         lblTituloGenero.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblTituloGenero.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloGenero.setText("Genero");
-        jPanel1.add(lblTituloGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 110, 30));
+        jPanel1.add(lblTituloGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 60, 30));
 
         lblTituloTitulo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblTituloTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloTitulo.setText("Título");
-        jPanel1.add(lblTituloTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 110, 30));
+        jPanel1.add(lblTituloTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 40, 30));
 
         lblTituloPais.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblTituloPais.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloPais.setText("País");
-        jPanel1.add(lblTituloPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 110, 30));
+        jPanel1.add(lblTituloPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 30, 30));
 
         lblTituloSinopsis.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblTituloSinopsis.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloSinopsis.setText("Sinopsis");
-        jPanel1.add(lblTituloSinopsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 110, 30));
+        jPanel1.add(lblTituloSinopsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 60, 30));
 
-        jCBClasificacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jCBClasificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "B15", "C", "R" }));
-        jCBClasificacion.addActionListener(new java.awt.event.ActionListener() {
+        cbxClasificacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbxClasificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "B15", "C", "R" }));
+        cbxClasificacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBClasificacionActionPerformed(evt);
+                cbxClasificacionActionPerformed(evt);
             }
         });
-        jPanel1.add(jCBClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 220, 30));
+        jPanel1.add(cbxClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 280, 30));
 
         txtDuracion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(txtDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 220, 30));
+        jPanel1.add(txtDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 280, 30));
 
-        jCBGenero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jCBGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terror", "Drama", "Comedia", "Ciencia Ficcion", "Musical" }));
-        jPanel1.add(jCBGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 220, 30));
+        cbxGenero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terror", "Drama", "Comedia", "Ciencia Ficcion", "Musical" }));
+        jPanel1.add(cbxGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 280, 30));
 
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 220, 30));
+        jPanel1.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 280, 30));
 
         txtPais.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(txtPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 220, 30));
+        jPanel1.add(txtPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 280, 30));
 
         txtSinopsis.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(txtSinopsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 220, 70));
+        jPanel1.add(txtSinopsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 280, 70));
 
         txtLinkTrailer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(txtLinkTrailer, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 220, 30));
+        jPanel1.add(txtLinkTrailer, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 280, 30));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Datos de la Película");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setText("Datos de la Película");
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Poster");
-        jLabel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 230, 290));
+        lblPoster.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblPoster.setForeground(new java.awt.Color(255, 255, 255));
+        lblPoster.setText("Poster");
+        lblPoster.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        jPanel1.add(lblPoster, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 230, 290));
 
         btnGuardarDatosPeli.setBackground(new java.awt.Color(153, 204, 255));
         btnGuardarDatosPeli.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -153,9 +153,9 @@ public class frmDatosPelicula extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void jCBClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBClasificacionActionPerformed
+    private void cbxClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxClasificacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCBClasificacionActionPerformed
+    }//GEN-LAST:event_cbxClasificacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,11 +195,11 @@ public class frmDatosPelicula extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarDatosPeli;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JComboBox<String> jCBClasificacion;
-    private javax.swing.JComboBox<String> jCBGenero;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JComboBox<String> cbxClasificacion;
+    private javax.swing.JComboBox<String> cbxGenero;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblPoster;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTituloClasifi;
     private javax.swing.JLabel lblTituloDuracion;
     private javax.swing.JLabel lblTituloGenero;

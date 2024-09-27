@@ -27,7 +27,7 @@ public class frmMetodosPagos extends javax.swing.JFrame {
         jPanelMetdosPago = new javax.swing.JPanel();
         btnPagoEfectivo = new javax.swing.JButton();
         btnPagoTarjeta1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         spTarjeta = new javax.swing.JSpinner();
         lblLogoTarjeta = new javax.swing.JLabel();
         spEfectivo = new javax.swing.JSpinner();
@@ -53,10 +53,10 @@ public class frmMetodosPagos extends javax.swing.JFrame {
         });
         jPanelMetdosPago.add(btnPagoTarjeta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 270, 90));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Métodos de pago");
-        jPanelMetdosPago.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setText("Métodos de pago");
+        jPanelMetdosPago.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
         jPanelMetdosPago.add(spTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
 
         lblLogoTarjeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tarjeta.png"))); // NOI18N
@@ -123,10 +123,10 @@ public class frmMetodosPagos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPagoEfectivo;
     private javax.swing.JButton btnPagoTarjeta1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelMetdosPago;
     private javax.swing.JLabel lblLogoDinero;
     private javax.swing.JLabel lblLogoTarjeta;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JSpinner spEfectivo;
     private javax.swing.JSpinner spTarjeta;
     // End of variables declaration//GEN-END:variables

@@ -4,21 +4,26 @@ import dto.PeliculaDTO;
 import entidad.PeliculaEntidad;
 import java.util.ArrayList;
 import java.util.List;
+import negocio.NegocioException;
 import utilerias.Tabla;
 
 public interface IPeliculaDAO {
 
-    ArrayList< PeliculaDTO> leer() throws PersistenciaException;
+    // Método para agregar una película
+    PeliculaEntidad agregarPelicula(PeliculaEntidad pelicula) throws PersistenciaException;
 
-    void guardar(PeliculaEntidad pelicula) throws PersistenciaException;
+    // Método para listar todas las películas
+    List<PeliculaEntidad> listarPeliculas() throws PersistenciaException;
 
-    void eliminar(int idPelicula) throws PersistenciaException;
+    // Método para guardar o actualizar una película (puedes decidir si lo llamas "guardar" o "modificar")
+    PeliculaEntidad guardar(PeliculaEntidad pelicula) throws PersistenciaException;
 
-    public List<PeliculaEntidad> buscarTitulo(String titulo, Tabla Filtro) throws PersistenciaException;
+    // Método para obtener una película por su ID
+    PeliculaEntidad buscarPorId(int id) throws PersistenciaException;
 
-    PeliculaEntidad buscarPorId(int idPelicula) throws PersistenciaException;
+    // Método para eliminar una película lógicamente
+    PeliculaEntidad eliminarPelicula(int id) throws PersistenciaException;
 
-    public List<PeliculaEntidad> buscarPeliculas(Tabla filtro) throws PersistenciaException;
-    
-    public IConexionBD getConexionBD();
+//    // Método para restaurar una película que ha sido eliminada lógicamente
+//    PeliculaEntidad restaurarPelicula(int id) throws NegocioException;
 }

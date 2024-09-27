@@ -30,12 +30,13 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
         btnVolverFuncion = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTablePeliculas = new javax.swing.JTable();
+        tblFunciones = new javax.swing.JTable();
         btnAgregarFuncion = new javax.swing.JButton();
         btnBuscarFuncion = new javax.swing.JButton();
         btnAtrasCatFuncio = new javax.swing.JButton();
         btnSiguienteCatFuncio = new javax.swing.JButton();
         lblNumPagCatFuncio = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,12 +53,12 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
             }
         });
         jPanelCatalogoFunciones.add(btnVolverFuncion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
-        jPanelCatalogoFunciones.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 490, 25));
+        jPanelCatalogoFunciones.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 590, 25));
 
         jScrollPane1.setBackground(new java.awt.Color(153, 204, 255));
 
-        jTablePeliculas.setBackground(new java.awt.Color(153, 204, 255));
-        jTablePeliculas.setModel(new javax.swing.table.DefaultTableModel(
+        tblFunciones.setBackground(new java.awt.Color(153, 204, 255));
+        tblFunciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -68,9 +69,9 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
                 "Tiemp. Limpieza", "Fecha", "Inicio", "Fin", "Pelicula", "Eliminar"
             }
         ));
-        jScrollPane1.setViewportView(jTablePeliculas);
+        jScrollPane1.setViewportView(tblFunciones);
 
-        jPanelCatalogoFunciones.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 800, 380));
+        jPanelCatalogoFunciones.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 800, 360));
 
         btnAgregarFuncion.setBackground(new java.awt.Color(153, 204, 255));
         btnAgregarFuncion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -84,16 +85,21 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
 
         btnBuscarFuncion.setBackground(new java.awt.Color(153, 204, 255));
         btnBuscarFuncion.setText("Buscar");
-        jPanelCatalogoFunciones.add(btnBuscarFuncion, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, -1, -1));
+        jPanelCatalogoFunciones.add(btnBuscarFuncion, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 90, -1, -1));
 
         btnAtrasCatFuncio.setText("Atras");
-        jPanelCatalogoFunciones.add(btnAtrasCatFuncio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 550, -1, -1));
+        jPanelCatalogoFunciones.add(btnAtrasCatFuncio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 550, -1, -1));
 
         btnSiguienteCatFuncio.setText("Siguiente");
-        jPanelCatalogoFunciones.add(btnSiguienteCatFuncio, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 550, -1, -1));
+        jPanelCatalogoFunciones.add(btnSiguienteCatFuncio, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 550, -1, -1));
 
         lblNumPagCatFuncio.setText("numeroPag");
-        jPanelCatalogoFunciones.add(lblNumPagCatFuncio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 560, -1, -1));
+        jPanelCatalogoFunciones.add(lblNumPagCatFuncio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 550, -1, -1));
+
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setText("Funciones");
+        jPanelCatalogoFunciones.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
         getContentPane().add(jPanelCatalogoFunciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 600));
 
@@ -125,8 +131,9 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
     private javax.swing.JButton btnVolverFuncion;
     private javax.swing.JPanel jPanelCatalogoFunciones;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTablePeliculas;
     private javax.swing.JLabel lblNumPagCatFuncio;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTable tblFunciones;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
