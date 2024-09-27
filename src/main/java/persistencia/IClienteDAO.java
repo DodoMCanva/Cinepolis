@@ -8,8 +8,6 @@ import utilerias.Tabla;
 
 public interface IClienteDAO {
 
-    ArrayList<ClienteDTO> leer() throws PersistenciaException;
-
     void guardar(ClienteEntidad cliente) throws PersistenciaException;
 
     void eliminar(int idCliente) throws PersistenciaException;
