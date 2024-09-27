@@ -59,6 +59,35 @@ public class ClienteNegocio implements IClienteNegocio {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public ClienteDTO autenticarCliente(ClienteDTO clienteDTO) throws NegocioException {
+    // Convertir el DTO a entidad si es necesario en el DAO
+    ClienteEntidad clienteEntidad = new ClienteEntidad(); // Si tienes un método de conversión
+
+    clienteEntidad.setCorreoElectronico(clienteDTO.getCorreoElectronico());
+    clienteEntidad.setContrasena(clienteDTO.getContrasena());
+
+    try {
+        // Llamar al DAO para buscar el cliente por correo y contraseña
+        ClienteEntidad clienteEncontrado = clienteDAO.buscarPorCorreoYContrasena(
+            clienteEntidad.getCorreoElectronico(), 
+            clienteEntidad.getContrasena()
+        );
+
+        if (clienteEncontrado != null) {
+            // Convertir de entidad a DTO para devolver
+            clienteDTO.setId(clienteEncontrado.getId());
+            clienteDTO.setNombre(clienteEncontrado.getNombre());
+            // Rellenar otros campos que necesites del DTO si es necesario
+
+            return clienteDTO; // Retornar el DTO del cliente autenticado
+        } else {
+            return null; // Si no se encontró, retornar null
+        }
+    } catch (PersistenciaException e) {
+        throw new NegocioException("Error al autenticar el cliente", e);
+    }
+}
+
     private ClienteEntidad convertirDtoAEntidad(ClienteDTO clienteDTO) {
         ClienteEntidad clienteEntidad = new ClienteEntidad();
         clienteEntidad.setNombre(clienteDTO.getNombre());

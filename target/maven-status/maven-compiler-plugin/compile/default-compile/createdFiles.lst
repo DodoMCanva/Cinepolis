@@ -49,7 +49,6 @@ presentacion\frmHorarios.class
 utilerias\ComboItems.class
 presentacion\frmHorarios$1.class
 persistencia\IClienteDAO.class
-dto\ClienteFiltroTablaDTO.class
 utilerias\JButtonCellEditor.class
 presentacion\frmResumenCompra.class
 persistencia\PeliculaDAO.class
@@ -70,6 +69,7 @@ presentacion\frmInicioSesionCliente.class
 presentacion\frmCatalogoClientes$1.class
 presentacion\frmPagoEnEfectivo.class
 utilerias\JButtonCell.class
+dto\FiltroTablaDTO.class
 entidad\ClienteEntidad.class
 dto\SalaDTO.class
 presentacion\frmDatosPelicula$1.class
