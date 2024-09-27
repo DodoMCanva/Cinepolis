@@ -86,9 +86,34 @@ public class ClienteDAO implements IClienteDAO {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+     @Override
     public ClienteEntidad buscarPorId(int idCliente) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ClienteEntidad cliente = null;
+        // La consulta SQL para buscar un cliente por su ID.
+        String consulta = "SELECT ID_Cliente, Nombre, Apellido_Paterno, Apellido_Materno, estaEliminado,Fecha_Nacimiento, fechaHoraRegistro,Correo_Electronico,Geolocalizacion, Contrasena FROM Cliente WHERE ID_Cliente = ?";
+
+        try (Connection connection = conexionBD.crearConexion(); PreparedStatement stmt = connection.prepareStatement(consulta)) {
+            // Asignamos el ID del cliente a la consulta.
+            stmt.setInt(1, idCliente);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                // Creamos un nuevo objeto ClienteEntidad y le asignamos los valores obtenidos de la base de datos.
+                cliente = new ClienteEntidad();
+                cliente.setId(rs.getInt("idClientes"));
+                cliente.setNombre(rs.getString("Nombre"));
+                cliente.setApellidoP(rs.getString("ApellidoP"));
+                cliente.setApellidoM(rs.getString("ApellidoM"));
+                cliente.setEstaEliminado(rs.getBoolean("estaEliminado"));
+                cliente.setFechaHoraRegistro(rs.getTimestamp("fechaHoraRegistro"));
+            }
+
+        } catch (SQLException e) {
+            // Si ocurre un error, lanzamos una excepción con un mensaje.
+            throw new PersistenciaExceptions("Error al obtener el cliente con ID: " + idCliente, e);
+        }
+
+        return cliente;
     }
 
     @Override
