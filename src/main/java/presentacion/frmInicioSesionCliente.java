@@ -30,10 +30,10 @@ public class frmInicioSesionCliente extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         btnRegistrarce = new javax.swing.JButton();
         btnIniciarSesion = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblTituloPregunta = new javax.swing.JLabel();
         lblinicioLogo = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblTituloNombreInicio = new javax.swing.JLabel();
+        lblTituloContrasenaInicio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio sesion");
@@ -78,22 +78,27 @@ public class frmInicioSesionCliente extends javax.swing.JFrame {
         btnIniciarSesion.setBackground(new java.awt.Color(153, 204, 255));
         btnIniciarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnIniciarSesion.setText("Iniciar sesión");
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarSesionActionPerformed(evt);
+            }
+        });
         InicioSesion.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 120, 30));
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("¿Aún no esta registrado?");
-        InicioSesion.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, -1, -1));
+        lblTituloPregunta.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloPregunta.setText("¿Aún no esta registrado?");
+        InicioSesion.add(lblTituloPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, -1, -1));
 
         lblinicioLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoinicio.png"))); // NOI18N
         InicioSesion.add(lblinicioLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 90, 90));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Nombre");
-        InicioSesion.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
+        lblTituloNombreInicio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTituloNombreInicio.setText("Nombre");
+        InicioSesion.add(lblTituloNombreInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setText("Contraseña");
-        InicioSesion.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
+        lblTituloContrasenaInicio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTituloContrasenaInicio.setText("Contraseña");
+        InicioSesion.add(lblTituloContrasenaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,6 +128,10 @@ public class frmInicioSesionCliente extends javax.swing.JFrame {
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
+        
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,9 +173,9 @@ public class frmInicioSesionCliente extends javax.swing.JFrame {
     private javax.swing.JPanel InicioSesion;
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnRegistrarce;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblTituloContrasenaInicio;
+    private javax.swing.JLabel lblTituloNombreInicio;
+    private javax.swing.JLabel lblTituloPregunta;
     private javax.swing.JLabel lblinicioLogo;
     private javax.swing.JTextField txtContrasena;
     private javax.swing.JTextField txtUsuario;
