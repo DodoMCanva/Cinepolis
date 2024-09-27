@@ -12,6 +12,9 @@ public class PeliculaDTO {
     private String linkTrailer;
     private boolean estaEliminada;
 
+    public PeliculaDTO() {
+    }
+
     public PeliculaDTO(int id, String titulo, String clasificacion, int duracion, String genero, String paisOrigen, String sinopsis, String linkTrailer, boolean estaEliminada) {
         this.id = id;
         this.titulo = titulo;
@@ -118,5 +121,4 @@ public class PeliculaDTO {
         return this.id == other.id;
     }
 
-    
 }

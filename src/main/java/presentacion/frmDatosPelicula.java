@@ -1,8 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package presentacion;
+
+import dto.PeliculaDTO;
+import javax.swing.JOptionPane;
+import negocio.NegocioException;
+import negocio.PeliculaNegocio;
 
 /**
  *
@@ -139,6 +141,11 @@ public class frmDatosPelicula extends javax.swing.JFrame {
         btnGuardarDatosPeli.setBackground(new java.awt.Color(153, 204, 255));
         btnGuardarDatosPeli.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnGuardarDatosPeli.setText("Guardar");
+        btnGuardarDatosPeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarDatosPeliActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnGuardarDatosPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 410, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 470));
@@ -156,6 +163,66 @@ public class frmDatosPelicula extends javax.swing.JFrame {
     private void cbxClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxClasificacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxClasificacionActionPerformed
+
+    private void btnGuardarDatosPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarDatosPeliActionPerformed
+       String duracionStr = txtDuracion.getText();
+    String titulo = txtTitulo.getText();
+    String pais = txtPais.getText();
+    String sinopsis = txtSinopsis.getText();
+    String linkTrailer = txtLinkTrailer.getText();
+    String clasificacion = cbxClasificacion.getSelectedItem().toString();
+    String genero = cbxGenero.getSelectedItem().toString();
+
+    // Validación de campos vacíos
+    if (duracionStr.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese la duración de la película.");
+        return;
+    }
+    if (titulo.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese el título de la película.");
+        return;
+    }
+    if (pais.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese el país de origen de la película.");
+        return;
+    }
+    if (sinopsis.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese una sinopsis para la película.");
+        return;
+    }
+    if (linkTrailer.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese el link del trailer de la película.");
+        return;
+    }
+
+    // Convertir la duración a int
+    int duracion;
+    try {
+        duracion = Integer.parseInt(duracionStr);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido para la duración.");
+        return;
+    }
+
+    // Crear un objeto PeliculaDTO
+    PeliculaDTO peliculaDTO = new PeliculaDTO();
+    peliculaDTO.setDuracion(duracion); // Asignar duración como int
+    peliculaDTO.setTitulo(titulo);
+    peliculaDTO.setPaisOrigen(pais);
+    peliculaDTO.setSinopsis(sinopsis);
+    peliculaDTO.setLinkTrailer(linkTrailer);
+    peliculaDTO.setClasificacion(clasificacion);
+    peliculaDTO.setGenero(genero);
+
+    try {
+        // Llamar a la capa de negocio
+        PeliculaNegocio peliculaNegocio = new PeliculaNegocio();
+        peliculaNegocio.guardar(peliculaDTO);
+        JOptionPane.showMessageDialog(this, "Película registrada con éxito.");
+    } catch (NegocioException e) {
+        JOptionPane.showMessageDialog(this, "Error al registrar la película: " + e.getMessage());
+    }
+    }//GEN-LAST:event_btnGuardarDatosPeliActionPerformed
 
     /**
      * @param args the command line arguments

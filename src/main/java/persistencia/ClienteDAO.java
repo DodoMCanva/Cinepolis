@@ -79,7 +79,7 @@ public class ClienteDAO implements IClienteDAO {
         }
     }
 
-   @Override
+  // @Override
 public String obtenerID(int ID_Cliente) throws PersistenciaException {
     String nombreCompleto = null;
     // Consulta SQL para buscar el nombre completo del cliente por su ID
@@ -176,6 +176,11 @@ public String obtenerID(int ID_Cliente) throws PersistenciaException {
         }
 
         return listaClientes;
+    }
+
+    @Override
+    public String obtenerNombre(int ID_Cliente) throws PersistenciaException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
