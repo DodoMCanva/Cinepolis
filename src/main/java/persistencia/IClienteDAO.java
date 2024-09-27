@@ -1,9 +1,8 @@
 package persistencia;
 
 import entidad.ClienteEntidad;
-import java.util.ArrayList;
 import java.util.List;
-import dto.ClienteDTO;
+import dto.ClienteFiltroTablaDTO;
 import utilerias.Tabla;
 
 public interface IClienteDAO {
@@ -12,12 +11,10 @@ public interface IClienteDAO {
 
     void eliminar(int idCliente) throws PersistenciaException;
 
-    public List<ClienteEntidad> buscarNombre(String nombre, Tabla Filtro) throws PersistenciaException ;
+   String obtenerNombre(int ID_Cliente) throws PersistenciaException;
 
     ClienteEntidad buscarPorId(int idCliente) throws PersistenciaException;
 
-    public List<ClienteEntidad> buscarClientes(Tabla filtro) throws PersistenciaException;
-
-    public IConexionBD getConexionBD();
+    public List<ClienteEntidad> buscarClientesPorFiltro(ClienteFiltroTablaDTO filtro) throws PersistenciaException;
 
 }
