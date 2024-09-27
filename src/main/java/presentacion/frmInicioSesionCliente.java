@@ -1,6 +1,12 @@
 
 package presentacion;
 
+import dto.ClienteDTO;
+import entidad.ClienteEntidad;
+import javax.swing.JOptionPane;
+import negocio.ClienteNegocio;
+import negocio.NegocioException;
+
 /**
  *
  * @author Valeria
@@ -43,9 +49,9 @@ public class frmInicioSesionCliente extends javax.swing.JFrame {
         InicioSesion.setPreferredSize(new java.awt.Dimension(350, 450));
         InicioSesion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtContrasena.setBackground(new java.awt.Color(51, 51, 51));
         txtContrasena.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtContrasena.setForeground(new java.awt.Color(255, 255, 255));
-        txtContrasena.setText("Contraseña");
         txtContrasena.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 204, 255)), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 204, 255))));
         txtContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,9 +60,9 @@ public class frmInicioSesionCliente extends javax.swing.JFrame {
         });
         InicioSesion.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 220, 30));
 
+        txtUsuario.setBackground(new java.awt.Color(51, 51, 51));
         txtUsuario.setFont(new java.awt.Font("Segoe UI Variable", 0, 14)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        txtUsuario.setText("Nombre");
         txtUsuario.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 204, 255)), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 204, 255))));
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +99,7 @@ public class frmInicioSesionCliente extends javax.swing.JFrame {
         InicioSesion.add(lblinicioLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 90, 90));
 
         lblTituloNombreInicio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblTituloNombreInicio.setText("Nombre");
+        lblTituloNombreInicio.setText("Correo");
         InicioSesion.add(lblTituloNombreInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
         lblTituloContrasenaInicio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -130,7 +136,44 @@ public class frmInicioSesionCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
+                                                   
+    String correo = txtUsuario.getText();
+    String contrasena = txtContrasena.getText();
+
+    // Validación de campos vacíos
+    if (correo.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese su correo electrónico.");
+        return;
+    }
+    if (contrasena.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese su contraseña.");
+        return;
+    }
+
+    // Crear un ClienteDTO para el inicio de sesión
+    ClienteDTO clienteDTO = new ClienteDTO();
+    clienteDTO.setCorreoElectronico(correo);
+    clienteDTO.setContrasena(contrasena);
+
+    try {
+        // Llamar a la capa de negocio para verificar el inicio de sesión
+        ClienteNegocio clienteNegocio = new ClienteNegocio();
+        ClienteDTO clienteAutenticado = clienteNegocio.autenticarCliente(clienteDTO);
         
+        if (clienteAutenticado != null) {
+            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso.");
+            // Aquí puedes abrir la siguiente pantalla o realizar otras acciones
+            this.dispose();
+            frmCartelera crte= new frmCartelera();
+            crte.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.");
+        }
+    } catch (NegocioException e) {
+        JOptionPane.showMessageDialog(this, "Error al iniciar sesión: " + e.getMessage());
+    }
+
+
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     /**
