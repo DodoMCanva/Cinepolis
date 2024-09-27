@@ -108,34 +108,23 @@ public class ClienteDAO implements IClienteDAO {
         return nombreCompleto;
     }
 
-    public ClienteEntidad buscarPorNombreYContrasena(String nombre, String contrasena) throws PersistenciaException {
-        // Consulta SQL sin abreviaciones y seleccionando solo los campos requeridos
-        String consulta = "SELECT Clientes.ID_Cliente, Clientes.correoElectronico, Clientes.fechaNacimiento, Clientes.geolocalizacion, "
-                + "Clientes.contrasena, Clientes.celular, Clientes.estaEliminado, Clientes.fechaRegistro, "
-                + "NombreCliente.Nombre, NombreCliente.apellidoPaterno, NombreCliente.apellidoMaterno "
-                + "FROM Clientes "
-                + "JOIN NombreCliente ON Clientes.ID_Cliente = NombreCliente.ID "
-                + "WHERE NombreCliente.Nombre = ? AND Clientes.contrasena = ?";
+    @Override
+    public ClienteEntidad buscarPorCorreoYContrasena(String correo, String contrasena) throws PersistenciaException {
+        // Consulta SQL seleccionando solo los campos requeridos
+        String consulta = "SELECT correoElectronico, psswrd "
+                + "FROM Clientes WHERE correoElectronico = ? AND psswrd = ?";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
-            ps.setString(1, nombre);
+            ps.setString(1, correo);
             ps.setString(2, contrasena);
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     // Si hay resultados, creamos y devolvemos un ClienteEntidad
                     ClienteEntidad cliente = new ClienteEntidad();
-                    cliente.setId(rs.getInt("ID_Cliente"));
-                    cliente.setNombre(rs.getString("Nombre"));
-                    cliente.setApellidoPaterno(rs.getString("apellidoPaterno"));
-                    cliente.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                    
                     cliente.setCorreoElectronico(rs.getString("correoElectronico"));
-                    cliente.setGeolocalizacion(rs.getString("geolocalizacion"));
-                    cliente.setContrasena(rs.getString("contrasena"));
-                    cliente.setCelular(rs.getString("celular"));
-                    cliente.setFechaNacimiento(rs.getString("fechaNacimiento"));
-                    cliente.setEstaEliminado(rs.getBoolean("estaEliminado"));
-                    cliente.setFechaHoraRegistro(rs.getDate("fechaRegistro"));
+                    cliente.setContrasena(rs.getString("psswrd"));
 
                     return cliente; // Retornar el cliente encontrado
                 } else {
