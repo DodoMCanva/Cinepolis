@@ -27,16 +27,16 @@ public class frmHorarios extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelHorario = new javax.swing.JPanel();
-        btnVolver = new javax.swing.JButton();
-        lblCine = new javax.swing.JLabel();
-        lblPoster = new javax.swing.JLabel();
-        btnEntradaGeneral = new javax.swing.JButton();
-        btnEntadaVip = new javax.swing.JButton();
-        btnContinuar = new javax.swing.JButton();
-        cbxDia = new javax.swing.JComboBox<>();
-        lblnformacionPeli = new javax.swing.JLabel();
-        lblFuncionesVip = new javax.swing.JLabel();
-        lblFuncinesGeneral = new javax.swing.JLabel();
+        btnVolverC = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLbPoster = new javax.swing.JLabel();
+        btnAtras4 = new javax.swing.JButton();
+        btnAtras5 = new javax.swing.JButton();
+        btnAtras6 = new javax.swing.JButton();
+        jComboBoxDia = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -44,75 +44,75 @@ public class frmHorarios extends javax.swing.JFrame {
         jPanelHorario.setBackground(new java.awt.Color(58, 107, 203));
         jPanelHorario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnVolver.setBackground(new java.awt.Color(153, 204, 255));
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+        btnVolverC.setBackground(new java.awt.Color(153, 204, 255));
+        btnVolverC.setText("Volver");
+        btnVolverC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
+                btnVolverCActionPerformed(evt);
             }
         });
-        jPanelHorario.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+        jPanelHorario.add(btnVolverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
-        lblCine.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblCine.setForeground(new java.awt.Color(255, 255, 255));
-        lblCine.setText("Cine");
-        jPanelHorario.add(lblCine, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 300, -1));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Cine");
+        jPanelHorario.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 300, -1));
 
-        lblPoster.setForeground(new java.awt.Color(255, 255, 255));
-        lblPoster.setText("Poster");
-        lblPoster.setToolTipText("");
-        lblPoster.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelHorario.add(lblPoster, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 160, 200));
+        jLbPoster.setForeground(new java.awt.Color(255, 255, 255));
+        jLbPoster.setText("Poster");
+        jLbPoster.setToolTipText("");
+        jLbPoster.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelHorario.add(jLbPoster, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 160, 200));
 
-        btnEntradaGeneral.setBackground(new java.awt.Color(255, 225, 0));
-        btnEntradaGeneral.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEntradaGeneral.setText("Entadada general");
-        jPanelHorario.add(btnEntradaGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
+        btnAtras4.setBackground(new java.awt.Color(255, 225, 0));
+        btnAtras4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAtras4.setText("Entadada general");
+        jPanelHorario.add(btnAtras4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
 
-        btnEntadaVip.setBackground(new java.awt.Color(255, 225, 0));
-        btnEntadaVip.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEntadaVip.setText("Entada VIP");
-        btnEntadaVip.addActionListener(new java.awt.event.ActionListener() {
+        btnAtras5.setBackground(new java.awt.Color(255, 225, 0));
+        btnAtras5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAtras5.setText("Entada VIP");
+        btnAtras5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntadaVipActionPerformed(evt);
+                btnAtras5ActionPerformed(evt);
             }
         });
-        jPanelHorario.add(btnEntadaVip, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
+        jPanelHorario.add(btnAtras5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
 
-        btnContinuar.setBackground(new java.awt.Color(255, 225, 0));
-        btnContinuar.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        btnContinuar.setText("Contunuar compra");
-        jPanelHorario.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 170, 40));
+        btnAtras6.setBackground(new java.awt.Color(255, 225, 0));
+        btnAtras6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnAtras6.setText("Contunuar compra");
+        jPanelHorario.add(btnAtras6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 170, 40));
 
-        cbxDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
-        jPanelHorario.add(cbxDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, -1));
+        jComboBoxDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
+        jPanelHorario.add(jComboBoxDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, -1));
 
-        lblnformacionPeli.setForeground(new java.awt.Color(255, 255, 255));
-        lblnformacionPeli.setText("Informacion de pelicula");
-        jPanelHorario.add(lblnformacionPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Informacion de pelicula");
+        jPanelHorario.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
-        lblFuncionesVip.setForeground(new java.awt.Color(255, 255, 255));
-        lblFuncionesVip.setText("Funciones");
-        jPanelHorario.add(lblFuncionesVip, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, -1, -1));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Funciones");
+        jPanelHorario.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, -1, -1));
 
-        lblFuncinesGeneral.setForeground(new java.awt.Color(255, 255, 255));
-        lblFuncinesGeneral.setText("Funciones");
-        jPanelHorario.add(lblFuncinesGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Funciones");
+        jPanelHorario.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
 
         getContentPane().add(jPanelHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+    private void btnVolverCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverCActionPerformed
         frmCartelera regresar = new frmCartelera();
         regresar.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnVolverActionPerformed
+    }//GEN-LAST:event_btnVolverCActionPerformed
 
-    private void btnEntadaVipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntadaVipActionPerformed
+    private void btnAtras5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtras5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEntadaVipActionPerformed
+    }//GEN-LAST:event_btnAtras5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,16 +150,16 @@ public class frmHorarios extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnContinuar;
-    private javax.swing.JButton btnEntadaVip;
-    private javax.swing.JButton btnEntradaGeneral;
-    private javax.swing.JButton btnVolver;
-    private javax.swing.JComboBox<String> cbxDia;
+    private javax.swing.JButton btnAtras4;
+    private javax.swing.JButton btnAtras5;
+    private javax.swing.JButton btnAtras6;
+    private javax.swing.JButton btnVolverC;
+    private javax.swing.JComboBox<String> jComboBoxDia;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLbPoster;
     private javax.swing.JPanel jPanelHorario;
-    private javax.swing.JLabel lblCine;
-    private javax.swing.JLabel lblFuncinesGeneral;
-    private javax.swing.JLabel lblFuncionesVip;
-    private javax.swing.JLabel lblPoster;
-    private javax.swing.JLabel lblnformacionPeli;
     // End of variables declaration//GEN-END:variables
 }

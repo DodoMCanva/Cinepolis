@@ -49,7 +49,7 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
             }
         });
         jPanelCatalogoPeliculas.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
-        jPanelCatalogoPeliculas.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 590, 25));
+        jPanelCatalogoPeliculas.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 490, 25));
 
         jScrollPane1.setBackground(new java.awt.Color(153, 204, 255));
 

@@ -24,10 +24,10 @@ public class frmOpcionReprtes extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnReportePeliculas = new javax.swing.JButton();
-        btnReporteSucursales = new javax.swing.JButton();
-        lblReportes = new javax.swing.JLabel();
-        btnVolver = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnVolverC = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -35,34 +35,34 @@ public class frmOpcionReprtes extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(58, 107, 203));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnReportePeliculas.setBackground(new java.awt.Color(204, 204, 255));
-        btnReportePeliculas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnReportePeliculas.setText("Ganancias por películas");
-        btnReportePeliculas.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setBackground(new java.awt.Color(204, 204, 255));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton1.setText("Ganancias por películas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReportePeliculasActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnReportePeliculas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 60));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 240, 60));
 
-        btnReporteSucursales.setBackground(new java.awt.Color(204, 204, 255));
-        btnReporteSucursales.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnReporteSucursales.setText("Ganancias por sucursales");
-        jPanel1.add(btnReporteSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 240, 60));
+        jButton2.setBackground(new java.awt.Color(204, 204, 255));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton2.setText("Ganancias por sucursales");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 240, 60));
 
-        lblReportes.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblReportes.setForeground(new java.awt.Color(255, 255, 255));
-        lblReportes.setText("Reportes");
-        jPanel1.add(lblReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Reportes");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
-        btnVolver.setBackground(new java.awt.Color(153, 204, 255));
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+        btnVolverC.setBackground(new java.awt.Color(153, 204, 255));
+        btnVolverC.setText("Volver");
+        btnVolverC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
+                btnVolverCActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+        jPanel1.add(btnVolverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 410));
 
@@ -70,23 +70,23 @@ public class frmOpcionReprtes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnReportePeliculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportePeliculasActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnReportePeliculasActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+    private void btnVolverCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverCActionPerformed
 //        frmInicioSesionCliente regresar = new frmInicioSesionCliente();
 //        regresar.setVisible(true);
 //        this.dispose();
-    }//GEN-LAST:event_btnVolverActionPerformed
+    }//GEN-LAST:event_btnVolverCActionPerformed
 
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnReportePeliculas;
-    private javax.swing.JButton btnReporteSucursales;
-    private javax.swing.JButton btnVolver;
+    private javax.swing.JButton btnVolverC;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblReportes;
     // End of variables declaration//GEN-END:variables
 }

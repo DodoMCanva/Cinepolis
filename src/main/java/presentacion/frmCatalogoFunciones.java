@@ -30,7 +30,7 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
         btnVolverFuncion = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableFunciones = new javax.swing.JTable();
+        jTablePeliculas = new javax.swing.JTable();
         btnAgregarFuncion = new javax.swing.JButton();
         btnBuscarFuncion = new javax.swing.JButton();
         btnAtrasCatFuncio = new javax.swing.JButton();
@@ -52,12 +52,12 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
             }
         });
         jPanelCatalogoFunciones.add(btnVolverFuncion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
-        jPanelCatalogoFunciones.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 590, 25));
+        jPanelCatalogoFunciones.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 490, 25));
 
         jScrollPane1.setBackground(new java.awt.Color(153, 204, 255));
 
-        jTableFunciones.setBackground(new java.awt.Color(153, 204, 255));
-        jTableFunciones.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePeliculas.setBackground(new java.awt.Color(153, 204, 255));
+        jTablePeliculas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -68,7 +68,7 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
                 "Tiemp. Limpieza", "Fecha", "Inicio", "Fin", "Pelicula", "Eliminar"
             }
         ));
-        jScrollPane1.setViewportView(jTableFunciones);
+        jScrollPane1.setViewportView(jTablePeliculas);
 
         jPanelCatalogoFunciones.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 800, 380));
 
@@ -125,7 +125,7 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
     private javax.swing.JButton btnVolverFuncion;
     private javax.swing.JPanel jPanelCatalogoFunciones;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableFunciones;
+    private javax.swing.JTable jTablePeliculas;
     private javax.swing.JLabel lblNumPagCatFuncio;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
