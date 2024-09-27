@@ -20,6 +20,7 @@ presentacion\frmResumenCompra.class
 negocio\SalaNegocio.class
 presentacion\frmCatalogoClientes.class
 presentacion\frmDatosSucursal$1.class
+presentacion\frmInicioSesionCliente$5.class
 persistencia\PeliculaDAO.class
 persistencia\IPeliculaDAO.class
 presentacion\frmOpcionReprtes.class
