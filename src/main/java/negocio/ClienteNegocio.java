@@ -1,8 +1,12 @@
 package negocio;
 
 import dto.ClienteDTO;
+import entidad.ClienteEntidad;
 import java.util.ArrayList;
 import java.util.List;
+import persistencia.ClienteDAO;
+import persistencia.IClienteDAO;
+import persistencia.PersistenciaException;
 import utilerias.Tabla;
 
 public class ClienteNegocio implements IClienteNegocio{
@@ -12,10 +16,16 @@ public class ClienteNegocio implements IClienteNegocio{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public void guardar(ClienteDTO clienteDTO) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+   @Override
+public void guardarCliente(ClienteDTO clienteDTO) throws NegocioException {
+    try {
+        ClienteEntidad clienteEntidad = convertirDtoAEntidad(clienteDTO);
+        IClienteDAO clienteDAO = new ClienteDAO(); // Instancia del DAO
+        clienteDAO.guardar(clienteEntidad); // Guarda el cliente en la base de datos
+    } catch (PersistenciaException e) {
+        throw new NegocioException("Error al guardar el cliente.", e);
     }
+}
 
     @Override
     public void eliminar(int idCliente) throws NegocioException {
@@ -37,4 +47,17 @@ public class ClienteNegocio implements IClienteNegocio{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    
+      private ClienteEntidad convertirDtoAEntidad(ClienteDTO clienteDTO) {
+        ClienteEntidad clienteEntidad = new ClienteEntidad();
+        clienteEntidad.setNombre(clienteDTO.getNombre());
+        clienteEntidad.setApellidoPaterno(clienteDTO.getApellidoPaterno());
+        clienteEntidad.setApellidoMaterno(clienteDTO.getApellidoMaterno());
+        clienteEntidad.setCelular(clienteDTO.getCelular());
+        clienteEntidad.setCorreoElectronico(clienteDTO.getCorreoElectronico());
+            clienteEntidad.setFechaNacimiento(clienteDTO.getFechaNacimiento());
+        clienteEntidad.setContrasena(clienteDTO.getContrasena());
+        return clienteEntidad;
+    }
+
 }

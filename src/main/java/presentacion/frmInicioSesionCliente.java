@@ -58,6 +58,11 @@ public class frmInicioSesionCliente extends javax.swing.JFrame {
         txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
         txtUsuario.setText("Nombre");
         txtUsuario.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 204, 255)), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 204, 255))));
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
         InicioSesion.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 220, 30));
 
         btnRegistrarce.setBackground(new java.awt.Color(153, 204, 255));
@@ -114,6 +119,10 @@ public class frmInicioSesionCliente extends javax.swing.JFrame {
         ir.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistrarceActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
