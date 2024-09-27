@@ -1,7 +1,9 @@
 package presentacion;
 
 import dto.ClienteDTO;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import negocio.ClienteNegocio;
 import negocio.NegocioException;
@@ -38,7 +40,6 @@ public class frmRegistroCliente extends javax.swing.JFrame {
         txtConfContraseñaRegistro = new javax.swing.JTextField();
         txtNombreRegistro = new javax.swing.JTextField();
         txtContraseñaRegistro = new javax.swing.JTextField();
-        txtFechaNacimientoRegistro = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
         btnRegistrarse = new javax.swing.JButton();
         lblTituloRegistro = new javax.swing.JLabel();
@@ -51,6 +52,8 @@ public class frmRegistroCliente extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro");
@@ -113,12 +116,6 @@ public class frmRegistroCliente extends javax.swing.JFrame {
         txtContraseñaRegistro.setText("Contraseña");
         txtContraseñaRegistro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
         RegistroCliente.add(txtContraseñaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 170, 30));
-
-        txtFechaNacimientoRegistro.setBackground(new java.awt.Color(0, 51, 153));
-        txtFechaNacimientoRegistro.setForeground(new java.awt.Color(255, 255, 255));
-        txtFechaNacimientoRegistro.setText("Fecha de nacimiento");
-        txtFechaNacimientoRegistro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
-        RegistroCliente.add(txtFechaNacimientoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 170, 30));
 
         btnVolver.setBackground(new java.awt.Color(153, 204, 255));
         btnVolver.setText("Volver");
@@ -187,6 +184,11 @@ public class frmRegistroCliente extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("*");
         RegistroCliente.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 10, 20));
+        RegistroCliente.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 90, 30));
+
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Fecha Nacimiento");
+        RegistroCliente.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
         getContentPane().add(RegistroCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 380));
         RegistroCliente.getAccessibleContext().setAccessibleName("");
@@ -224,11 +226,22 @@ public class frmRegistroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.");
             return;
         }
-         // Convertir el objeto Date a formato MySQL (yyyy-MM-dd)
-    SimpleDateFormat formatoMysql = new SimpleDateFormat("yyyy-MM-dd");
-    String fechaMysql = formatoMysql.format(fechaNacimiento);
+        // Convertir la cadena de fecha de nacimiento en un objeto Date
+        SimpleDateFormat formatoEntrada = new SimpleDateFormat("dd/MM/yyyy"); // O el formato en el que el usuario ingresa la fecha
+        Date fechaNacimientoDate = null;
 
-        // Crear un ClienteDTO
+        try {
+            fechaNacimientoDate = formatoEntrada.parse(fechaNacimiento);
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(this, "Formato de fecha inválido. Usa el formato dd/MM/yyyy.");
+            return; // Detenemos el proceso si hay error en el formato de la fecha
+        }
+
+// Ahora convertir el objeto Date a formato MySQL (yyyy-MM-dd)
+        SimpleDateFormat formatoMysql = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaMysql = formatoMysql.format(fechaNacimientoDate);
+
+// Crear un ClienteDTO
         ClienteDTO clienteDTO = new ClienteDTO();
         clienteDTO.setNombre(nombre);
         clienteDTO.setApellidoPaterno(apellidoPaterno);
@@ -243,21 +256,21 @@ public class frmRegistroCliente extends javax.swing.JFrame {
             ClienteNegocio clienteNegocio = new ClienteNegocio();
             clienteNegocio.guardarCliente(clienteDTO);
             JOptionPane.showMessageDialog(this, "Cliente registrado con éxito.");
-            } catch (NegocioException e) {
+        } catch (NegocioException e) {
             JOptionPane.showMessageDialog(this, "Error al registrar el cliente: " + e.getMessage());
+
         }
-    
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
-/**
- * @param args the command line arguments
- */
-//  public static void main(String args[]) {
-/* Set the Nimbus look and feel */
-//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    /**
+     * @param args the command line arguments
+     */
+    //  public static void main(String args[]) {
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
- */
+     */
  /*   try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -283,12 +296,13 @@ public class frmRegistroCliente extends javax.swing.JFrame {
             }
         });
     }*/
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel RegistroCliente;
     private javax.swing.JButton btnRegistrarse;
     private javax.swing.JButton btnVolver;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -303,7 +317,6 @@ public class frmRegistroCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtConfContraseñaRegistro;
     private javax.swing.JTextField txtContraseñaRegistro;
     private javax.swing.JTextField txtCorreoResgirstro;
-    private javax.swing.JTextField txtFechaNacimientoRegistro;
     private javax.swing.JTextField txtNombreRegistro;
     private javax.swing.JTextField txtNumCelularRegistro;
     // End of variables declaration//GEN-END:variables
