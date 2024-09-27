@@ -37,7 +37,7 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanelCatalogoFunciones.setBackground(new java.awt.Color(0, 51, 153));
+        jPanelCatalogoFunciones.setBackground(new java.awt.Color(58, 107, 203));
         jPanelCatalogoFunciones.setPreferredSize(new java.awt.Dimension(920, 600));
         jPanelCatalogoFunciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

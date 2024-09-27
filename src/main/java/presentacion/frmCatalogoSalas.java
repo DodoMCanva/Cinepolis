@@ -35,7 +35,7 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanelCatalogoSucursales.setBackground(new java.awt.Color(0, 51, 153));
+        jPanelCatalogoSucursales.setBackground(new java.awt.Color(58, 107, 203));
         jPanelCatalogoSucursales.setPreferredSize(new java.awt.Dimension(920, 600));
         jPanelCatalogoSucursales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
