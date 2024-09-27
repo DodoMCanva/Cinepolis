@@ -12,21 +12,22 @@ public class ClienteEntidad {
     private String geolocalizacion;
     private String contrasena;
     private boolean estaEliminado;
-    private java.util.Date fechaNacimiento;
-    private java.util.Date fechaHoraRegistro;
+    private String fechaNacimiento;
+    private Date fechaHoraRegistro;
+    private String celular;
 
-    public ClienteEntidad(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String geolocalizacion, String contrasena, boolean estaEliminado, Date fechaNacimiento, Date fechaHoraRegistro) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-        this.correoElectronico = correoElectronico;
-        this.geolocalizacion = geolocalizacion;
-        this.contrasena = contrasena;
-        this.estaEliminado = estaEliminado;
-        this.fechaNacimiento = fechaNacimiento;
-        this.fechaHoraRegistro = fechaHoraRegistro;
-    }
+//    public ClienteEntidad(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String geolocalizacion, String contrasena, boolean estaEliminado, Date fechaNacimiento, Date fechaHoraRegistro) {
+//        this.id = id;
+//        this.nombre = nombre;
+//        this.apellidoPaterno = apellidoPaterno;
+//        this.apellidoMaterno = apellidoMaterno;
+//        this.correoElectronico = correoElectronico;
+//        this.geolocalizacion = geolocalizacion;
+//        this.contrasena = contrasena;
+//        this.estaEliminado = estaEliminado;
+//        this.fechaNacimiento = fechaNacimiento;
+//        this.fechaHoraRegistro = fechaHoraRegistro;
+//    }
 
     public int getId() {
         return id;
@@ -92,13 +93,15 @@ public class ClienteEntidad {
         this.estaEliminado = estaEliminado;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+  
 
     public Date getFechaHoraRegistro() {
         return fechaHoraRegistro;
@@ -107,6 +110,17 @@ public class ClienteEntidad {
     public void setFechaHoraRegistro(Date fechaHoraRegistro) {
         this.fechaHoraRegistro = fechaHoraRegistro;
     }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    
+    
 
     @Override
     public int hashCode() {
