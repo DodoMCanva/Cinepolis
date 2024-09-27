@@ -299,12 +299,7 @@ public class frmRegistroCliente extends javax.swing.JFrame {
             return;
         }
 
-        // Validación de fecha de nacimiento
-        if (fechaNacimientoDate == null) {
-            JOptionPane.showMessageDialog(this, "Por favor selecciona una fecha de nacimiento válida.");
-            return;
-        }
-
+       
         // Convertir la fecha al formato MySQL (yyyy-MM-dd)
         SimpleDateFormat formatoMysql = new SimpleDateFormat("yyyy-MM-dd");
         String fechaMysql = formatoMysql.format(fechaNacimientoDate);
