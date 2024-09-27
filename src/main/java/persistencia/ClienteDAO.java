@@ -17,13 +17,13 @@ public class ClienteDAO implements IClienteDAO {
     public ClienteDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
     }
-
+    
     @Override
     public void guardar(ClienteEntidad cliente) throws PersistenciaException {
         // Consulta SQL para insertar en la tabla Cliente
-        String consultaCliente = "INSERT INTO Cliente (Correo_Electronico, Fecha_Nacimiento, Geolocalizacion, Contrasena) VALUES (?, ?, ?, ?)";
-        String consultaNombreCliente = "INSERT INTO NombreCliente (ID, Nombre, Apellido_Paterno, Apellido_Materno) VALUES (?, ?, ?, ?)";
-
+        String consultaCliente = "INSERT INTO Clientes (correoElectronico, fechaNacimiento, geolcl, psswrd) VALUES (?, ?, ?, ?)";
+        String consultaNombreCliente = "INSERT INTO NombreCliente (ID, nombre, apellidoPaterno, apellidoMaterno) VALUES (?, ?, ?, ?)";
+        System.out.println(cliente.getFechaNacimiento());
         try (Connection connection = conexionBD.crearConexion()) {
             // Habilitar la generación de claves para obtener el ID del cliente insertado
             try (PreparedStatement psCliente = connection.prepareStatement(consultaCliente, Statement.RETURN_GENERATED_KEYS)) {

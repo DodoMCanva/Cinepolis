@@ -118,10 +118,6 @@ public class ClienteDTO {
         this.celular = celular;
     }
 
-   
-    
-    
-
     @Override
     public int hashCode() {
         int hash = 7;
