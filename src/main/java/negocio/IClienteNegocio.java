@@ -9,7 +9,7 @@ public interface IClienteNegocio {
 
     ArrayList<ClienteDTO> consultar() throws NegocioException;
 
-    public void guardar(ClienteDTO clienteDTO) throws NegocioException;
+    public void guardarCliente(ClienteDTO clienteDTO) throws NegocioException;
 
     void eliminar(int idCliente) throws NegocioException;
 

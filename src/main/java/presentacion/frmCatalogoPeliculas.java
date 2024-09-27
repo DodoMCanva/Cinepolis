@@ -95,7 +95,7 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
         jPanelCatalogoPeliculas.add(lblnumPagCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 560, -1, -1));
 
         btnSiguienteCatPeli.setText("Siguiente");
-        jPanelCatalogoPeliculas.add(btnSiguienteCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 550, -1, -1));
+        jPanelCatalogoPeliculas.add(btnSiguienteCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 560, -1, -1));
 
         getContentPane().add(jPanelCatalogoPeliculas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 600));
 
