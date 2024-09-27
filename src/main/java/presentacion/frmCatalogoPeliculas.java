@@ -24,14 +24,15 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
 
         jPanelCatalogoPeliculas = new javax.swing.JPanel();
         btnVolver = new javax.swing.JButton();
-        txtBuscar = new javax.swing.JTextField();
+        txtBuscarPelicula = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTablePeliculas = new javax.swing.JTable();
+        tblPeliculas = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnAtrasCatPeli = new javax.swing.JButton();
         lblnumPagCatPeli = new javax.swing.JLabel();
         btnSiguienteCatPeli = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Catalogo Peliculas");
@@ -49,12 +50,12 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
             }
         });
         jPanelCatalogoPeliculas.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
-        jPanelCatalogoPeliculas.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 490, 25));
+        jPanelCatalogoPeliculas.add(txtBuscarPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 590, 25));
 
         jScrollPane1.setBackground(new java.awt.Color(153, 204, 255));
 
-        jTablePeliculas.setBackground(new java.awt.Color(153, 204, 255));
-        jTablePeliculas.setModel(new javax.swing.table.DefaultTableModel(
+        tblPeliculas.setBackground(new java.awt.Color(153, 204, 255));
+        tblPeliculas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -65,9 +66,9 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
                 "ID", "Titulo", "Clasificacion", "Minutos", "Genero", "Pais", "Sinopsis", "Eliminar"
             }
         ));
-        jScrollPane1.setViewportView(jTablePeliculas);
+        jScrollPane1.setViewportView(tblPeliculas);
 
-        jPanelCatalogoPeliculas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 800, 380));
+        jPanelCatalogoPeliculas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 800, 370));
 
         btnAgregar.setBackground(new java.awt.Color(153, 204, 255));
         btnAgregar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -81,7 +82,7 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
 
         btnBuscar.setBackground(new java.awt.Color(153, 204, 255));
         btnBuscar.setText("Buscar");
-        jPanelCatalogoPeliculas.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, -1, -1));
+        jPanelCatalogoPeliculas.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 90, -1, -1));
 
         btnAtrasCatPeli.setText("Atras");
         btnAtrasCatPeli.addActionListener(new java.awt.event.ActionListener() {
@@ -89,13 +90,18 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
                 btnAtrasCatPeliActionPerformed(evt);
             }
         });
-        jPanelCatalogoPeliculas.add(btnAtrasCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, -1, -1));
+        jPanelCatalogoPeliculas.add(btnAtrasCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 550, -1, -1));
 
         lblnumPagCatPeli.setText("NumPag");
-        jPanelCatalogoPeliculas.add(lblnumPagCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 560, -1, -1));
+        jPanelCatalogoPeliculas.add(lblnumPagCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 550, -1, -1));
 
         btnSiguienteCatPeli.setText("Siguiente");
-        jPanelCatalogoPeliculas.add(btnSiguienteCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 560, -1, -1));
+        jPanelCatalogoPeliculas.add(btnSiguienteCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 550, -1, -1));
+
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setText("Películas");
+        jPanelCatalogoPeliculas.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
         getContentPane().add(jPanelCatalogoPeliculas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 600));
 
@@ -162,8 +168,9 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
     private javax.swing.JButton btnVolver;
     private javax.swing.JPanel jPanelCatalogoPeliculas;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTablePeliculas;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblnumPagCatPeli;
-    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTable tblPeliculas;
+    private javax.swing.JTextField txtBuscarPelicula;
     // End of variables declaration//GEN-END:variables
 }

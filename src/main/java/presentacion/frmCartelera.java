@@ -24,18 +24,18 @@ public class frmCartelera extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnVolverC = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         lblTituloCartelera = new javax.swing.JLabel();
-        jLPelicula4 = new javax.swing.JLabel();
+        lblPelicula4 = new javax.swing.JLabel();
         cbxCiudad = new javax.swing.JComboBox<>();
         cbxSucursal = new javax.swing.JComboBox<>();
         btnSiguiente = new javax.swing.JButton();
-        jLPelicula3 = new javax.swing.JLabel();
-        jLbPelicula1 = new javax.swing.JLabel();
-        jLPelicula5 = new javax.swing.JLabel();
-        jLbPelicula2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        btnAtras1 = new javax.swing.JButton();
+        lblPelicula3 = new javax.swing.JLabel();
+        lblPelicula1 = new javax.swing.JLabel();
+        lblPelicula5 = new javax.swing.JLabel();
+        lblPelicula2 = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
         btnSeleccionar5 = new javax.swing.JButton();
         btnSeleccionar1 = new javax.swing.JButton();
         btnSeleccionar2 = new javax.swing.JButton();
@@ -48,97 +48,97 @@ public class frmCartelera extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(58, 107, 203));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnVolverC.setBackground(new java.awt.Color(153, 204, 255));
-        btnVolverC.setText("Volver");
-        btnVolverC.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setBackground(new java.awt.Color(153, 204, 255));
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverCActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolverC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
         lblTituloCartelera.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTituloCartelera.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloCartelera.setText("Cartelera");
-        jPanel1.add(lblTituloCartelera, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        jPanel1.add(lblTituloCartelera, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
-        jLPelicula4.setForeground(new java.awt.Color(255, 255, 255));
-        jLPelicula4.setText("Pelicula4");
-        jLPelicula4.setToolTipText("");
-        jLPelicula4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLPelicula4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 90, 120));
+        lblPelicula4.setForeground(new java.awt.Color(255, 255, 255));
+        lblPelicula4.setText("Pelicula4");
+        lblPelicula4.setToolTipText("");
+        lblPelicula4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lblPelicula4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 130, 160));
 
         cbxCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cbxCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 90, -1));
+        jPanel1.add(cbxCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, 120, 25));
 
         cbxSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cbxSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 90, -1));
+        jPanel1.add(cbxSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 120, 25));
 
         btnSiguiente.setText("Siguiente");
-        jPanel1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, -1, -1));
+        jPanel1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 400, -1, -1));
 
-        jLPelicula3.setBackground(new java.awt.Color(204, 204, 204));
-        jLPelicula3.setForeground(new java.awt.Color(255, 255, 255));
-        jLPelicula3.setText("Pelicula3");
-        jLPelicula3.setToolTipText("");
-        jLPelicula3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLPelicula3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 90, 120));
+        lblPelicula3.setBackground(new java.awt.Color(204, 204, 204));
+        lblPelicula3.setForeground(new java.awt.Color(255, 255, 255));
+        lblPelicula3.setText("Pelicula3");
+        lblPelicula3.setToolTipText("");
+        lblPelicula3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lblPelicula3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 130, 160));
 
-        jLbPelicula1.setForeground(new java.awt.Color(255, 255, 255));
-        jLbPelicula1.setText("Pelicula1");
-        jLbPelicula1.setToolTipText("");
-        jLbPelicula1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLbPelicula1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 90, 120));
+        lblPelicula1.setForeground(new java.awt.Color(255, 255, 255));
+        lblPelicula1.setText("Pelicula1");
+        lblPelicula1.setToolTipText("");
+        lblPelicula1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lblPelicula1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 130, 160));
 
-        jLPelicula5.setForeground(new java.awt.Color(255, 255, 255));
-        jLPelicula5.setText("Pelicula5");
-        jLPelicula5.setToolTipText("");
-        jLPelicula5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLPelicula5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 90, 120));
+        lblPelicula5.setForeground(new java.awt.Color(255, 255, 255));
+        lblPelicula5.setText("Pelicula5");
+        lblPelicula5.setToolTipText("");
+        lblPelicula5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lblPelicula5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, 130, 160));
 
-        jLbPelicula2.setForeground(new java.awt.Color(255, 255, 255));
-        jLbPelicula2.setText("Pelicula2");
-        jLbPelicula2.setToolTipText("");
-        jLbPelicula2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLbPelicula2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 90, 120));
+        lblPelicula2.setForeground(new java.awt.Color(255, 255, 255));
+        lblPelicula2.setText("Pelicula2");
+        lblPelicula2.setToolTipText("");
+        lblPelicula2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lblPelicula2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 130, 160));
 
-        jButton2.setText("Buscar");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, -1, -1));
+        btnBuscar.setText("Buscar");
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, -1, 25));
 
-        btnAtras1.setText("Atras");
-        jPanel1.add(btnAtras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
+        btnAtras.setText("Atras");
+        jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, -1, -1));
 
         btnSeleccionar5.setBackground(new java.awt.Color(255, 225, 0));
         btnSeleccionar5.setText("Seleccionar");
-        jPanel1.add(btnSeleccionar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, -1, -1));
+        jPanel1.add(btnSeleccionar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, -1, -1));
 
         btnSeleccionar1.setBackground(new java.awt.Color(255, 225, 0));
         btnSeleccionar1.setText("Seleccionar");
-        jPanel1.add(btnSeleccionar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
+        jPanel1.add(btnSeleccionar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
 
         btnSeleccionar2.setBackground(new java.awt.Color(255, 225, 0));
         btnSeleccionar2.setText("Seleccionar");
-        jPanel1.add(btnSeleccionar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+        jPanel1.add(btnSeleccionar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, -1, -1));
 
         btnSeleccionar3.setBackground(new java.awt.Color(255, 225, 0));
         btnSeleccionar3.setText("Seleccionar");
-        jPanel1.add(btnSeleccionar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
+        jPanel1.add(btnSeleccionar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, -1, -1));
 
         bntSeleccionar4.setBackground(new java.awt.Color(255, 225, 0));
         bntSeleccionar4.setText("Seleccionar");
-        jPanel1.add(bntSeleccionar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, -1));
+        jPanel1.add(bntSeleccionar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 380));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 470));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVolverCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverCActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         frmInicioSesionCliente regresar = new frmInicioSesionCliente();
         regresar.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnVolverCActionPerformed
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,22 +177,22 @@ public class frmCartelera extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntSeleccionar4;
-    private javax.swing.JButton btnAtras1;
+    private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnSeleccionar1;
     private javax.swing.JButton btnSeleccionar2;
     private javax.swing.JButton btnSeleccionar3;
     private javax.swing.JButton btnSeleccionar5;
     private javax.swing.JButton btnSiguiente;
-    private javax.swing.JButton btnVolverC;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cbxCiudad;
     private javax.swing.JComboBox<String> cbxSucursal;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLPelicula3;
-    private javax.swing.JLabel jLPelicula4;
-    private javax.swing.JLabel jLPelicula5;
-    private javax.swing.JLabel jLbPelicula1;
-    private javax.swing.JLabel jLbPelicula2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblPelicula1;
+    private javax.swing.JLabel lblPelicula2;
+    private javax.swing.JLabel lblPelicula3;
+    private javax.swing.JLabel lblPelicula4;
+    private javax.swing.JLabel lblPelicula5;
     private javax.swing.JLabel lblTituloCartelera;
     // End of variables declaration//GEN-END:variables
 }

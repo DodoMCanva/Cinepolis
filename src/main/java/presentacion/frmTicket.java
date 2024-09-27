@@ -54,6 +54,7 @@ public class frmTicket extends javax.swing.JFrame {
         lblTipoDePago = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ticket");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -81,74 +82,76 @@ public class frmTicket extends javax.swing.JFrame {
 
         lblTituloTicketSala.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTituloTicketSala.setText("Sala:");
-        jPanel1.add(lblTituloTicketSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+        jPanel1.add(lblTituloTicketSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
 
         lblSalaTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblSalaTicket.setText("nombreSala");
-        jPanel1.add(lblSalaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
+        jPanel1.add(lblSalaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
 
         lblTituloPeliculaTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTituloPeliculaTicket.setText("Pelicula:");
-        jPanel1.add(lblTituloPeliculaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+        jPanel1.add(lblTituloPeliculaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
 
         lblTituloClaseTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTituloClaseTicket.setText("Clase:");
-        jPanel1.add(lblTituloClaseTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+        jPanel1.add(lblTituloClaseTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
 
         lblPeliculaTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblPeliculaTicket.setText("nombrePelicula");
-        jPanel1.add(lblPeliculaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, -1));
+        jPanel1.add(lblPeliculaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
 
         lblClaseTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblClaseTicket.setText("nombreClase");
-        jPanel1.add(lblClaseTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
+        jPanel1.add(lblClaseTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
 
         lblTituloHorarioTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTituloHorarioTicket.setText("Horario:");
-        jPanel1.add(lblTituloHorarioTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
+        jPanel1.add(lblTituloHorarioTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
 
         lblHorarioTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblHorarioTicket.setText("Horario");
-        jPanel1.add(lblHorarioTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
+        lblHorarioTicket.setText("horario");
+        jPanel1.add(lblHorarioTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
 
         lblTituloTipoEntradaTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTituloTipoEntradaTicket.setText("Tipo de entrada:");
-        jPanel1.add(lblTituloTipoEntradaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+        jPanel1.add(lblTituloTipoEntradaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
         lblTipoEntradaTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTipoEntradaTicket.setText("tipoEntrada");
-        jPanel1.add(lblTipoEntradaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
+        jPanel1.add(lblTipoEntradaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, -1));
 
         lblTituloUsuarioTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTituloUsuarioTicket.setText("Usuario:");
-        jPanel1.add(lblTituloUsuarioTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
+        jPanel1.add(lblTituloUsuarioTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, -1, -1));
 
         lblNombreUsuarioTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombreUsuarioTicket.setText("nombreUsuario");
-        jPanel1.add(lblNombreUsuarioTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, -1));
+        jPanel1.add(lblNombreUsuarioTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, -1, -1));
 
         lblLinea3.setText("---------------------------------------------------------");
         jPanel1.add(lblLinea3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
 
         lblTituloTotalTicket.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblTituloTotalTicket.setText("Total:");
-        jPanel1.add(lblTituloTotalTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, -1, -1));
+        jPanel1.add(lblTituloTotalTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 460, -1, -1));
 
         lblLinea4.setText("--------------------------------------------------------");
         jPanel1.add(lblLinea4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, -1, -1));
 
         lblTotalTicket.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblTotalTicket.setText("totalCompra");
-        jPanel1.add(lblTotalTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, -1, -1));
+        jPanel1.add(lblTotalTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 460, -1, -1));
 
         lblLogoCinepoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logocine.png"))); // NOI18N
-        jPanel1.add(lblLogoCinepoli, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, -1, -1));
+        jPanel1.add(lblLogoCinepoli, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 520, -1, -1));
 
+        lblTituloTipoDePagoTicket.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTituloTipoDePagoTicket.setText("Tipo De Pago:");
-        jPanel1.add(lblTituloTipoDePagoTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+        jPanel1.add(lblTituloTipoDePagoTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
 
-        lblTipoDePago.setText("TIpo de pago");
-        jPanel1.add(lblTipoDePago, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, -1, -1));
+        lblTipoDePago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTipoDePago.setText("tipoPago");
+        jPanel1.add(lblTipoDePago, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
