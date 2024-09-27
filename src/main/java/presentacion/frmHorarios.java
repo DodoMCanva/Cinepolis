@@ -41,7 +41,7 @@ public class frmHorarios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanelHorario.setBackground(new java.awt.Color(0, 51, 153));
+        jPanelHorario.setBackground(new java.awt.Color(58, 107, 203));
         jPanelHorario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnVolverC.setBackground(new java.awt.Color(153, 204, 255));

@@ -31,6 +31,9 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnBuscarSala = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnAtrasCatSalas = new javax.swing.JButton();
+        lblNumPagCatSala = new javax.swing.JLabel();
+        btnSiguienteCatSala = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -77,7 +80,7 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanelCatalogoSucursales.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 550, 100, 30));
+        jPanelCatalogoSucursales.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 530, 100, 30));
 
         btnBuscarSala.setBackground(new java.awt.Color(153, 204, 255));
         btnBuscarSala.setText("Buscar");
@@ -92,6 +95,20 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Sucursales");
         jPanelCatalogoSucursales.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+
+        btnAtrasCatSalas.setText("Atras");
+        jPanelCatalogoSucursales.add(btnAtrasCatSalas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 550, -1, -1));
+
+        lblNumPagCatSala.setText("numPag");
+        jPanelCatalogoSucursales.add(lblNumPagCatSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 570, -1, -1));
+
+        btnSiguienteCatSala.setText("Siguiente");
+        btnSiguienteCatSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteCatSalaActionPerformed(evt);
+            }
+        });
+        jPanelCatalogoSucursales.add(btnSiguienteCatSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 550, -1, -1));
 
         getContentPane().add(jPanelCatalogoSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 600));
 
@@ -114,16 +131,23 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarSalaActionPerformed
 
+    private void btnSiguienteCatSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteCatSalaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSiguienteCatSalaActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAtrasCatSalas;
     private javax.swing.JButton btnBuscarSala;
+    private javax.swing.JButton btnSiguienteCatSala;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelCatalogoSucursales;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableSucursales;
+    private javax.swing.JLabel lblNumPagCatSala;
     private javax.swing.JTextField txtBuscarSala;
     // End of variables declaration//GEN-END:variables
 }

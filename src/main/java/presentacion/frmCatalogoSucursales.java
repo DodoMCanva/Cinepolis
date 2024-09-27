@@ -34,11 +34,14 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnAtrasCatSucursles = new javax.swing.JButton();
+        btnSiguienteCatSucursal = new javax.swing.JButton();
+        lblNumPagCatSucursal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanelCatalogoSucursales.setBackground(new java.awt.Color(0, 51, 153));
+        jPanelCatalogoSucursales.setBackground(new java.awt.Color(58, 107, 203));
         jPanelCatalogoSucursales.setPreferredSize(new java.awt.Dimension(920, 600));
         jPanelCatalogoSucursales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -78,7 +81,7 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanelCatalogoSucursales.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 550, 100, 30));
+        jPanelCatalogoSucursales.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 530, 100, 30));
 
         btnBuscar.setBackground(new java.awt.Color(153, 204, 255));
         btnBuscar.setText("Buscar");
@@ -93,6 +96,15 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Sucursales");
         jPanelCatalogoSucursales.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+
+        btnAtrasCatSucursles.setText("Atras");
+        jPanelCatalogoSucursales.add(btnAtrasCatSucursles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, -1, -1));
+
+        btnSiguienteCatSucursal.setText("Siguiente");
+        jPanelCatalogoSucursales.add(btnSiguienteCatSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 550, -1, -1));
+
+        lblNumPagCatSucursal.setText("NumPag");
+        jPanelCatalogoSucursales.add(lblNumPagCatSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 570, -1, -1));
 
         getContentPane().add(jPanelCatalogoSucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 600));
 
@@ -153,12 +165,15 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAtrasCatSucursles;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnSiguienteCatSucursal;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelCatalogoSucursales;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableSucursales;
+    private javax.swing.JLabel lblNumPagCatSucursal;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
