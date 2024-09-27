@@ -28,13 +28,13 @@ public class frmDatosPelicula extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnVolver = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblTituloLinkTrailer = new javax.swing.JLabel();
+        lblTituloClasifi = new javax.swing.JLabel();
+        lblTituloDuracion = new javax.swing.JLabel();
+        lblTituloGenero = new javax.swing.JLabel();
+        lblTituloTitulo = new javax.swing.JLabel();
+        lblTituloPais = new javax.swing.JLabel();
+        lblTituloSinopsis = new javax.swing.JLabel();
         jCBClasificacion = new javax.swing.JComboBox<>();
         txtDuracion = new javax.swing.JTextField();
         jCBGenero = new javax.swing.JComboBox<>();
@@ -44,14 +44,13 @@ public class frmDatosPelicula extends javax.swing.JFrame {
         txtLinkTrailer = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        btnGuardar = new javax.swing.JButton();
+        btnGuardarDatosPeli = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(820, 470));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel1.setBackground(new java.awt.Color(58, 107, 203));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnVolver.setBackground(new java.awt.Color(153, 204, 255));
@@ -63,40 +62,40 @@ public class frmDatosPelicula extends javax.swing.JFrame {
         });
         jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Link trailer");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 110, 30));
+        lblTituloLinkTrailer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblTituloLinkTrailer.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloLinkTrailer.setText("Link trailer");
+        jPanel1.add(lblTituloLinkTrailer, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 110, 30));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Clasificasón");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 110, 30));
+        lblTituloClasifi.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblTituloClasifi.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloClasifi.setText("Clasificasón");
+        jPanel1.add(lblTituloClasifi, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 110, 30));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Duración (Min)");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 110, 30));
+        lblTituloDuracion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblTituloDuracion.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloDuracion.setText("Duración (Min)");
+        jPanel1.add(lblTituloDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 110, 30));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Genero");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 110, 30));
+        lblTituloGenero.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblTituloGenero.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloGenero.setText("Genero");
+        jPanel1.add(lblTituloGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 110, 30));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Título");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 110, 30));
+        lblTituloTitulo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblTituloTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloTitulo.setText("Título");
+        jPanel1.add(lblTituloTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 110, 30));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("País");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 110, 30));
+        lblTituloPais.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblTituloPais.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloPais.setText("País");
+        jPanel1.add(lblTituloPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 110, 30));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Sinopsis");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 110, 30));
+        lblTituloSinopsis.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblTituloSinopsis.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloSinopsis.setText("Sinopsis");
+        jPanel1.add(lblTituloSinopsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 110, 30));
 
         jCBClasificacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCBClasificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "B15", "C", "R" }));
@@ -137,10 +136,10 @@ public class frmDatosPelicula extends javax.swing.JFrame {
         jLabel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 230, 290));
 
-        btnGuardar.setBackground(new java.awt.Color(153, 204, 255));
-        btnGuardar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnGuardar.setText("Guardar");
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 410, -1, -1));
+        btnGuardarDatosPeli.setBackground(new java.awt.Color(153, 204, 255));
+        btnGuardarDatosPeli.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGuardarDatosPeli.setText("Guardar");
+        jPanel1.add(btnGuardarDatosPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 410, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 470));
 
@@ -194,20 +193,20 @@ public class frmDatosPelicula extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardarDatosPeli;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> jCBClasificacion;
     private javax.swing.JComboBox<String> jCBGenero;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblTituloClasifi;
+    private javax.swing.JLabel lblTituloDuracion;
+    private javax.swing.JLabel lblTituloGenero;
+    private javax.swing.JLabel lblTituloLinkTrailer;
+    private javax.swing.JLabel lblTituloPais;
+    private javax.swing.JLabel lblTituloSinopsis;
+    private javax.swing.JLabel lblTituloTitulo;
     private javax.swing.JTextField txtDuracion;
     private javax.swing.JTextField txtLinkTrailer;
     private javax.swing.JTextField txtPais;

@@ -41,10 +41,9 @@ public class frmDatosSucursal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(540, 370));
-        setPreferredSize(new java.awt.Dimension(540, 370));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel1.setBackground(new java.awt.Color(58, 107, 203));
         jPanel1.setMinimumSize(new java.awt.Dimension(540, 370));
         jPanel1.setPreferredSize(new java.awt.Dimension(540, 370));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

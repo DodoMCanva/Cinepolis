@@ -20,8 +20,10 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePeliculas = new javax.swing.JTable();
-        btnAgregar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
+        btnAtrasCatClientes = new javax.swing.JButton();
+        btnSiguienteCatCliente = new javax.swing.JButton();
+        lblNumeroPagCatClientes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Catalogo Peliculas");
@@ -59,19 +61,18 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
 
         jPanelCatalogoPeliculas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 800, 380));
 
-        btnAgregar.setBackground(new java.awt.Color(153, 204, 255));
-        btnAgregar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
-            }
-        });
-        jPanelCatalogoPeliculas.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 510, 100, 30));
-
         btnBuscar.setBackground(new java.awt.Color(153, 204, 255));
         btnBuscar.setText("Buscar");
         jPanelCatalogoPeliculas.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, -1, -1));
+
+        btnAtrasCatClientes.setText("Atras");
+        jPanelCatalogoPeliculas.add(btnAtrasCatClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, -1, -1));
+
+        btnSiguienteCatCliente.setText("Siguiente");
+        jPanelCatalogoPeliculas.add(btnSiguienteCatCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 560, -1, -1));
+
+        lblNumeroPagCatClientes.setText("numero Pag");
+        jPanelCatalogoPeliculas.add(lblNumeroPagCatClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 560, -1, -1));
 
         getContentPane().add(jPanelCatalogoPeliculas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 600));
 
@@ -85,20 +86,16 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
 //        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        /*frmDatosPelicula agregar = new frmDatosPelicula();
-        agregar.setVisible(true);
-        this.dispose();*/
-    }//GEN-LAST:event_btnAgregarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAtrasCatClientes;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnSiguienteCatCliente;
     private javax.swing.JButton btnVolver;
     private javax.swing.JPanel jPanelCatalogoPeliculas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePeliculas;
+    private javax.swing.JLabel lblNumeroPagCatClientes;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

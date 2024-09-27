@@ -4,7 +4,6 @@ import entidad.ClienteEntidad;
 import java.util.ArrayList;
 import java.util.List;
 import dto.ClienteDTO;
-import persistencia.PersistenciaException;
 import utilerias.Tabla;
 
 public interface IClienteDAO {

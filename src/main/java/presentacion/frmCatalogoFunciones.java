@@ -27,12 +27,15 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelCatalogoFunciones = new javax.swing.JPanel();
-        btnVolver = new javax.swing.JButton();
+        btnVolverFuncion = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePeliculas = new javax.swing.JTable();
         btnAgregarFuncion = new javax.swing.JButton();
         btnBuscarFuncion = new javax.swing.JButton();
+        btnAtrasCatFuncio = new javax.swing.JButton();
+        btnSiguienteCatFuncio = new javax.swing.JButton();
+        lblNumPagCatFuncio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -41,14 +44,14 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
         jPanelCatalogoFunciones.setPreferredSize(new java.awt.Dimension(920, 600));
         jPanelCatalogoFunciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnVolver.setBackground(new java.awt.Color(153, 204, 255));
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+        btnVolverFuncion.setBackground(new java.awt.Color(153, 204, 255));
+        btnVolverFuncion.setText("Volver");
+        btnVolverFuncion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
+                btnVolverFuncionActionPerformed(evt);
             }
         });
-        jPanelCatalogoFunciones.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+        jPanelCatalogoFunciones.add(btnVolverFuncion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
         jPanelCatalogoFunciones.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 490, 25));
 
         jScrollPane1.setBackground(new java.awt.Color(153, 204, 255));
@@ -77,22 +80,31 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
                 btnAgregarFuncionActionPerformed(evt);
             }
         });
-        jPanelCatalogoFunciones.add(btnAgregarFuncion, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 510, 100, 30));
+        jPanelCatalogoFunciones.add(btnAgregarFuncion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, 100, 30));
 
         btnBuscarFuncion.setBackground(new java.awt.Color(153, 204, 255));
         btnBuscarFuncion.setText("Buscar");
         jPanelCatalogoFunciones.add(btnBuscarFuncion, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, -1, -1));
+
+        btnAtrasCatFuncio.setText("Atras");
+        jPanelCatalogoFunciones.add(btnAtrasCatFuncio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 550, -1, -1));
+
+        btnSiguienteCatFuncio.setText("Siguiente");
+        jPanelCatalogoFunciones.add(btnSiguienteCatFuncio, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 550, -1, -1));
+
+        lblNumPagCatFuncio.setText("numeroPag");
+        jPanelCatalogoFunciones.add(lblNumPagCatFuncio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 560, -1, -1));
 
         getContentPane().add(jPanelCatalogoFunciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+    private void btnVolverFuncionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverFuncionActionPerformed
         //        frmMetodosPagos regresar = new frmMetodosPagos();
         //        regresar.setVisible(true);
         //        this.dispose();
-    }//GEN-LAST:event_btnVolverActionPerformed
+    }//GEN-LAST:event_btnVolverFuncionActionPerformed
 
     private void btnAgregarFuncionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarFuncionActionPerformed
         frmDatosPelicula agregar = new frmDatosPelicula();
@@ -107,11 +119,14 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarFuncion;
+    private javax.swing.JButton btnAtrasCatFuncio;
     private javax.swing.JButton btnBuscarFuncion;
-    private javax.swing.JButton btnVolver;
+    private javax.swing.JButton btnSiguienteCatFuncio;
+    private javax.swing.JButton btnVolverFuncion;
     private javax.swing.JPanel jPanelCatalogoFunciones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePeliculas;
+    private javax.swing.JLabel lblNumPagCatFuncio;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,6 +29,9 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
         jTablePeliculas = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
+        btnAtrasCatPeli = new javax.swing.JButton();
+        lblnumPagCatPeli = new javax.swing.JLabel();
+        btnSiguienteCatPeli = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Catalogo Peliculas");
@@ -74,11 +77,25 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanelCatalogoPeliculas.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 510, 100, 30));
+        jPanelCatalogoPeliculas.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, 100, 30));
 
         btnBuscar.setBackground(new java.awt.Color(153, 204, 255));
         btnBuscar.setText("Buscar");
         jPanelCatalogoPeliculas.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, -1, -1));
+
+        btnAtrasCatPeli.setText("Atras");
+        btnAtrasCatPeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasCatPeliActionPerformed(evt);
+            }
+        });
+        jPanelCatalogoPeliculas.add(btnAtrasCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, -1, -1));
+
+        lblnumPagCatPeli.setText("NumPag");
+        jPanelCatalogoPeliculas.add(lblnumPagCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 560, -1, -1));
+
+        btnSiguienteCatPeli.setText("Siguiente");
+        jPanelCatalogoPeliculas.add(btnSiguienteCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 550, -1, -1));
 
         getContentPane().add(jPanelCatalogoPeliculas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 600));
 
@@ -97,6 +114,10 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
         agregar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnAtrasCatPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasCatPeliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtrasCatPeliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,11 +156,14 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAtrasCatPeli;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnSiguienteCatPeli;
     private javax.swing.JButton btnVolver;
     private javax.swing.JPanel jPanelCatalogoPeliculas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePeliculas;
+    private javax.swing.JLabel lblnumPagCatPeli;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
