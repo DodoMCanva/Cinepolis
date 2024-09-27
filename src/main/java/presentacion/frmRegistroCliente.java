@@ -324,6 +324,12 @@ public class frmRegistroCliente extends javax.swing.JFrame {
             ClienteNegocio clienteNegocio = new ClienteNegocio();
             clienteNegocio.guardarCliente(clienteDTO);
             JOptionPane.showMessageDialog(this, "Cliente registrado con éxito.");
+            
+            this.dispose();
+            
+            frmInicioSesionCliente ini=new frmInicioSesionCliente();
+            ini.setVisible(true);
+            
         } catch (NegocioException e) {
             JOptionPane.showMessageDialog(this, "Error al registrar el cliente: " + e.getMessage());
         }
