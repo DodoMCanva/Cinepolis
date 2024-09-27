@@ -21,7 +21,7 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public void guardar(ClienteEntidad cliente) throws PersistenciaException {
         // Consulta SQL para insertar en la tabla Cliente
-        String consultaCliente = "INSERT INTO Cliente (correoElectronico, fechaNacimiento, geolcl, psswrd, celular) VALUES (?, ?, ?, ?,?)";
+        String consultaCliente = "INSERT INTO Clientes (correoElectronico, fechaNacimiento, geolcl, psswrd, celular) VALUES (?, ?, ?, ?, ?)";
         String consultaNombreCliente = "INSERT INTO NombreCliente (ID, Nombre, apellidoPaterno, apellidoMaterno) VALUES (?, ?, ?, ?)";
 
         try (Connection connection = conexionBD.crearConexion()) {
@@ -32,7 +32,7 @@ public class ClienteDAO implements IClienteDAO {
                 psCliente.setString(2, cliente.getFechaNacimiento());
                 psCliente.setString(3, cliente.getGeolocalizacion());
                 psCliente.setString(4, cliente.getContrasena());
-                psCliente.setString(4, cliente.getCelular());
+                psCliente.setString(5, cliente.getCelular());
                 
 
                 // Ejecutamos la consulta para guardar el cliente
@@ -59,7 +59,7 @@ public class ClienteDAO implements IClienteDAO {
 
         } catch (SQLException e) {
             // Si ocurre un error, lanzamos una excepción con un mensaje.
-            throw new PersistenciaException("Error al guardar el cliente", e);
+           throw new PersistenciaException("Error al guardar el cliente", e);
         }
     }
 
