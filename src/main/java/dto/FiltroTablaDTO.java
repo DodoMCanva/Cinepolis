@@ -4,13 +4,13 @@ package dto;
  *
  * @author cesar
  */
-public class ClienteFiltroTablaDTO {
+public class FiltroTablaDTO {
 
     private int limite;
     private int pagina;
     private String textoBusqueda; // Texto para buscar por nombre
 
-    public ClienteFiltroTablaDTO(int limite, int pagina, String textoBusqueda) {
+    public FiltroTablaDTO(int limite, int pagina, String textoBusqueda) {
         this.limite = limite;
         this.pagina = pagina;
         this.textoBusqueda = textoBusqueda;

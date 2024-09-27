@@ -1,6 +1,6 @@
 package persistencia;
 
-import dto.ClienteFiltroTablaDTO;
+import dto.FiltroTablaDTO;
 import entidad.ClienteEntidad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,7 +33,6 @@ public class ClienteDAO implements IClienteDAO {
                 psCliente.setString(3, cliente.getGeolocalizacion());
                 psCliente.setString(4, cliente.getContrasena());
                 psCliente.setString(5, cliente.getCelular());
-                
 
                 // Ejecutamos la consulta para guardar el cliente
                 psCliente.executeUpdate();
@@ -59,7 +58,7 @@ public class ClienteDAO implements IClienteDAO {
 
         } catch (SQLException e) {
             // Si ocurre un error, lanzamos una excepción con un mensaje.
-           throw new PersistenciaException("Error al guardar el cliente", e);
+            throw new PersistenciaException("Error al guardar el cliente", e);
         }
     }
 
@@ -81,33 +80,74 @@ public class ClienteDAO implements IClienteDAO {
         }
     }
 
-   @Override
-public String obtenerNombre(int ID_Cliente) throws PersistenciaException {
-    String nombreCompleto = null;
-    // Consulta SQL para buscar el nombre completo del cliente por su ID
-    String consulta = "SELECT Nombre, Apellido_Paterno, Apellido_Materno FROM NombreCliente WHERE ID = ?";
+    @Override
+    public String obtenerNombre(int ID_Cliente) throws PersistenciaException {
+        String nombreCompleto = null;
+        // Consulta SQL para buscar el nombre completo del cliente por su ID
+        String consulta = "SELECT Nombre, Apellido_Paterno, Apellido_Materno FROM NombreCliente WHERE ID = ?";
 
-    try (Connection connection = conexionBD.crearConexion(); PreparedStatement stmt = connection.prepareStatement(consulta)) {
-        // Asignamos el ID del cliente a la consulta.
-        stmt.setInt(1, ID_Cliente);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection connection = conexionBD.crearConexion(); PreparedStatement stmt = connection.prepareStatement(consulta)) {
+            // Asignamos el ID del cliente a la consulta.
+            stmt.setInt(1, ID_Cliente);
+            ResultSet rs = stmt.executeQuery();
 
-        if (rs.next()) {
-            // Obtenemos los valores del nombre y apellidos
-            String nombre = rs.getString("Nombre");
-            String apellidoPaterno = rs.getString("Apellido_Paterno");
-            String apellidoMaterno = rs.getString("Apellido_Materno");
+            if (rs.next()) {
+                // Obtenemos los valores del nombre y apellidos
+                String nombre = rs.getString("Nombre");
+                String apellidoPaterno = rs.getString("Apellido_Paterno");
+                String apellidoMaterno = rs.getString("Apellido_Materno");
 
-            // Combinamos el nombre completo
-            nombreCompleto = nombre + " " + apellidoPaterno + " " + apellidoMaterno;
+                // Combinamos el nombre completo
+                nombreCompleto = nombre + " " + apellidoPaterno + " " + apellidoMaterno;
+            }
+        } catch (SQLException e) {
+            // Si ocurre un error, lanzamos una excepción con un mensaje.
+            throw new PersistenciaException("Error al obtener el nombre del cliente con ID: " + ID_Cliente, e);
         }
-    } catch (SQLException e) {
-        // Si ocurre un error, lanzamos una excepción con un mensaje.
-        throw new PersistenciaException("Error al obtener el nombre del cliente con ID: " + ID_Cliente, e);
+
+        return nombreCompleto;
     }
 
-    return nombreCompleto;
-}
+    public ClienteEntidad buscarPorNombreYContrasena(String nombre, String contrasena) throws PersistenciaException {
+        // Consulta SQL sin abreviaciones y seleccionando solo los campos requeridos
+        String consulta = "SELECT Clientes.ID_Cliente, Clientes.correoElectronico, Clientes.fechaNacimiento, Clientes.geolocalizacion, "
+                + "Clientes.contrasena, Clientes.celular, Clientes.estaEliminado, Clientes.fechaRegistro, "
+                + "NombreCliente.Nombre, NombreCliente.apellidoPaterno, NombreCliente.apellidoMaterno "
+                + "FROM Clientes "
+                + "JOIN NombreCliente ON Clientes.ID_Cliente = NombreCliente.ID "
+                + "WHERE NombreCliente.Nombre = ? AND Clientes.contrasena = ?";
+
+        try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
+            ps.setString(1, nombre);
+            ps.setString(2, contrasena);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    // Si hay resultados, creamos y devolvemos un ClienteEntidad
+                    ClienteEntidad cliente = new ClienteEntidad();
+                    cliente.setId(rs.getInt("ID_Cliente"));
+                    cliente.setNombre(rs.getString("Nombre"));
+                    cliente.setApellidoPaterno(rs.getString("apellidoPaterno"));
+                    cliente.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                    cliente.setCorreoElectronico(rs.getString("correoElectronico"));
+                    cliente.setGeolocalizacion(rs.getString("geolocalizacion"));
+                    cliente.setContrasena(rs.getString("contrasena"));
+                    cliente.setCelular(rs.getString("celular"));
+                    cliente.setFechaNacimiento(rs.getString("fechaNacimiento"));
+                    cliente.setEstaEliminado(rs.getBoolean("estaEliminado"));
+                    cliente.setFechaHoraRegistro(rs.getDate("fechaRegistro"));
+
+                    return cliente; // Retornar el cliente encontrado
+                } else {
+                    return null; // No se encontró el cliente
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new PersistenciaException("Error al buscar el cliente", e);
+        }
+    }
+
     @Override
     public ClienteEntidad buscarPorId(int idCliente) throws PersistenciaException {
         ClienteEntidad cliente = null;
@@ -143,7 +183,7 @@ public String obtenerNombre(int ID_Cliente) throws PersistenciaException {
     }
 
     @Override
-    public List<ClienteEntidad> buscarClientesPorFiltro(ClienteFiltroTablaDTO filtro) throws PersistenciaException {
+    public List<ClienteEntidad> buscarClientesPorFiltro(FiltroTablaDTO filtro) throws PersistenciaException {
         List<ClienteEntidad> listaClientes = new ArrayList<>();
         // La consulta SQL para buscar clientes con un filtro específico.
         String consulta = "SELECT ID_Cliente, Nombre, Apellido_Paterno, Apellido_Materno, estaEliminado,"
