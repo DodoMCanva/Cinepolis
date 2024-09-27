@@ -30,6 +30,7 @@ negocio\IClienteNegocio.class
 presentacion\frmCatalogoPeliculas$2.class
 entidad\PeliculaEntidad.class
 persistencia\IConexionBD.class
+presentacion\frmRegistroCliente$6.class
 presentacion\frmTicket.class
 presentacion\frmDatosSucursal.class
 presentacion\frmCatalogoSucursales.class
@@ -52,6 +53,7 @@ negocio\NegocioException.class
 presentacion\frmRegistroCliente.class
 presentacion\frmRegistroCliente$2.class
 presentacion\frmCatalogoSucursales$1.class
+presentacion\frmRegistroCliente$5.class
 presentacion\frmInicioSesionCliente.class
 presentacion\frmCatalogoClientes$1.class
 presentacion\frmPagoEnEfectivo.class

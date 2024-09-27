@@ -52,8 +52,15 @@ public class frmRegistroCliente extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dcFechaNacimiento = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro");
@@ -67,7 +74,6 @@ public class frmRegistroCliente extends javax.swing.JFrame {
 
         txtApMaternoRegistro.setBackground(new java.awt.Color(0, 51, 153));
         txtApMaternoRegistro.setForeground(new java.awt.Color(255, 255, 255));
-        txtApMaternoRegistro.setText("Apellido materno");
         txtApMaternoRegistro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
         txtApMaternoRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,13 +84,16 @@ public class frmRegistroCliente extends javax.swing.JFrame {
 
         txtCorreoResgirstro.setBackground(new java.awt.Color(0, 51, 153));
         txtCorreoResgirstro.setForeground(new java.awt.Color(255, 255, 255));
-        txtCorreoResgirstro.setText("Correo");
         txtCorreoResgirstro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
+        txtCorreoResgirstro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoResgirstroActionPerformed(evt);
+            }
+        });
         RegistroCliente.add(txtCorreoResgirstro, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 170, 30));
 
         txtApPaternoRegitro.setBackground(new java.awt.Color(0, 51, 153));
         txtApPaternoRegitro.setForeground(new java.awt.Color(255, 255, 255));
-        txtApPaternoRegitro.setText("Apellido paterno");
         txtApPaternoRegitro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
         txtApPaternoRegitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,27 +104,28 @@ public class frmRegistroCliente extends javax.swing.JFrame {
 
         txtNumCelularRegistro.setBackground(new java.awt.Color(0, 51, 153));
         txtNumCelularRegistro.setForeground(new java.awt.Color(255, 255, 255));
-        txtNumCelularRegistro.setText("Numero celular");
         txtNumCelularRegistro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
+        txtNumCelularRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumCelularRegistroActionPerformed(evt);
+            }
+        });
         RegistroCliente.add(txtNumCelularRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 170, 30));
 
         txtConfContraseñaRegistro.setBackground(new java.awt.Color(0, 51, 153));
         txtConfContraseñaRegistro.setForeground(new java.awt.Color(255, 255, 255));
-        txtConfContraseñaRegistro.setText("Confirmar contraseña");
         txtConfContraseñaRegistro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
-        RegistroCliente.add(txtConfContraseñaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 170, 30));
+        RegistroCliente.add(txtConfContraseñaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 170, 30));
 
         txtNombreRegistro.setBackground(new java.awt.Color(0, 51, 153));
         txtNombreRegistro.setForeground(new java.awt.Color(255, 255, 255));
-        txtNombreRegistro.setText("Nombre");
         txtNombreRegistro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
         RegistroCliente.add(txtNombreRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 170, 30));
 
         txtContraseñaRegistro.setBackground(new java.awt.Color(0, 51, 153));
         txtContraseñaRegistro.setForeground(new java.awt.Color(255, 255, 255));
-        txtContraseñaRegistro.setText("Contraseña");
         txtContraseñaRegistro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 204, 255), 2, true));
-        RegistroCliente.add(txtContraseñaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 170, 30));
+        RegistroCliente.add(txtContraseñaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 170, 30));
 
         btnVolver.setBackground(new java.awt.Color(153, 204, 255));
         btnVolver.setText("Volver");
@@ -134,7 +144,7 @@ public class frmRegistroCliente extends javax.swing.JFrame {
                 btnRegistrarseActionPerformed(evt);
             }
         });
-        RegistroCliente.add(btnRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 120, 30));
+        RegistroCliente.add(btnRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 120, 30));
 
         lblTituloRegistro.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblTituloRegistro.setForeground(new java.awt.Color(255, 255, 255));
@@ -143,7 +153,7 @@ public class frmRegistroCliente extends javax.swing.JFrame {
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("campos obligatorios *");
-        RegistroCliente.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        RegistroCliente.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -153,7 +163,7 @@ public class frmRegistroCliente extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("*");
-        RegistroCliente.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 10, 20));
+        RegistroCliente.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, 10, 20));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -183,12 +193,40 @@ public class frmRegistroCliente extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("*");
-        RegistroCliente.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 10, 20));
-        RegistroCliente.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 90, 30));
+        RegistroCliente.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 10, 20));
+        RegistroCliente.add(dcFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 180, 30));
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Fecha Nacimiento");
-        RegistroCliente.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        RegistroCliente.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Nombre");
+        RegistroCliente.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
+
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Apellido Paterno");
+        RegistroCliente.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, -1, -1));
+
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Apellido Materno");
+        RegistroCliente.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, -1, -1));
+
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Numero celular");
+        RegistroCliente.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, -1, -1));
+
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Correo");
+        RegistroCliente.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, -1, -1));
+
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Contraseña");
+        RegistroCliente.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
+
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Confirmar contraseña");
+        RegistroCliente.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, -1, -1));
 
         getContentPane().add(RegistroCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 380));
         RegistroCliente.getAccessibleContext().setAccessibleName("");
@@ -217,7 +255,7 @@ public class frmRegistroCliente extends javax.swing.JFrame {
         String apellidoMaterno = txtApMaternoRegistro.getText();
         String celular = txtNumCelularRegistro.getText();
         String correo = txtCorreoResgirstro.getText();
-        String fechaNacimiento = txtFechaNacimientoRegistro.getText();
+        Date fechaNacimientoDate = dcFechaNacimiento.getDate(); 
         String contrasena = txtContraseñaRegistro.getText();
         String confContrasena = txtConfContraseñaRegistro.getText();
 
@@ -226,22 +264,18 @@ public class frmRegistroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.");
             return;
         }
-        // Convertir la cadena de fecha de nacimiento en un objeto Date
-        SimpleDateFormat formatoEntrada = new SimpleDateFormat("dd/MM/yyyy"); // O el formato en el que el usuario ingresa la fecha
-        Date fechaNacimientoDate = null;
 
-        try {
-            fechaNacimientoDate = formatoEntrada.parse(fechaNacimiento);
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(this, "Formato de fecha inválido. Usa el formato dd/MM/yyyy.");
-            return; // Detenemos el proceso si hay error en el formato de la fecha
+        // Validación de fecha de nacimiento
+        if (fechaNacimientoDate == null) {
+            JOptionPane.showMessageDialog(this, "Por favor selecciona una fecha de nacimiento válida.");
+            return;
         }
 
-// Ahora convertir el objeto Date a formato MySQL (yyyy-MM-dd)
+        // Convertir la fecha al formato MySQL (yyyy-MM-dd)
         SimpleDateFormat formatoMysql = new SimpleDateFormat("yyyy-MM-dd");
         String fechaMysql = formatoMysql.format(fechaNacimientoDate);
 
-// Crear un ClienteDTO
+        // Crear un ClienteDTO
         ClienteDTO clienteDTO = new ClienteDTO();
         clienteDTO.setNombre(nombre);
         clienteDTO.setApellidoPaterno(apellidoPaterno);
@@ -258,9 +292,17 @@ public class frmRegistroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Cliente registrado con éxito.");
         } catch (NegocioException e) {
             JOptionPane.showMessageDialog(this, "Error al registrar el cliente: " + e.getMessage());
-
         }
+
     }//GEN-LAST:event_btnRegistrarseActionPerformed
+
+    private void txtNumCelularRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumCelularRegistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumCelularRegistroActionPerformed
+
+    private void txtCorreoResgirstroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoResgirstroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoResgirstroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,9 +342,16 @@ public class frmRegistroCliente extends javax.swing.JFrame {
     private javax.swing.JPanel RegistroCliente;
     private javax.swing.JButton btnRegistrarse;
     private javax.swing.JButton btnVolver;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser dcFechaNacimiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
