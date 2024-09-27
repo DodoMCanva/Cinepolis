@@ -28,14 +28,14 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
 
         jPanelCatalogoSucursales = new javax.swing.JPanel();
         btnVolver = new javax.swing.JButton();
-        txtBuscar = new javax.swing.JTextField();
+        txtBuscarSucursal = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSucursales = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        btnAtrasCatSucursles = new javax.swing.JButton();
-        btnSiguienteCatSucursal = new javax.swing.JButton();
+        lblSalas = new javax.swing.JLabel();
+        btnAtrasCatSalas = new javax.swing.JButton();
+        btnSiguienteCatSalas = new javax.swing.JButton();
         lblNumPagCatSucursal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,7 +53,7 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
             }
         });
         jPanelCatalogoSucursales.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
-        jPanelCatalogoSucursales.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 490, 25));
+        jPanelCatalogoSucursales.add(txtBuscarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 590, 25));
 
         jScrollPane1.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -92,16 +92,16 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
         });
         jPanelCatalogoSucursales.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Sucursales");
-        jPanelCatalogoSucursales.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+        lblSalas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblSalas.setForeground(new java.awt.Color(255, 255, 255));
+        lblSalas.setText("Sucursales");
+        jPanelCatalogoSucursales.add(lblSalas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
-        btnAtrasCatSucursles.setText("Atras");
-        jPanelCatalogoSucursales.add(btnAtrasCatSucursles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, -1, -1));
+        btnAtrasCatSalas.setText("Atras");
+        jPanelCatalogoSucursales.add(btnAtrasCatSalas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, -1, -1));
 
-        btnSiguienteCatSucursal.setText("Siguiente");
-        jPanelCatalogoSucursales.add(btnSiguienteCatSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 550, -1, -1));
+        btnSiguienteCatSalas.setText("Siguiente");
+        jPanelCatalogoSucursales.add(btnSiguienteCatSalas, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 550, -1, -1));
 
         lblNumPagCatSucursal.setText("NumPag");
         jPanelCatalogoSucursales.add(lblNumPagCatSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 570, -1, -1));
@@ -165,15 +165,15 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAtrasCatSucursles;
+    private javax.swing.JButton btnAtrasCatSalas;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnSiguienteCatSucursal;
+    private javax.swing.JButton btnSiguienteCatSalas;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelCatalogoSucursales;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableSucursales;
     private javax.swing.JLabel lblNumPagCatSucursal;
-    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JLabel lblSalas;
+    private javax.swing.JTextField txtBuscarSucursal;
     // End of variables declaration//GEN-END:variables
 }

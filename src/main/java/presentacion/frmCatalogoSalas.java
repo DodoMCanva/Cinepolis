@@ -25,12 +25,12 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
 
         jPanelCatalogoSucursales = new javax.swing.JPanel();
         btnVolver = new javax.swing.JButton();
-        txtBuscarSala = new javax.swing.JTextField();
+        txtBuscarSurcursales = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableSucursales = new javax.swing.JTable();
+        jTableSalas = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnBuscarSala = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblSalas = new javax.swing.JLabel();
         btnAtrasCatSalas = new javax.swing.JButton();
         lblNumPagCatSala = new javax.swing.JLabel();
         btnSiguienteCatSala = new javax.swing.JButton();
@@ -51,13 +51,13 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
         });
         jPanelCatalogoSucursales.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
-        txtBuscarSala.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanelCatalogoSucursales.add(txtBuscarSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 590, 25));
+        txtBuscarSurcursales.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanelCatalogoSucursales.add(txtBuscarSurcursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 590, 25));
 
         jScrollPane1.setBackground(new java.awt.Color(153, 204, 255));
 
-        jTableSucursales.setBackground(new java.awt.Color(153, 204, 255));
-        jTableSucursales.setModel(new javax.swing.table.DefaultTableModel(
+        jTableSalas.setBackground(new java.awt.Color(153, 204, 255));
+        jTableSalas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -68,7 +68,7 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
                 "Nombre", "Eliminar"
             }
         ));
-        jScrollPane1.setViewportView(jTableSucursales);
+        jScrollPane1.setViewportView(jTableSalas);
 
         jPanelCatalogoSucursales.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 800, 380));
 
@@ -91,10 +91,10 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
         });
         jPanelCatalogoSucursales.add(btnBuscarSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Sucursales");
-        jPanelCatalogoSucursales.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+        lblSalas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblSalas.setForeground(new java.awt.Color(255, 255, 255));
+        lblSalas.setText("Salas");
+        jPanelCatalogoSucursales.add(lblSalas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
         btnAtrasCatSalas.setText("Atras");
         jPanelCatalogoSucursales.add(btnAtrasCatSalas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 550, -1, -1));
@@ -143,11 +143,11 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarSala;
     private javax.swing.JButton btnSiguienteCatSala;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelCatalogoSucursales;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableSucursales;
+    private javax.swing.JTable jTableSalas;
     private javax.swing.JLabel lblNumPagCatSala;
-    private javax.swing.JTextField txtBuscarSala;
+    private javax.swing.JLabel lblSalas;
+    private javax.swing.JTextField txtBuscarSurcursales;
     // End of variables declaration//GEN-END:variables
 }

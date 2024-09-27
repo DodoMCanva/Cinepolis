@@ -60,10 +60,10 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtBuscar">
+        <Component class="javax.swing.JTextField" name="txtBuscarSucursal">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="160" y="100" width="490" height="25"/>
+              <AbsoluteConstraints x="60" y="100" width="590" height="25"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -169,7 +169,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblSalas">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>
@@ -185,7 +185,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="btnAtrasCatSucursles">
+        <Component class="javax.swing.JButton" name="btnAtrasCatSalas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Atras"/>
           </Properties>
@@ -195,7 +195,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="btnSiguienteCatSucursal">
+        <Component class="javax.swing.JButton" name="btnSiguienteCatSalas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Siguiente"/>
           </Properties>

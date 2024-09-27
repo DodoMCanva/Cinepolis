@@ -26,8 +26,8 @@ public class frmMetodosPagos extends javax.swing.JFrame {
 
         jPanelMetdosPago = new javax.swing.JPanel();
         btnPagoEfectivo = new javax.swing.JButton();
-        btnPagoTarjeta1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnPagoTarjeta = new javax.swing.JButton();
+        lblMetodoPago = new javax.swing.JLabel();
         spTarjeta = new javax.swing.JSpinner();
         lblLogoTarjeta = new javax.swing.JLabel();
         spEfectivo = new javax.swing.JSpinner();
@@ -44,19 +44,19 @@ public class frmMetodosPagos extends javax.swing.JFrame {
         btnPagoEfectivo.setText("Efectivo");
         jPanelMetdosPago.add(btnPagoEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 270, 90));
 
-        btnPagoTarjeta1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        btnPagoTarjeta1.setText("Tarjeta de credito / Debito");
-        btnPagoTarjeta1.addActionListener(new java.awt.event.ActionListener() {
+        btnPagoTarjeta.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        btnPagoTarjeta.setText("Tarjeta de credito / Debito");
+        btnPagoTarjeta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPagoTarjeta1ActionPerformed(evt);
+                btnPagoTarjetaActionPerformed(evt);
             }
         });
-        jPanelMetdosPago.add(btnPagoTarjeta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 270, 90));
+        jPanelMetdosPago.add(btnPagoTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 270, 90));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Métodos de pago");
-        jPanelMetdosPago.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+        lblMetodoPago.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblMetodoPago.setForeground(new java.awt.Color(255, 255, 255));
+        lblMetodoPago.setText("Métodos de pago");
+        jPanelMetdosPago.add(lblMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
         jPanelMetdosPago.add(spTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
 
         lblLogoTarjeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tarjeta.png"))); // NOI18N
@@ -81,9 +81,9 @@ public class frmMetodosPagos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPagoTarjeta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoTarjeta1ActionPerformed
+    private void btnPagoTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoTarjetaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPagoTarjeta1ActionPerformed
+    }//GEN-LAST:event_btnPagoTarjetaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,11 +122,11 @@ public class frmMetodosPagos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPagoEfectivo;
-    private javax.swing.JButton btnPagoTarjeta1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnPagoTarjeta;
     private javax.swing.JPanel jPanelMetdosPago;
     private javax.swing.JLabel lblLogoDinero;
     private javax.swing.JLabel lblLogoTarjeta;
+    private javax.swing.JLabel lblMetodoPago;
     private javax.swing.JSpinner spEfectivo;
     private javax.swing.JSpinner spTarjeta;
     // End of variables declaration//GEN-END:variables
