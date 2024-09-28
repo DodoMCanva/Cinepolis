@@ -3,6 +3,11 @@ package dto;
 public class SalaDTO {
         private int id;
     private String nombre;
+    
+    public SalaDTO(){
+        
+    }
+            
 
     public SalaDTO(int id, String nombre) {
         this.id = id;
