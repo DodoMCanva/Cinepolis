@@ -9,6 +9,7 @@ public class Convertidor {
 
     public ClienteEntidad DTOaEntidad(ClienteDTO clienteDTO) {
         ClienteEntidad clienteEntidad = new ClienteEntidad();
+        clienteEntidad.setId(clienteDTO.getId());
         clienteEntidad.setNombre(clienteDTO.getNombre());
         clienteEntidad.setApellidoPaterno(clienteDTO.getApellidoPaterno());
         clienteEntidad.setApellidoMaterno(clienteDTO.getApellidoMaterno());
@@ -16,7 +17,8 @@ public class Convertidor {
         clienteEntidad.setCorreoElectronico(clienteDTO.getCorreoElectronico());
         clienteEntidad.setFechaNacimiento(clienteDTO.getFechaNacimiento());
         clienteEntidad.setContrasena(clienteDTO.getContrasena());
-        clienteEntidad.setFechaHoraRegistro(new Date()); 
+        clienteEntidad.setFechaHoraRegistro(clienteEntidad.getFechaHoraRegistro()); 
+        clienteEntidad.setEstaEliminado(clienteDTO.isEstaEliminado());
         return clienteEntidad;
     }
 
@@ -26,18 +28,14 @@ public class Convertidor {
         clienteDTO.setNombre(clienteEntidad.getNombre());
         clienteDTO.setApellidoPaterno(clienteEntidad.getApellidoPaterno());
         clienteDTO.setApellidoMaterno(clienteEntidad.getApellidoMaterno());
+        clienteDTO.setCelular(clienteEntidad.getCelular());
+        clienteDTO.setCorreoElectronico(clienteEntidad.getCorreoElectronico());
+        clienteDTO.setFechaNacimiento(clienteEntidad.getFechaNacimiento());
+        clienteDTO.setContrasena(clienteEntidad.getContrasena());
         clienteDTO.setFechaHoraRegistro((Timestamp) clienteEntidad.getFechaHoraRegistro());
         clienteDTO.setEstaEliminado(clienteEntidad.isEstaEliminado());
         return clienteDTO;
-        clienteEntidad.setNombre(clienteDTO.getNombre());
-        clienteEntidad.setApellidoPaterno(clienteDTO.getApellidoPaterno());
-        clienteEntidad.setApellidoMaterno(clienteDTO.getApellidoMaterno());
-        clienteEntidad.setCelular(clienteDTO.getCelular());
-        clienteEntidad.setCorreoElectronico(clienteDTO.getCorreoElectronico());
-        clienteEntidad.setFechaNacimiento(clienteDTO.getFechaNacimiento());
-        clienteEntidad.setContrasena(clienteDTO.getContrasena());
-        clienteEntidad.setFechaHoraRegistro(new Date()); 
-        return clienteEntidad;
+        
     }
 
 }

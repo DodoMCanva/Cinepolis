@@ -328,15 +328,13 @@ public class ClienteDAO implements IClienteDAO {
     public List<ClienteEntidad> buscarClientes(Tabla filtro) throws PersistenciaException {
         List<ClienteEntidad> listaClientes = new ArrayList<>();
 
-        // Consulta con JOIN entre Clientes y NombreCliente para buscar por nombre y obtener toda la información
         String consulta = "SELECT c.ID_Cliente, nc.nombre, nc.apellidoPaterno, nc.apellidoMaterno, c.estaEliminado, "
-                + "c.fechaNacimiento, c.fechaRegistro, c.correoElectronico, c.geolcl, c.psswrd"
+                + "c.fechaNacimiento, c.fechaRegistro, c.correoElectronico, c.celular, c.geolcl, c.psswrd "
                 + "FROM Clientes c "
                 + "JOIN NombreCliente nc ON c.ID_Cliente = nc.ID "
                 + "LIMIT ? OFFSET ?";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
-
             ps.setInt(1, filtro.getLimite());  // Límite de resultados
             ps.setInt(2, filtro.getPagina() * filtro.getLimite());  // Offset para la paginación
 
@@ -344,12 +342,13 @@ public class ClienteDAO implements IClienteDAO {
                 while (rs.next()) {
                     // Creamos un nuevo objeto ClienteEntidad y le asignamos los valores obtenidos de la base de datos.
                     ClienteEntidad cliente = new ClienteEntidad();
-                    cliente.setId(rs.getInt("ID_Cliente"));
+                    cliente.setId(rs.getInt("c.ID_Cliente"));
                     cliente.setNombre(rs.getString("nc.nombre"));
                     cliente.setApellidoPaterno(rs.getString("nc.apellidoPaterno"));
                     cliente.setApellidoMaterno(rs.getString("nc.apellidoMaterno"));
                     cliente.setFechaNacimiento(rs.getString("c.fechaNacimiento"));
                     cliente.setCorreoElectronico(rs.getString("c.correoElectronico"));
+                    cliente.setCelular(rs.getString("c.celular"));
                     cliente.setGeolocalizacion(rs.getString("c.geolcl"));
                     cliente.setContrasena(rs.getString("c.psswrd"));
                     cliente.setEstaEliminado(rs.getBoolean("c.estaEliminado"));

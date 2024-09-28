@@ -255,7 +255,7 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
         }
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblClientes.getModel();
         clientesLista.forEach(row -> {
-            Object[] fila = new Object[7];
+            Object[] fila = new Object[8];
             fila[0] = row.getId();
             fila[1] = row.getNombre()+row.getApellidoPaterno()+row.getApellidoMaterno();
             fila[2] = row.getCorreoElectronico();
