@@ -1,5 +1,19 @@
-
 package presentacion;
+
+import dto.SalaDTO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import negocio.ISalaNegocio;
+import negocio.NegocioException;
+import utilerias.JButtonCellEditor;
+import utilerias.JButtonRenderer;
+import utilerias.Tabla;
 
 /**
  *
@@ -7,12 +21,101 @@ package presentacion;
  */
 public class frmCatalogoSalas extends javax.swing.JFrame {
 
+     private int pag = 0;
+    private final static int LIMITE = 10;
+    private  ISalaNegocio salaNegocio;
+
     /**
      * Creates new form frmCatalogoSalas
      */
     public frmCatalogoSalas() {
         initComponents();
+        cargarTabla();
+        ajustarColumnas();
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        btnAtrasCatSalas.setEnabled(false);
+        this.cargarConfiguracionInicialTabla();
+        this.cargarTabla();
     }
+
+    private void cargarTabla() {
+        try {
+            Tabla filtro = this.obtenerFiltrosTabla();
+            List<SalaDTO> Lista = this.salaNegocio.buscarSalas(filtro);
+            this.BorrarRegistrosTabla();
+            this.AgregarRegistrosTabla(Lista);
+            if (Lista.size() == 0 && pag > 0) {
+                pag--; // Decrementa la página solo si hay más páginas
+            }
+            lblNumPagCatSala.setText("Página " + (pag + 1));
+        } catch (NegocioException ex) {
+            this.BorrarRegistrosTabla();
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void AgregarRegistrosTabla(List<SalaDTO> lista) {
+        if (lista == null) {
+            return;
+        }
+        DefaultTableModel modeloTabla = (DefaultTableModel) this.tblSala.getModel();
+        lista.forEach(row -> {
+            Object[] fila = new Object[2];
+            fila[0] = row.getNombre();
+            fila[1] = "Eliminar"; // Texto del botón de eliminar
+            modeloTabla.addRow(fila);
+        });
+    }
+    private int getIdSeleccionadoTabla() {
+        int indiceFilaSeleccionada = this.tblSala.getSelectedRow();
+        if (indiceFilaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) this.tblSala.getModel();
+            int indiceColumnaId = 0;
+            int idSalaSeleccionada = (int) modelo.getValueAt(indiceFilaSeleccionada, indiceColumnaId);
+            return idSalaSeleccionada;
+        } else {
+            return 0;
+        }
+    }
+
+    private void eliminar() throws NegocioException {
+        int id = this.getIdSeleccionadoTabla();
+        salaNegocio.eliminar(id);
+        cargarTabla();
+    }
+    private void BorrarRegistrosTabla() {
+        DefaultTableModel modeloTabla = (DefaultTableModel) this.tblSala.getModel();
+        if (modeloTabla.getRowCount() > 0) {
+            for (int row = modeloTabla.getRowCount() - 1; row > -1; row--) {
+                modeloTabla.removeRow(row);
+            }
+        }
+    }
+
+    private Tabla obtenerFiltrosTabla() {
+        return new Tabla(this.LIMITE, this.pag, txtBuscarSala.getText());
+    }
+    
+    private void cargarConfiguracionInicialTabla() {
+    TableColumnModel modeloColumnas = this.tblSala.getColumnModel();
+
+    // Configurar botón "Eliminar"
+    ActionListener onEliminarClickListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                  eliminar();
+            } catch (NegocioException ex) {
+                Logger.getLogger(frmCatalogoSalas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    };
+    
+    modeloColumnas.getColumn(1).setCellRenderer(new JButtonRenderer("Eliminar"));
+    modeloColumnas.getColumn(1).setCellEditor(new JButtonCellEditor("Eliminar", onEliminarClickListener));
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -97,6 +200,11 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
         jPanelCatalogoSucursales.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
         btnAtrasCatSalas.setText("Atras");
+        btnAtrasCatSalas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasCatSalasActionPerformed(evt);
+            }
+        });
         jPanelCatalogoSucursales.add(btnAtrasCatSalas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 550, -1, -1));
 
         lblNumPagCatSala.setText("numPag");
@@ -132,9 +240,28 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarSalaActionPerformed
 
     private void btnSiguienteCatSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteCatSalaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSiguienteCatSalaActionPerformed
+this.pag++;
+        int imp = pag + 1;
+        lblNumPagCatSala.setText("Página " + imp);
+        this.cargarTabla();
+        btnAtrasCatSalas.setEnabled(true);    }//GEN-LAST:event_btnSiguienteCatSalaActionPerformed
 
+    private void btnAtrasCatSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasCatSalasActionPerformed
+        if (pag == 0) {
+            btnAtrasCatSalas.setEnabled(false);
+        } else {
+            this.pag--;
+            int impresion = pag + 1;
+            lblNumPagCatSala.setText("Página " + impresion);
+            this.cargarTabla();
+                }
+    }//GEN-LAST:event_btnAtrasCatSalasActionPerformed
+ private void ajustarColumnas() {
+        // Ajustar el ancho de las columnas según el índice
+        tblSala.getColumnModel().getColumn(0).setPreferredWidth(150); // Número de Sala
+        tblSala.getColumnModel().getColumn(1).setPreferredWidth(100); // Capacidad
+        
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,6 +5,10 @@ public class SalaEntidad {
     private int id;
     private String nombre;
 
+    
+    public SalaEntidad() {
+      
+    }
     public SalaEntidad(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
