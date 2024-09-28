@@ -68,10 +68,15 @@ public class frmCartelera extends javax.swing.JFrame {
         lblPelicula4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(lblPelicula4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 130, 160));
 
-        cbxCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciudad", "Item 2", "Item 3", "Item 4" }));
+        cbxCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxCiudadActionPerformed(evt);
+            }
+        });
         jPanel1.add(cbxCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, 120, 25));
 
-        cbxSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sucursal", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(cbxSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 120, 25));
 
         btnSiguiente.setText("Siguiente");
@@ -139,6 +144,10 @@ public class frmCartelera extends javax.swing.JFrame {
         regresar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void cbxCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxCiudadActionPerformed
 
     /**
      * @param args the command line arguments
