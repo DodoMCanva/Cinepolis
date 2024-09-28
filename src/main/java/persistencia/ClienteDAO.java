@@ -1,6 +1,6 @@
 package persistencia;
 
-import dto.ClienteFiltroTablaDTO;
+import dto.FiltroTablaDTO;
 import entidad.ClienteEntidad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +21,7 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public void guardar(ClienteEntidad cliente) throws PersistenciaException {
         // Consulta SQL para insertar en la tabla Cliente
-        String consultaCliente = "INSERT INTO Cliente (correoElectronico, fechaNacimiento, geolcl, psswrd, celular) VALUES (?, ?, ?, ?,?)";
+        String consultaCliente = "INSERT INTO Clientes (correoElectronico, fechaNacimiento, geolcl, psswrd, celular) VALUES (?, ?, ?, ?, ?)";
         String consultaNombreCliente = "INSERT INTO NombreCliente (ID, Nombre, apellidoPaterno, apellidoMaterno) VALUES (?, ?, ?, ?)";
 
         try (Connection connection = conexionBD.crearConexion()) {
@@ -32,8 +32,7 @@ public class ClienteDAO implements IClienteDAO {
                 psCliente.setString(2, cliente.getFechaNacimiento());
                 psCliente.setString(3, cliente.getGeolocalizacion());
                 psCliente.setString(4, cliente.getContrasena());
-                psCliente.setString(4, cliente.getCelular());
-                
+                psCliente.setString(5, cliente.getCelular());
 
                 // Ejecutamos la consulta para guardar el cliente
                 psCliente.executeUpdate();
@@ -81,33 +80,63 @@ public class ClienteDAO implements IClienteDAO {
         }
     }
 
-   @Override
-public String obtenerNombre(int ID_Cliente) throws PersistenciaException {
-    String nombreCompleto = null;
-    // Consulta SQL para buscar el nombre completo del cliente por su ID
-    String consulta = "SELECT Nombre, Apellido_Paterno, Apellido_Materno FROM NombreCliente WHERE ID = ?";
+    @Override
+    public String obtenerNombre(int ID_Cliente) throws PersistenciaException {
+        String nombreCompleto = null;
+        // Consulta SQL para buscar el nombre completo del cliente por su ID
+        String consulta = "SELECT Nombre, Apellido_Paterno, Apellido_Materno FROM NombreCliente WHERE ID = ?";
 
-    try (Connection connection = conexionBD.crearConexion(); PreparedStatement stmt = connection.prepareStatement(consulta)) {
-        // Asignamos el ID del cliente a la consulta.
-        stmt.setInt(1, ID_Cliente);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection connection = conexionBD.crearConexion(); PreparedStatement stmt = connection.prepareStatement(consulta)) {
+            // Asignamos el ID del cliente a la consulta.
+            stmt.setInt(1, ID_Cliente);
+            ResultSet rs = stmt.executeQuery();
 
-        if (rs.next()) {
-            // Obtenemos los valores del nombre y apellidos
-            String nombre = rs.getString("Nombre");
-            String apellidoPaterno = rs.getString("Apellido_Paterno");
-            String apellidoMaterno = rs.getString("Apellido_Materno");
+            if (rs.next()) {
+                // Obtenemos los valores del nombre y apellidos
+                String nombre = rs.getString("Nombre");
+                String apellidoPaterno = rs.getString("Apellido_Paterno");
+                String apellidoMaterno = rs.getString("Apellido_Materno");
 
-            // Combinamos el nombre completo
-            nombreCompleto = nombre + " " + apellidoPaterno + " " + apellidoMaterno;
+                // Combinamos el nombre completo
+                nombreCompleto = nombre + " " + apellidoPaterno + " " + apellidoMaterno;
+            }
+        } catch (SQLException e) {
+            // Si ocurre un error, lanzamos una excepción con un mensaje.
+            throw new PersistenciaException("Error al obtener el nombre del cliente con ID: " + ID_Cliente, e);
         }
-    } catch (SQLException e) {
-        // Si ocurre un error, lanzamos una excepción con un mensaje.
-        throw new PersistenciaException("Error al obtener el nombre del cliente con ID: " + ID_Cliente, e);
+
+        return nombreCompleto;
     }
 
-    return nombreCompleto;
-}
+    @Override
+    public ClienteEntidad buscarPorCorreoYContrasena(String correo, String contrasena) throws PersistenciaException {
+        // Consulta SQL seleccionando solo los campos requeridos
+        String consulta = "SELECT correoElectronico, psswrd "
+                + "FROM Clientes WHERE correoElectronico = ? AND psswrd = ?";
+
+        try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
+            ps.setString(1, correo);
+            ps.setString(2, contrasena);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    // Si hay resultados, creamos y devolvemos un ClienteEntidad
+                    ClienteEntidad cliente = new ClienteEntidad();
+                    
+                    cliente.setCorreoElectronico(rs.getString("correoElectronico"));
+                    cliente.setContrasena(rs.getString("psswrd"));
+
+                    return cliente; // Retornar el cliente encontrado
+                } else {
+                    return null; // No se encontró el cliente
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new PersistenciaException("Error al buscar el cliente", e);
+        }
+    }
+
     @Override
     public ClienteEntidad buscarPorId(int idCliente) throws PersistenciaException {
         ClienteEntidad cliente = null;
@@ -143,7 +172,7 @@ public String obtenerNombre(int ID_Cliente) throws PersistenciaException {
     }
 
     @Override
-    public List<ClienteEntidad> buscarClientesPorFiltro(ClienteFiltroTablaDTO filtro) throws PersistenciaException {
+    public List<ClienteEntidad> buscarClientesPorFiltro(FiltroTablaDTO filtro) throws PersistenciaException {
         List<ClienteEntidad> listaClientes = new ArrayList<>();
         // La consulta SQL para buscar clientes con un filtro específico.
         String consulta = "SELECT ID_Cliente, Nombre, Apellido_Paterno, Apellido_Materno, estaEliminado,"

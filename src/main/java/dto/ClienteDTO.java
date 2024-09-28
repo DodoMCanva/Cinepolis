@@ -101,6 +101,7 @@ public class ClienteDTO {
     }
 
    
+   
 
     public Date getFechaHoraRegistro() {
         return fechaHoraRegistro;
