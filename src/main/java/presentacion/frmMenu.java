@@ -22,8 +22,8 @@ public class frmMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnsucursales = new javax.swing.JButton();
+        btnGenerarReportes = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
         btnPeliculas = new javax.swing.JButton();
 
@@ -33,15 +33,20 @@ public class frmMenu extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(58, 107, 203));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(153, 204, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setText("Sucursales");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 230, 70));
+        btnsucursales.setBackground(new java.awt.Color(153, 204, 255));
+        btnsucursales.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnsucursales.setText("Sucursales");
+        btnsucursales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsucursalesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnsucursales, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 230, 70));
 
-        jButton2.setBackground(new java.awt.Color(153, 204, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setText("Generar reportes");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 230, 70));
+        btnGenerarReportes.setBackground(new java.awt.Color(153, 204, 255));
+        btnGenerarReportes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnGenerarReportes.setText("Generar reportes");
+        jPanel1.add(btnGenerarReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 230, 70));
 
         btnClientes.setBackground(new java.awt.Color(153, 204, 255));
         btnClientes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -81,11 +86,17 @@ public class frmMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnPeliculasActionPerformed
 
+    private void btnsucursalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsucursalesActionPerformed
+        frmCatalogoSucursales catS = new frmCatalogoSucursales();
+        catS.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnsucursalesActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new frmMenu().setVisible(true);
@@ -95,9 +106,9 @@ public class frmMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnGenerarReportes;
     private javax.swing.JButton btnPeliculas;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnsucursales;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
