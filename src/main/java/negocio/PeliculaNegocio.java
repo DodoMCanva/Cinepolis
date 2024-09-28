@@ -51,20 +51,20 @@ public class PeliculaNegocio implements IPeliculaNegocio {
 
     @Override
     public PeliculaDTO guardar(PeliculaDTO peliculaDTO) throws NegocioException {
-        try {
+         try {
         // Convertir DTO a Entidad
         PeliculaEntidad peliculaEntidad = convertirDTOaEntidad(peliculaDTO);
         
-        // Comprobar si es una nueva película o actualización
-        if (peliculaEntidad.getId() == 0) {
-            // Es una nueva película
-            return convertirEntidadADTO(peliculaDAO.guardar(peliculaEntidad)); // Aquí llamas al método de inserción
-        } else {
-            // Es una actualización
-            return convertirEntidadADTO(peliculaDAO.guardar(peliculaEntidad)); // Aquí llamas al método de actualización
-        }
+        // Guardar (actualizar o insertar) la película a través de la capa DAO
+        PeliculaEntidad entidadGuardada = peliculaDAO.guardar(peliculaEntidad);
+        
+        // Convertir Entidad a DTO y devolver el resultado
+        return convertirEntidadADTO(entidadGuardada);
+        
     } catch (PersistenciaException e) {
-        throw new NegocioException("Error al guardar la película", e);
+        // Mostrar la excepción completa
+        e.printStackTrace();
+        throw new NegocioException("Error al guardar la película: " + e.getMessage(), e);
     }
     }
 
