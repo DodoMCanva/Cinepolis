@@ -245,19 +245,20 @@ public class ClienteDAO implements IClienteDAO {
 
         // Consulta con JOIN entre Clientes y NombreCliente para buscar por nombre y obtener toda la información
         String consulta = "SELECT c.ID_Cliente, nc.nombre, nc.apellidoPaterno, nc.apellidoMaterno, c.estaEliminado, "
-                + "c.fechaNacimiento, c.fechaRegistro, c.correoElectronico, c.geolcl, c.psswrd"
+                + "c.fechaNacimiento, c.fechaRegistro, c.correoElectronico, c.celular, c.geolcl, c.psswrd "
                 + "FROM Clientes c "
                 + "JOIN NombreCliente nc ON c.ID_Cliente = nc.ID "
-                + "WHERE nc.nombre LIKE ? OR nc.apellidoPaterno LIKE ? OR nc.apellidoMaterno LIKE ? "
+                + "WHERE c.estaEliminado = false " // Solo los que no están eliminados
+                + "AND (nc.nombre LIKE ? OR nc.apellidoPaterno LIKE ? OR nc.apellidoMaterno LIKE ?) " // Búsqueda por nombre o apellidos
                 + "LIMIT ? OFFSET ?";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
+            String nombreBusqueda = "%" + nombre + "%";
 
             // Asignamos los valores del filtro a la consulta SQL.
-            String busqueda = "%" + filtro.getTextoBusqueda() + "%";  // Filtro de búsqueda
-            ps.setString(1, busqueda);  // Búsqueda por nombre
-            ps.setString(2, busqueda);  // Búsqueda por apellido paterno
-            ps.setString(3, busqueda);  // Búsqueda por apellido materno
+            ps.setString(1, nombreBusqueda);  // Búsqueda por nombre
+            ps.setString(2, nombreBusqueda);  // Búsqueda por apellido paterno
+            ps.setString(3, nombreBusqueda);  // Búsqueda por apellido materno
             ps.setInt(4, filtro.getLimite());  // Límite de resultados
             ps.setInt(5, filtro.getPagina() * filtro.getLimite());  // Offset para la paginación
 
@@ -271,6 +272,7 @@ public class ClienteDAO implements IClienteDAO {
                     cliente.setApellidoMaterno(rs.getString("apellidoMaterno"));
                     cliente.setFechaNacimiento(rs.getString("fechaNacimiento"));
                     cliente.setCorreoElectronico(rs.getString("correoElectronico"));
+                    cliente.setCelular(rs.getString("celular"));
                     cliente.setGeolocalizacion(rs.getString("geolcl"));
                     cliente.setContrasena(rs.getString("psswrd"));
                     cliente.setEstaEliminado(rs.getBoolean("estaEliminado"));
@@ -285,6 +287,7 @@ public class ClienteDAO implements IClienteDAO {
             throw new PersistenciaException("Error al buscar clientes", e);
         }
         return listaClientes;
+
     }
 
     @Override
