@@ -1,6 +1,9 @@
 
 package presentacion;
 
+import java.util.List;
+import persistencia.SucursalDAO;
+
 /**
  *
  * @author Valeria
@@ -12,8 +15,11 @@ public class frmCartelera extends javax.swing.JFrame {
      */
     public frmCartelera() {
         initComponents();
+    
     }
 
+    
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
