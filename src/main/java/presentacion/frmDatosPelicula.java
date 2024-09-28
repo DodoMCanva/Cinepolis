@@ -1,8 +1,14 @@
-
 package presentacion;
 
 import dto.PeliculaDTO;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import negocio.NegocioException;
 import negocio.PeliculaNegocio;
 
@@ -47,6 +53,7 @@ public class frmDatosPelicula extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         lblPoster = new javax.swing.JLabel();
         btnGuardarDatosPeli = new javax.swing.JButton();
+        btnSeleccionarPoster = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -148,11 +155,20 @@ public class frmDatosPelicula extends javax.swing.JFrame {
         });
         jPanel1.add(btnGuardarDatosPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 410, -1, -1));
 
+        btnSeleccionarPoster.setText("Seleccionar poster");
+        btnSeleccionarPoster.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarPosterActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSeleccionarPoster, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 470));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         frmCatalogoPeliculas regresar = new frmCatalogoPeliculas();
@@ -163,9 +179,9 @@ public class frmDatosPelicula extends javax.swing.JFrame {
     private void cbxClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxClasificacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxClasificacionActionPerformed
-
+    private byte[] posterBytes; // Cambia String a byte[] para almacenar el póster
     private void btnGuardarDatosPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarDatosPeliActionPerformed
-       String duracionStr = txtDuracion.getText();
+     String duracionStr = txtDuracion.getText();
     String titulo = txtTitulo.getText();
     String pais = txtPais.getText();
     String sinopsis = txtSinopsis.getText();
@@ -194,6 +210,11 @@ public class frmDatosPelicula extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Por favor, ingrese el link del trailer de la película.");
         return;
     }
+    // Validación para el póster
+    if (posterBytes == null || posterBytes.length == 0) {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione el póster de la película.");
+        return;
+    }
 
     // Convertir la duración a int
     int duracion;
@@ -213,6 +234,7 @@ public class frmDatosPelicula extends javax.swing.JFrame {
     peliculaDTO.setLinkTrailer(linkTrailer);
     peliculaDTO.setClasificacion(clasificacion);
     peliculaDTO.setGenero(genero);
+    peliculaDTO.setPoster(posterBytes); // Asignar los bytes del póster
 
     try {
         // Llamar a la capa de negocio
@@ -223,44 +245,53 @@ public class frmDatosPelicula extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Error al registrar la película: " + e.getMessage());
     }
     }//GEN-LAST:event_btnGuardarDatosPeliActionPerformed
+ private String rutaPoster;
+    private void btnSeleccionarPosterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarPosterActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+    // Filtrar solo imágenes
+    fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "jpg", "jpeg", "png"));
 
-    /**
-     * @param args the command line arguments
-     */
-    /*   public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
- /*  try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmDatosPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmDatosPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmDatosPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmDatosPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    // Mostrar el diálogo para seleccionar un archivo
+    int returnValue = fileChooser.showOpenDialog(this);
+
+    // Si se seleccionó un archivo
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = fileChooser.getSelectedFile();
+        String ruta = selectedFile.getAbsolutePath();
+
+        // Redimensionar la imagen al tamaño del JLabel (lblPoster)
+        ImageIcon icon = new ImageIcon(ruta);
+        Image img = icon.getImage(); // Obtener la imagen del ImageIcon
+
+        // Definir el tamaño deseado manualmente (por ejemplo, 230x290 píxeles)
+        int anchoDeseado = 230;
+        int altoDeseado = 290;
+
+        // Redimensionar la imagen al tamaño deseado
+        Image imgRedimensionada = img.getScaledInstance(anchoDeseado, altoDeseado, Image.SCALE_SMOOTH);
+        ImageIcon iconRedimensionado = new ImageIcon(imgRedimensionada);
+
+        // Mostrar la imagen redimensionada en la etiqueta lblPoster
+        lblPoster.setIcon(iconRedimensionado);
+        lblPoster.setText(""); // Limpia cualquier texto previo
+
+        // Guardar la ruta para usarla más adelante
+        this.rutaPoster = ruta;  // Asegúrate de que rutaPoster esté definido como atributo de la clase
+
+        // Convertir la imagen seleccionada a byte[] para almacenarla
+        try {
+            // Leer el archivo seleccionado y convertirlo en un arreglo de bytes
+            this.posterBytes = Files.readAllBytes(selectedFile.toPath());
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen: " + e.getMessage());
         }
-        //</editor-fold>
+    }
+    }//GEN-LAST:event_btnSeleccionarPosterActionPerformed
 
-        /* Create and display the form */
- /*   java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmDatosPelicula().setVisible(true);
-            }
-        });
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarDatosPeli;
+    private javax.swing.JButton btnSeleccionarPoster;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cbxClasificacion;
     private javax.swing.JComboBox<String> cbxGenero;

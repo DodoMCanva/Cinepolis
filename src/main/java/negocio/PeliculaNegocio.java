@@ -51,21 +51,21 @@ public class PeliculaNegocio implements IPeliculaNegocio {
 
     @Override
     public PeliculaDTO guardar(PeliculaDTO peliculaDTO) throws NegocioException {
-         try {
-        // Convertir DTO a Entidad
-        PeliculaEntidad peliculaEntidad = convertirDTOaEntidad(peliculaDTO);
-        
-        // Guardar (actualizar o insertar) la película a través de la capa DAO
-        PeliculaEntidad entidadGuardada = peliculaDAO.guardar(peliculaEntidad);
-        
-        // Convertir Entidad a DTO y devolver el resultado
-        return convertirEntidadADTO(entidadGuardada);
-        
-    } catch (PersistenciaException e) {
-        // Mostrar la excepción completa
-        e.printStackTrace();
-        throw new NegocioException("Error al guardar la película: " + e.getMessage(), e);
-    }
+        try {
+            // Convertir DTO a Entidad
+            PeliculaEntidad peliculaEntidad = convertirDTOaEntidad(peliculaDTO);
+
+            // Guardar (actualizar o insertar) la película a través de la capa DAO
+            PeliculaEntidad entidadGuardada = peliculaDAO.guardar(peliculaEntidad);
+
+            // Convertir Entidad a DTO y devolver el resultado
+            return convertirEntidadADTO(entidadGuardada);
+
+        } catch (PersistenciaException e) {
+            // Mostrar la excepción completa
+            e.printStackTrace();
+            throw new NegocioException("Error al guardar la película: " + e.getMessage(), e);
+        }
     }
 
     @Override
@@ -91,12 +91,6 @@ public class PeliculaNegocio implements IPeliculaNegocio {
         }
     }
 
-//    @Override
-//    public PeliculaDTO restaurarPelicula(int id) throws NegocioException {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
-//    
-    // Métodos para convertir entre DTO y Entidad
     private PeliculaDTO convertirEntidadADTO(PeliculaEntidad entidad) {
         return new PeliculaDTO(
                 entidad.getId(),
@@ -107,7 +101,8 @@ public class PeliculaNegocio implements IPeliculaNegocio {
                 entidad.getPaisOrigen(),
                 entidad.getSinopsis(),
                 entidad.getLinkTrailer(),
-                entidad.isEstaEliminada()
+                entidad.isEstaEliminada(),
+                entidad.getPoster()
         );
     }
 
@@ -121,7 +116,8 @@ public class PeliculaNegocio implements IPeliculaNegocio {
                 dto.getPaisOrigen(),
                 dto.getSinopsis(),
                 dto.getLinkTrailer(),
-                dto.isEstaEliminada()
+                dto.isEstaEliminada(),
+                dto.getPoster()
         );
     }
 }
