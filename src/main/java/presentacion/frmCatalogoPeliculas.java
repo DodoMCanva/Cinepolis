@@ -231,6 +231,25 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
         }
     }
 
+    private void cargarTablaBusqueda(String nombre) {
+        /*try {
+            Tabla filtro = this.obtenerFiltrosTabla();
+            List<PeliculaDTO> Lista = this.peliculaNegocio.buscarporNombre(nombre, filtro);
+            this.BorrarRegistrosTabla();
+            this.AgregarRegistrosTabla(Lista);
+            if (Lista.size() == 0) {
+                pag--;
+                int imp = pag + 1;
+                lblnumPagCatPeli.setText("Página " + imp);
+                this.cargarTablaBusqueda(nombre);
+            }
+        } catch (NegocioException ex) {
+            this.BorrarRegistrosTabla();
+            this.pag--;
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+        }*/
+    }
+    
     private Tabla obtenerFiltrosTabla() {
         return new Tabla(this.LIMITE, this.pag, txtBuscarPelicula.getText());
     }
@@ -264,16 +283,13 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarPeliculaActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        String tituloBuscado = txtBuscarPelicula.getText().trim();
-        DefaultTableModel model = (DefaultTableModel) tblPeliculas.getModel();
-        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
-        tblPeliculas.setRowSorter(sorter);
-
-        // Aplicar filtro
-        if (tituloBuscado.length() == 0) {
-            sorter.setRowFilter(null); // Muestra todas las películas si el campo está vacío
+        String nombre = txtBuscarPelicula.getText();
+        if (!nombre.isEmpty()) {
+            this.cargarTablaBusqueda(nombre);
         } else {
-            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + tituloBuscado)); // Filtro que ignora mayúsculas y minúsculas
+            this.dispose();
+            frmCatalogoClientes c = new frmCatalogoClientes();
+            c.setVisible(true);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
