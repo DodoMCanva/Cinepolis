@@ -11,11 +11,12 @@ public class PeliculaDTO {
     private String sinopsis;
     private String linkTrailer;
     private boolean estaEliminada;
+    private byte[] poster; // Almacenar la imagen en formato binario (bytes)
 
     public PeliculaDTO() {
     }
 
-    public PeliculaDTO(int id, String titulo, String clasificacion, int duracion, String genero, String paisOrigen, String sinopsis, String linkTrailer, boolean estaEliminada) {
+    public PeliculaDTO(int id, String titulo, String clasificacion, int duracion, String genero, String paisOrigen, String sinopsis, String linkTrailer, boolean estaEliminada, byte[] poster) {
         this.id = id;
         this.titulo = titulo;
         this.clasificacion = clasificacion;
@@ -25,7 +26,9 @@ public class PeliculaDTO {
         this.sinopsis = sinopsis;
         this.linkTrailer = linkTrailer;
         this.estaEliminada = estaEliminada;
+        this.poster = poster;
     }
+
 
     public int getId() {
         return id;
@@ -98,6 +101,16 @@ public class PeliculaDTO {
     public void setEstaEliminada(boolean estaEliminada) {
         this.estaEliminada = estaEliminada;
     }
+
+    public byte[] getPoster() {
+        return poster;
+    }
+
+    public void setPoster(byte[] poster) {
+        this.poster = poster;
+    }
+
+
 
     @Override
     public int hashCode() {

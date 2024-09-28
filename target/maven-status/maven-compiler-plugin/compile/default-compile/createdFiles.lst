@@ -41,6 +41,7 @@ presentacion\frmOpcionReprtes$1.class
 presentacion\frmResumenCompra$1.class
 presentacion\frmRegistroCliente$4.class
 negocio\BoletoNegocio.class
+presentacion\frmDatosPelicula$4.class
 presentacion\frmPagoEnEfectivo$1.class
 negocio\ISalaNegocio.class
 presentacion\frmCatalogoSucursales$2.class

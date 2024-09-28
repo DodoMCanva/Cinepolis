@@ -11,11 +11,12 @@ public class PeliculaEntidad {
     private String sinopsis;
     private String linkTrailer;
     private boolean estaEliminada;
+    private byte[] poster;
 
     public PeliculaEntidad() {
     }
 
-    public PeliculaEntidad(int id, String titulo, String clasificacion, int duracion, String genero, String paisOrigen, String sinopsis, String linkTrailer, boolean estaEliminada) {
+    public PeliculaEntidad(int id, String titulo, String clasificacion, int duracion, String genero, String paisOrigen, String sinopsis, String linkTrailer, boolean estaEliminada, byte[] poster) {
         this.id = id;
         this.titulo = titulo;
         this.clasificacion = clasificacion;
@@ -25,6 +26,7 @@ public class PeliculaEntidad {
         this.sinopsis = sinopsis;
         this.linkTrailer = linkTrailer;
         this.estaEliminada = estaEliminada;
+        this.poster = poster;
     }
 
     public int getId() {
@@ -99,9 +101,20 @@ public class PeliculaEntidad {
         this.estaEliminada = estaEliminada;
     }
 
+    public byte[] getPoster() {
+        return poster;
+    }
+
+    public void setPoster(byte[] poster) {
+        this.poster = poster;
+    }
+
+
+
+
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 7;
         hash = 89 * hash + this.id;
         return hash;
     }
