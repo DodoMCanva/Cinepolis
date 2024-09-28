@@ -1,6 +1,7 @@
 negocio\ClienteNegocio.class
 persistencia\ISurcursalDAO.class
 presentacion\frmCatalogoPeliculas$4.class
+persistencia\IBoletoDAO.class
 presentacion\frmPagoConTarjeta$1.class
 presentacion\frmPagoConTarjeta.class
 presentacion\frmCatalogoSucursales$3.class
@@ -28,6 +29,7 @@ presentacion\frmMetodosPagos$1.class
 presentacion\frmCatalogoPeliculas.class
 dto\SucursalDTO.class
 persistencia\SalaDAO.class
+persistencia\BoletoDAO.class
 presentacion\frmResumenCompra$2.class
 negocio\NegocioException.class
 presentacion\frmRegistroCliente.class
@@ -38,6 +40,7 @@ utilerias\JButtonRenderer.class
 presentacion\frmOpcionReprtes$1.class
 presentacion\frmResumenCompra$1.class
 presentacion\frmRegistroCliente$4.class
+negocio\BoletoNegocio.class
 presentacion\frmPagoEnEfectivo$1.class
 negocio\ISalaNegocio.class
 presentacion\frmCatalogoSucursales$2.class
@@ -45,12 +48,12 @@ utilerias\Convertidor.class
 persistencia\ConexionBD.class
 presentacion\frmDatosPelicula$2.class
 persistencia\ISalaDAO.class
+dto\BoletoDTO.class
 utilerias\Utilidades.class
 presentacion\frmHorarios.class
 utilerias\ComboItems.class
 presentacion\frmHorarios$1.class
 persistencia\IClienteDAO.class
-dto\ClienteFiltroTablaDTO.class
 utilerias\JButtonCellEditor.class
 presentacion\frmResumenCompra.class
 presentacion\frmCatalogoPeliculas$5.class
@@ -63,6 +66,8 @@ entidad\PeliculaEntidad.class
 presentacion\frmRegistroCliente$6.class
 presentacion\frmDatosSucursal.class
 presentacion\frmCatalogoSucursales.class
+negocio\IBoletoNegocio.class
+entidad\BoletoEntidad.class
 dto\PeliculaDTO.class
 presentacion\frmInicioSesionCliente$4.class
 presentacion\frmMetodosPagos.class
