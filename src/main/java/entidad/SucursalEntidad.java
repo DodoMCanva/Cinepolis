@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class SucursalEntidad {
+    private int ID;
   private String nombre;
     private String estado;
     private String ciudad;
@@ -11,8 +12,13 @@ public class SucursalEntidad {
     private String codigoPostal;
     private boolean estaEliminado;
     private java.util.Date fechaHoraRegistro;
+    
+    public SucursalEntidad(){
+        
+    }
 
-    public SucursalEntidad(String nombre, String estado, String ciudad, String calle, String codigoPostal, boolean estaEliminado, Date fechaHoraRegistro) {
+    public SucursalEntidad(int ID, String nombre, String estado, String ciudad, String calle, String codigoPostal, boolean estaEliminado, Date fechaHoraRegistro) {
+        this.ID=ID;
         this.nombre = nombre;
         this.estado = estado;
         this.ciudad = ciudad;
@@ -83,6 +89,14 @@ public class SucursalEntidad {
         int hash = 7;
         hash = 23 * hash + Objects.hashCode(this.nombre);
         return hash;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     @Override
