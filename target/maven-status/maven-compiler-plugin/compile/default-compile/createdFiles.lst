@@ -39,6 +39,7 @@ presentacion\frmCatalogoSucursales$1.class
 presentacion\frmRegistroCliente$5.class
 entidad\SucursalEntidad.class
 utilerias\JButtonRenderer.class
+presentacion\frmInicioSesionAdministrador.class
 presentacion\frmOpcionReprtes$1.class
 presentacion\frmResumenCompra$1.class
 presentacion\frmRegistroCliente$4.class
@@ -68,6 +69,7 @@ negocio\SucursalNegocio.class
 presentacion\frmRegistroCliente$3.class
 presentacion\frmCatalogoPeliculas$2.class
 entidad\PeliculaEntidad.class
+presentacion\frmInicioSesionAdministrador$1.class
 presentacion\frmRegistroCliente$6.class
 presentacion\frmDatosSucursal.class
 presentacion\frmCatalogoSucursales.class

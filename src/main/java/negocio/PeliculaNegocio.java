@@ -91,6 +91,27 @@ public class PeliculaNegocio implements IPeliculaNegocio {
         }
     }
 
+    @Override
+    public List<PeliculaDTO> buscarPeliculasPorSucursalYCiudad(String ciudad, String sucursal) throws NegocioException {
+        try {
+            List<PeliculaEntidad> peliculasEntidades = peliculaDAO.buscarPeliculasPorSucursalYCiudad(ciudad, sucursal);
+            List<PeliculaDTO> peliculasDTO = new ArrayList<>();
+
+            // Convertir de PeliculaEntidad a PeliculaDTO
+            for (PeliculaEntidad entidad : peliculasEntidades) {
+                PeliculaDTO dto = new PeliculaDTO();
+                dto.setId(entidad.getId());
+                dto.setTitulo(entidad.getTitulo());
+                dto.setPoster(entidad.getPoster()); // Copiar el poster
+                peliculasDTO.add(dto);
+            }
+
+            return peliculasDTO;
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al obtener las películas", e);
+        }
+    }
+
     private PeliculaDTO convertirEntidadADTO(PeliculaEntidad entidad) {
         return new PeliculaDTO(
                 entidad.getId(),
@@ -120,4 +141,5 @@ public class PeliculaNegocio implements IPeliculaNegocio {
                 dto.getPoster()
         );
     }
+
 }

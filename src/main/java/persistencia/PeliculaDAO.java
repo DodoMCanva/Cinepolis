@@ -127,21 +127,23 @@ public class PeliculaDAO implements IPeliculaDAO {
         throw new PersistenciaException("Error al guardar la película", e);
     }
     }
-    public List<PeliculaDTO> buscarPeliculasPorSucursalYCiudad(String ciudad, String sucursal) throws PersistenciaException {
-    List<PeliculaDTO> peliculas = new ArrayList<>();
+    @Override
+ public List<PeliculaEntidad> buscarPeliculasPorSucursalYCiudad(String ciudad, String sucursal) throws PersistenciaException {
+    List<PeliculaEntidad> peliculas = new ArrayList<>();
     String consulta = "SELECT P.ID, P.titulo, P.poster "
                     + "FROM Peliculas P "
                     + "JOIN CatalogoSucursales CS ON P.ID = CS.ID_Pelicula "
                     + "JOIN Sucursales S ON CS.ID_Sucursal = S.ID "
                     + "WHERE S.ciudad = ? AND S.nombre = ? AND P.estaEliminada = FALSE";
 
-    try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
+    try (Connection connection = conexionBD.crearConexion(); 
+         PreparedStatement ps = connection.prepareStatement(consulta)) {
         ps.setString(1, ciudad);
         ps.setString(2, sucursal);
 
         try (ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                PeliculaDTO pelicula = new PeliculaDTO();
+                PeliculaEntidad pelicula = new PeliculaEntidad();
                 pelicula.setId(rs.getInt("ID"));
                 pelicula.setTitulo(rs.getString("titulo"));
 
