@@ -2,7 +2,6 @@
 package presentacion;
 
 import dto.ClienteDTO;
-import entidad.ClienteEntidad;
 import javax.swing.JOptionPane;
 import negocio.ClienteNegocio;
 import negocio.NegocioException;

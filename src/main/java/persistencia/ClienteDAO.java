@@ -1,6 +1,5 @@
 package persistencia;
 
-import dto.ClienteDTO;
 import entidad.ClienteEntidad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import utilerias.Tabla;
 
 public class ClienteDAO implements IClienteDAO {

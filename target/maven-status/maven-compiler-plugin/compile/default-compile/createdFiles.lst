@@ -22,6 +22,7 @@ presentacion\frmCartelera$2.class
 persistencia\IConexionBD.class
 presentacion\frmTicket.class
 presentacion\frmOpcionReprtes$2.class
+presentacion\frmCatalogoPeliculas$6.class
 presentacion\frmDatosPelicula.class
 presentacion\frmCatalogoSalas$4.class
 negocio\ISucursalesNegocio.class
@@ -30,6 +31,7 @@ presentacion\frmInicioSesionCliente$1.class
 presentacion\frmMetodosPagos$1.class
 presentacion\frmCatalogoPeliculas.class
 dto\SucursalDTO.class
+presentacion\frmCartelera$3.class
 persistencia\SalaDAO.class
 persistencia\BoletoDAO.class
 presentacion\frmResumenCompra$2.class
@@ -41,12 +43,14 @@ entidad\SucursalEntidad.class
 utilerias\JButtonRenderer.class
 presentacion\frmInicioSesionAdministrador.class
 presentacion\frmOpcionReprtes$1.class
+presentacion\frmCatalogoPeliculas$7.class
 presentacion\frmResumenCompra$1.class
 presentacion\frmRegistroCliente$4.class
 negocio\BoletoNegocio.class
 presentacion\frmDatosPelicula$4.class
 presentacion\frmPagoEnEfectivo$1.class
 negocio\ISalaNegocio.class
+presentacion\frmCartelera$4.class
 presentacion\frmCatalogoClientes$5.class
 presentacion\frmCatalogoSucursales$2.class
 utilerias\Convertidor.class

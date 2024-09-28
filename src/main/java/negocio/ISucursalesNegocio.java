@@ -8,7 +8,7 @@ import utilerias.Tabla;
 
 
 public interface ISucursalesNegocio {
-    List <SucursalDTO> obtenerTodasLasSucursales();
+    List <SucursalDTO> obtenerTodasLasSucursales(Tabla Filtro);
 
     public void agregarSucursal(SucursalDTO sucursalDTO) throws SQLException;
 

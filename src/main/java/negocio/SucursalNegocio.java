@@ -20,16 +20,16 @@ public class SucursalNegocio implements ISucursalesNegocio {
         this.sucursalDAO = sucursalDAO;
     }
 
-    // Método para obtener todas las sucursales
-    @Override
-    public List<SucursalDTO> obtenerTodasLasSucursales() {
-        try {
-            List<SucursalEntidad> sucursales = sucursalDAO.obtenerTodas();
-            return sucursales.stream().map(this::convertirEntidadADTO).collect(Collectors.toList());
-        } catch (SQLException e) {
-            throw new RuntimeException("Error al obtener todas las sucursales", e);
-        }
+@Override
+public List<SucursalDTO> obtenerTodasLasSucursales(Tabla filtro) {
+    try {
+        List<SucursalEntidad> sucursales = sucursalDAO.obtenerTodas(filtro);
+        return sucursales.stream().map(this::convertirEntidadADTO).collect(Collectors.toList());
+    } catch (SQLException e) {
+        throw new RuntimeException("Error al obtener todas las sucursales", e);
     }
+}
+
 
     // Método para obtener sucursales por ciudad
     public List<SucursalDTO> obtenerSucursalesPorCiudad(String ciudad) {

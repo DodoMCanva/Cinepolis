@@ -19,26 +19,59 @@ public class SucursalDAO implements ISurcursalDAO {
         this.connection = connection;
     }
 
-   public List<SucursalEntidad> obtenerTodas() throws SQLException {
-    String query = "SELECT ID, nombre, ciudad, estado, calle, codigoPostal, estaEliminado, fechaHoraRegistro FROM Sucursales"; // Asegúrate de seleccionar todos los campos necesarios
+    
+    
+  @Override
+public void guardar(SucursalEntidad sucursal) throws SQLException {
+    String query = "INSERT INTO Sucursales (nombre, ciudad, estado, calle, codigoPostal, estaEliminado) VALUES (?, ?, ?, ?, ?, ?)";
+
+    try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+        pstmt.setString(1, sucursal.getNombre());
+        pstmt.setString(2, sucursal.getCiudad());
+        pstmt.setString(3, sucursal.getEstado()); 
+        pstmt.setString(4, sucursal.getCalle()); 
+        pstmt.setString(5, sucursal.getCodigoPostal()); 
+        pstmt.setBoolean(6, sucursal.isEstaEliminado());
+
+        pstmt.executeUpdate();
+    }
+}
+
+ @Override
+    public void eliminar(int id) throws SQLException {
+        String query = "DELETE FROM Sucursales WHERE ID = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        }
+    }
+    
+    
+  public List<SucursalEntidad> obtenerTodas(Tabla Filtro) throws SQLException {
+    String query = "SELECT S.ID ,S.nombre,S.ciudad, DS.estado, DS.calle ,DS.CP ,S.fechaRegistro AS fechaHoraRegistro FROM Sucursales S "
+            + "INNER JOIN Dir_Sucursal DS ON S.ID = DS.ID"+ 
+            "LIMIT ? OFFSET ?";
+
     List<SucursalEntidad> sucursales = new ArrayList<>();
 
     try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
         while (rs.next()) {
-            SucursalEntidad sucursal = new SucursalEntidad(); // Cambiado a SucursalEntidad
-            sucursal.setID(rs.getInt("ID"));
-            sucursal.setNombre(rs.getString("nombre"));
-            sucursal.setCiudad(rs.getString("ciudad"));
-            sucursal.setEstado(rs.getString("estado")); // Asegúrate de que este campo exista en tu base de datos
-            sucursal.setCalle(rs.getString("calle")); // Asegúrate de que este campo exista en tu base de datos
-            sucursal.setCodigoPostal(rs.getString("codigoPostal")); // Asegúrate de que este campo exista en tu base de datos
-            sucursal.setEstaEliminado(rs.getBoolean("estaEliminado")); // Asegúrate de que este campo exista en tu base de datos
-            sucursal.setFechaHoraRegistro(rs.getTimestamp("fechaHoraRegistro")); // Asegúrate de que este campo exista en tu base de datos
+            SucursalEntidad sucursal = new SucursalEntidad();
+            sucursal.setID(rs.getInt("sucursalID"));
+            sucursal.setNombre(rs.getString("sucursalNombre"));
+            sucursal.setCiudad(rs.getString("sucursalCiudad"));
+            sucursal.setEstado(rs.getString("direccionEstado")); // Desde Dir_Sucursal
+            sucursal.setCalle(rs.getString("direccionCalle")); // Desde Dir_Sucursal
+            sucursal.setCodigoPostal(rs.getString("direccionCP")); // Desde Dir_Sucursal
+            sucursal.setFechaHoraRegistro(rs.getTimestamp("fechaHoraRegistro"));
+
             sucursales.add(sucursal);
         }
     }
-    return sucursales; // Esto ahora devuelve List<SucursalEntidad>
+    return sucursales;
 }
+
 
     public SucursalDTO obtenerPorId(int id) throws SQLException {
         String query = "SELECT ID, nombre, ciudad FROM Sucursales WHERE ID = ?";
@@ -58,16 +91,7 @@ public class SucursalDAO implements ISurcursalDAO {
         return sucursal;
     }
 
-    @Override
-    public void guardar(SucursalEntidad sucursal) throws SQLException {
-        String query = "INSERT INTO Sucursales (nombre, ciudad) VALUES (?, ?)";
-
-        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setString(1, sucursal.getNombre());
-            pstmt.setString(2, sucursal.getCiudad());
-            pstmt.executeUpdate();
-        }
-    }
+    
 
     public List<String> obtenerCiudades() throws SQLException {
         String query = "SELECT DISTINCT ciudad FROM Sucursales";
@@ -100,15 +124,7 @@ public class SucursalDAO implements ISurcursalDAO {
     return sucursales;
 }
 
-    @Override
-    public void eliminar(int id) throws SQLException {
-        String query = "DELETE FROM Sucursales WHERE ID = ?";
-
-        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-        }
-    }
+   
 
     @Override
     public List<SucursalEntidad> buscarporDireccion(String dir, Tabla Filtro) throws PersistenciaException {
