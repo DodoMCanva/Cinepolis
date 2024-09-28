@@ -1,8 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package presentacion;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -10,11 +11,22 @@ package presentacion;
  */
 public class frmDatosSucursal extends javax.swing.JFrame {
 
+    private Map<String, List<String>> ciudadesPorEstado;
+
     /**
      * Creates new form frmDatosSucursal
      */
     public frmDatosSucursal() {
         initComponents();
+        inicializarCiudadesPorEstado();
+    }
+
+    private void inicializarCiudadesPorEstado() {
+        ciudadesPorEstado = new HashMap<>();
+        ciudadesPorEstado.put("Sonora", Arrays.asList("Hermosillo", "Nogales", "Obregón"));
+        ciudadesPorEstado.put("Jalisco", Arrays.asList("Guadalajara", "Puerto Vallarta", "Tlaquepaque"));
+        ciudadesPorEstado.put("Nuevo León", Arrays.asList("Monterrey", "San Nicolás", "Guadalupe"));
+        // Agrega más estados y ciudades según sea necesario
     }
 
     /**
@@ -30,16 +42,20 @@ public class frmDatosSucursal extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
         cbxEstado = new javax.swing.JComboBox<>();
-        jLNombre = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblEstado = new javax.swing.JLabel();
         txtNombreSucursal = new javax.swing.JTextField();
         cbxCiudad = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtDireccion = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
+        lblCalle = new javax.swing.JLabel();
+        lblDireccion = new javax.swing.JLabel();
+        txtCodigoP = new javax.swing.JTextField();
+        btnGuardarSucursal = new javax.swing.JButton();
+        txtCalle = new javax.swing.JTextField();
+        lblCiudad3 = new javax.swing.JLabel();
+        lblCodigo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Datos de Sucursal");
         setMinimumSize(new java.awt.Dimension(540, 370));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -63,7 +79,7 @@ public class frmDatosSucursal extends javax.swing.JFrame {
         jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
         cbxEstado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item1", "Item 2" }));
+        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado", " ", " ", " " }));
         cbxEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxEstadoActionPerformed(evt);
@@ -71,15 +87,15 @@ public class frmDatosSucursal extends javax.swing.JFrame {
         });
         jPanel1.add(cbxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 260, 30));
 
-        jLNombre.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLNombre.setForeground(new java.awt.Color(255, 255, 255));
-        jLNombre.setText("Nombre");
-        jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 60, 30));
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre.setText("Nombre");
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 60, 30));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Estado");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 50, 30));
+        lblEstado.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblEstado.setForeground(new java.awt.Color(255, 255, 255));
+        lblEstado.setText("Estado");
+        jPanel1.add(lblEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 50, 30));
 
         txtNombreSucursal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(txtNombreSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 260, 30));
@@ -88,25 +104,39 @@ public class frmDatosSucursal extends javax.swing.JFrame {
         cbxCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
         jPanel1.add(cbxCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 260, 30));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Ciudad");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 50, 30));
+        lblCalle.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblCalle.setForeground(new java.awt.Color(255, 255, 255));
+        lblCalle.setText("Calle");
+        jPanel1.add(lblCalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 40, 30));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Dirección");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 70, 30));
+        lblDireccion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblDireccion.setForeground(new java.awt.Color(255, 255, 255));
+        lblDireccion.setText("Dirección");
+        jPanel1.add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 70, 30));
 
-        txtDireccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 260, 30));
+        txtCodigoP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel1.add(txtCodigoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 260, 30));
 
-        btnGuardar.setBackground(new java.awt.Color(153, 204, 255));
-        btnGuardar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnGuardar.setText("Guardar");
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 110, 30));
+        btnGuardarSucursal.setBackground(new java.awt.Color(153, 204, 255));
+        btnGuardarSucursal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGuardarSucursal.setText("Guardar");
+        jPanel1.add(btnGuardarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 110, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 370));
+        txtCalle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel1.add(txtCalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 260, 30));
+
+        lblCiudad3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblCiudad3.setForeground(new java.awt.Color(255, 255, 255));
+        lblCiudad3.setText("Ciudad");
+        jPanel1.add(lblCiudad3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 50, 30));
+
+        lblCodigo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblCodigo.setForeground(new java.awt.Color(255, 255, 255));
+        lblCodigo.setText("Código postal");
+        jPanel1.add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 100, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 430));
+        jPanel1.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -118,19 +148,31 @@ public class frmDatosSucursal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void cbxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEstadoActionPerformed
-        // TODO add your handling code here:
+        String estadoSeleccionado = cbxEstado.getSelectedItem().toString();
+
+        // Limpiar el JComboBox de ciudades
+        cbxCiudad.removeAllItems();
+
+        // Obtener las ciudades del estado seleccionado
+        List<String> ciudades = ciudadesPorEstado.get(estadoSeleccionado);
+
+        if (ciudades != null) {
+            for (String ciudad : ciudades) {
+                cbxCiudad.addItem(ciudad);
+            }
+        }
     }//GEN-LAST:event_cbxEstadoActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    /*    public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
- /*     try {
+         */
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -149,25 +191,28 @@ public class frmDatosSucursal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
- /*       java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new frmDatosSucursal().setVisible(true);
             }
         });
-    }*/
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardarSucursal;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cbxCiudad;
     private javax.swing.JComboBox<String> cbxEstado;
-    private javax.swing.JLabel jLNombre;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCalle;
+    private javax.swing.JLabel lblCiudad3;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblDireccion;
+    private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtCalle;
+    private javax.swing.JTextField txtCodigoP;
     private javax.swing.JTextField txtNombreSucursal;
     // End of variables declaration//GEN-END:variables
 }
