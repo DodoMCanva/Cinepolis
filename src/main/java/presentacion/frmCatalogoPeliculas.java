@@ -29,13 +29,11 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
     
     public frmCatalogoPeliculas() {
         initComponents();
+        this.cargarConfiguracionInicialTabla();
         cargarTabla();
-        ajustarColumnas();
-        initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         btnAtras.setEnabled(false);
-        this.cargarConfiguracionInicialTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -204,11 +202,6 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
         modeloColumnas.getColumn(indiceColumnaEliminar).setCellEditor(new JButtonCellEditor("Eliminar", onEliminarClickListener));
     }
     
-    private void eliminar() throws NegocioException {
-        int id = this.getIdSeleccionadoTabla();
-        peliculaNegocio.eliminarPelicula(id);
-        cargarTabla();
-    }
     private int getIdSeleccionadoTabla() {
         int indiceFilaSeleccionada = this.tblPeliculas.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
@@ -221,6 +214,14 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
             return 0;
         }
     }
+    
+    
+    private void eliminar() throws NegocioException {
+        int id = this.getIdSeleccionadoTabla();
+        peliculaNegocio.eliminarPelicula(id);
+        cargarTabla();
+    }
+    
 
     private void BorrarRegistrosTabla() {
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblPeliculas.getModel();
@@ -232,7 +233,7 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
     }
 
     private void cargarTablaBusqueda(String nombre) {
-        /*try {
+        try {
             Tabla filtro = this.obtenerFiltrosTabla();
             List<PeliculaDTO> Lista = this.peliculaNegocio.buscarporNombre(nombre, filtro);
             this.BorrarRegistrosTabla();
@@ -247,7 +248,7 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
             this.BorrarRegistrosTabla();
             this.pag--;
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
-        }*/
+        }
     }
     
     private Tabla obtenerFiltrosTabla() {
@@ -288,7 +289,7 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
             this.cargarTablaBusqueda(nombre);
         } else {
             this.dispose();
-            frmCatalogoClientes c = new frmCatalogoClientes();
+            frmCatalogoPeliculas c = new frmCatalogoPeliculas();
             c.setVisible(true);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -301,18 +302,7 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
         btnAtras.setEnabled(true);
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
-    private void ajustarColumnas() {
-        // Establecer el ancho de la columna ID
-        tblPeliculas.getColumnModel().getColumn(0).setPreferredWidth(50); // Ancho de la columna ID
-
-        // Establecer el ancho de las demás columnas
-        tblPeliculas.getColumnModel().getColumn(1).setPreferredWidth(150); // Titulo
-        tblPeliculas.getColumnModel().getColumn(2).setPreferredWidth(100); // Clasificación
-        tblPeliculas.getColumnModel().getColumn(3).setPreferredWidth(70); // Minutos
-        tblPeliculas.getColumnModel().getColumn(4).setPreferredWidth(70); // Género
-        tblPeliculas.getColumnModel().getColumn(5).setPreferredWidth(100); // País
-        tblPeliculas.getColumnModel().getColumn(6).setPreferredWidth(300); // Sinopsis
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

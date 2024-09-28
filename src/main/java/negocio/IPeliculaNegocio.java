@@ -14,6 +14,8 @@ public interface IPeliculaNegocio {
     PeliculaDTO agregarPelicula(PeliculaDTO peliculaDTO) throws NegocioException;
 
     List<PeliculaDTO> buscarPeliculas(Tabla filtro) throws NegocioException;
+    
+    List<PeliculaDTO> buscarporNombre(String nombre, Tabla filtro) throws NegocioException;
 
     PeliculaDTO guardar(PeliculaDTO peliculaDTO) throws NegocioException;
 
@@ -21,9 +23,9 @@ public interface IPeliculaNegocio {
     PeliculaDTO buscarPorId(int id) throws NegocioException;
 
     // Método para eliminar una película lógicamente
-    PeliculaDTO eliminarPelicula(int id) throws NegocioException;
+    void eliminarPelicula(int id) throws NegocioException;
     
-        List<PeliculaDTO> buscarPeliculasPorSucursalYCiudad(String ciudad, String sucursal) throws NegocioException;
+    List<PeliculaDTO> buscarPeliculasPorSucursalYCiudad(String ciudad, String sucursal) throws NegocioException;
 
 
 

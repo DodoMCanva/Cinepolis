@@ -189,16 +189,14 @@ public class PeliculaDAO implements IPeliculaDAO {
     }
 
     @Override
-    public PeliculaEntidad eliminarPelicula(int id) throws PersistenciaException {
+    public void eliminarPelicula(int id) throws PersistenciaException {
         String query = "UPDATE Peliculas SET estaEliminada = ? WHERE ID = ?";
 
         try (Connection conexion = conexionBD.crearConexion(); PreparedStatement ps = conexion.prepareStatement(query)) {
-
             ps.setBoolean(1, true);  // Cambiar el estado de eliminación a verdadero (lógica).
             ps.setInt(2, id);
 
             ps.executeUpdate();
-            return buscarPorId(id);  // Devolver la película eliminada.
 
         } catch (SQLException e) {
             throw new PersistenciaException("Error al eliminar la película", e);
@@ -228,8 +226,49 @@ public class PeliculaDAO implements IPeliculaDAO {
                             rs.getString("linkTrailer"),
                             rs.getBoolean("estaEliminada"),
                             rs.getBytes("poster") // Leer la imagen como un arreglo de bytes
-                            //rs.getBytes(null) // Leer la imagen como un arreglo de bytes
-                            
+                    //rs.getBytes(null) // Leer la imagen como un arreglo de bytes
+
+                    );
+                    peliculas.add(pelicula);
+                }
+            } catch (Exception e) {
+                System.out.println("ERROR");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Persistencia");
+            throw new PersistenciaException("Error al listar las películas: " + e.getMessage(), e);
+        }
+
+        return peliculas;
+    }
+
+    @Override
+    public List<PeliculaEntidad> buscarporNombre(String nombre, Tabla filtro) throws PersistenciaException {
+        List<PeliculaEntidad> peliculas = new ArrayList<>();
+        String consulta = "SELECT ID, titulo, clasificacion, duracion, genero, paisOrigen, sinopsis, linkTrailer, poster, estaEliminada FROM Peliculas "
+                + "WHERE estaEliminada = false AND titulo LIKE ? "
+                + "LIMIT ? OFFSET ?";
+        
+        System.out.println(nombre);
+        try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
+            ps.setString(1, nombre);  // Límite de resultados
+            ps.setInt(2, filtro.getLimite());  // Límite de resultados
+            ps.setInt(3, filtro.getPagina() * filtro.getLimite());  // Offset para la paginación
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    PeliculaEntidad pelicula = new PeliculaEntidad(
+                            rs.getInt("ID"),
+                            rs.getString("titulo"),
+                            rs.getString("clasificacion"),
+                            rs.getInt("duracion"),
+                            rs.getString("genero"),
+                            rs.getString("paisOrigen"),
+                            rs.getString("sinopsis"),
+                            rs.getString("linkTrailer"),
+                            rs.getBoolean("estaEliminada"),
+                            rs.getBytes("poster") // Leer la imagen como un arreglo de bytes
+
                     );
                     peliculas.add(pelicula);
                 }
