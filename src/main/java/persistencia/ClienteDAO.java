@@ -20,66 +20,7 @@ public class ClienteDAO implements IClienteDAO {
         this.conexionBD = conexionBD;
     }
 
-    @Override
-    public ArrayList<ClienteDTO> leer() throws PersistenciaException {
-        ClienteDTO clienteDTO;
-        Connection con = null;
-        ResultSet rs = null;
-        ArrayList<ClienteDTO> lista = new ArrayList<>();
-        PreparedStatement ps = null;
-        try {
-            con = conexionBD.crearConexion();
-
-            // Consulta con JOIN entre Clientes y NombreCliente
-            String leer = "SELECT c.ID_Cliente, c.correoElectronico, c.fechaNacimiento, c.geolcl, c.psswrd, c.celular, c.EstaEliminado, c.fechaRegistro, "
-                    + "nc.nombre, nc.apellidoPaterno, nc.apellidoMaterno "
-                    + "FROM Clientes c "
-                    + "JOIN NombreCliente nc ON c.ID_Cliente = nc.ID";
-
-            ps = con.prepareStatement(leer);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                clienteDTO = new ClienteDTO();
-
-                // Datos de la tabla Clientes
-                clienteDTO.setId(rs.getInt("ID_Cliente"));
-                clienteDTO.setCorreoElectronico(rs.getString("correoElectronico"));
-                clienteDTO.setFechaNacimiento(rs.getString("fechaNacimiento"));
-                clienteDTO.setGeolocalizacion(rs.getString("geolcl"));
-                clienteDTO.setContrasena(rs.getString("psswrd"));
-                clienteDTO.setCelular(rs.getString("celular"));
-                clienteDTO.setEstaEliminado(rs.getBoolean("EstaEliminado"));
-                clienteDTO.setFechaHoraRegistro(rs.getTimestamp("fechaRegistro"));
-
-                // Datos de la tabla NombreCliente
-                clienteDTO.setNombre(rs.getString("nombre"));
-                clienteDTO.setApellidoPaterno(rs.getString("apellidoPaterno"));
-                clienteDTO.setApellidoMaterno(rs.getString("apellidoMaterno"));
-
-                lista.add(clienteDTO);
-            }
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage());
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return lista;
-    }
+    
 
     @Override
     public void guardar(ClienteEntidad cliente) throws PersistenciaException {

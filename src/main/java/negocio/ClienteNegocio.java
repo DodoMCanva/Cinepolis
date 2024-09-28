@@ -35,15 +35,6 @@ public class ClienteNegocio implements IClienteNegocio {
         this.clienteDAO = new ClienteDAO(new ConexionBD());
     }
 
-    //Consultas
-    @Override
-    public ArrayList<ClienteDTO> consultar() throws NegocioException {
-        try {
-            return clienteDAO.leer();
-        } catch (PersistenciaException e) {
-            throw new NegocioException("Error al leer los clientes desde la base de datos", e);
-        }
-    }
     
     @Override
     public List<ClienteDTO> buscarporNombre(String nombre, Tabla Filtro) throws NegocioException {
