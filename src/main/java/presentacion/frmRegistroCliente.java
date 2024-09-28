@@ -316,7 +316,7 @@ public class frmRegistroCliente extends javax.swing.JFrame {
 
         try {
             // Llamar a la capa de negocio
-            ClienteNegocio clienteNegocio = new ClienteNegocio();
+            ClienteNegocio clienteNegocio = new ClienteNegocio(clienteDAO);
             clienteNegocio.guardarCliente(clienteDTO);
             JOptionPane.showMessageDialog(this, "Cliente registrado con éxito.");
             

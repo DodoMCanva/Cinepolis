@@ -17,6 +17,7 @@ persistencia\IPeliculaDAO.class
 persistencia\ClienteDAO.class
 presentacion\frmHorarios$2.class
 negocio\IClienteNegocio.class
+presentacion\frmCartelera$2.class
 persistencia\IConexionBD.class
 presentacion\frmTicket.class
 presentacion\frmOpcionReprtes$2.class
@@ -73,6 +74,7 @@ dto\PeliculaDTO.class
 presentacion\frmInicioSesionCliente$4.class
 presentacion\frmMetodosPagos.class
 entidad\SalaEntidad.class
+presentacion\frmMenu$3.class
 presentacion\frmRegistroCliente$2.class
 presentacion\frmInicioSesionCliente.class
 presentacion\frmCatalogoClientes$1.class

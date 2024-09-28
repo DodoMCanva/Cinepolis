@@ -9,7 +9,7 @@ public interface IClienteNegocio {
 
     ArrayList<ClienteDTO> consultar() throws NegocioException;
 
-    public void guardarCliente(ClienteDTO clienteDTO) throws NegocioException;
+    public void guardar(ClienteDTO clienteDTO) throws NegocioException;
 
     void eliminar(int idCliente) throws NegocioException;
 
@@ -18,5 +18,7 @@ public interface IClienteNegocio {
     public ClienteDTO obtenerClientePorId(int id) throws NegocioException;
 
     List<ClienteDTO> buscarporNombre(String nombre, Tabla Filtro) throws NegocioException;
+    
+    public boolean reglasNegocio(ClienteDTO e); 
 
 }

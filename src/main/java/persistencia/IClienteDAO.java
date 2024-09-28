@@ -18,4 +18,6 @@ public interface IClienteDAO {
 
     ClienteEntidad buscarPorCorreoYContrasena(String nombre, String contrasena) throws PersistenciaException;
 
+    public IConexionBD getConexionBD();
+
 }
