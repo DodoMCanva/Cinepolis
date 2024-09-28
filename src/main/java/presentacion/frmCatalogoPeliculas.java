@@ -151,7 +151,7 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
             Tabla filtro = this.obtenerFiltrosTabla();
             List<PeliculaDTO> Lista = this.peliculaNegocio.buscarPeliculas(filtro);
             this.BorrarRegistrosTabla();
-          //  this.AgregarRegistrosTabla(Lista);
+            this.AgregarRegistrosTabla(Lista);
             if (Lista.size() == 0) {
                 pag--;
                 int imp = pag + 1;
@@ -171,14 +171,14 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
         }
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblPeliculas.getModel();
         Lista.forEach(row -> {
-            Object[] fila = new Object[7];
-//            String NombreCompleto = (row.getNombre() + " " + row.getApellidoPaterno() + " " + row.getApellidoMaterno());
-//            fila[0] = row.getId();
-//            fila[1] = NombreCompleto;
-//            fila[2] = row.getCorreoElectronico();
-//            fila[3] = row.getFechaNacimiento();
-//            fila[4] = row.getGeolocalizacion();
-//            fila[5] = row.getContrasena();
+            Object[] fila = new Object[8];
+            fila[0] = row.getId();
+            fila[1] = row.getTitulo();
+            fila[2] = row.getClasificacion();
+            fila[3] = row.getDuracion();
+            fila[4] = row.getGenero();
+            fila[5] = row.getPaisOrigen();
+            fila[6] = row.getSinopsis();
             modeloTabla.addRow(fila);
         });
     }

@@ -3,6 +3,8 @@ package utilerias;
 import entidad.ClienteEntidad;
 import java.sql.Timestamp;
 import dto.ClienteDTO;
+import dto.PeliculaDTO;
+import entidad.PeliculaEntidad;
 import java.util.Date;
 
 public class Convertidor {
@@ -36,6 +38,36 @@ public class Convertidor {
         clienteDTO.setEstaEliminado(clienteEntidad.isEstaEliminado());
         return clienteDTO;
         
+    }
+    
+    public PeliculaDTO EntidadaDTO(PeliculaEntidad entidad) {
+        return new PeliculaDTO(
+                entidad.getId(),
+                entidad.getTitulo(),
+                entidad.getClasificacion(),
+                entidad.getDuracion(),
+                entidad.getGenero(),
+                entidad.getPaisOrigen(),
+                entidad.getSinopsis(),
+                entidad.getLinkTrailer(),
+                entidad.isEstaEliminada(),
+                entidad.getPoster()
+        );
+    }
+
+    public PeliculaEntidad DTOaEntidad(PeliculaDTO dto) {
+        return new PeliculaEntidad(
+                dto.getId(),
+                dto.getTitulo(),
+                dto.getClasificacion(),
+                dto.getDuracion(),
+                dto.getGenero(),
+                dto.getPaisOrigen(),
+                dto.getSinopsis(),
+                dto.getLinkTrailer(),
+                dto.isEstaEliminada(),
+                dto.getPoster()
+        );
     }
 
 }

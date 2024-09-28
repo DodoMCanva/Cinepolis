@@ -20,8 +20,6 @@ public class ClienteDAO implements IClienteDAO {
         this.conexionBD = conexionBD;
     }
 
-    
-
     @Override
     public void guardar(ClienteEntidad cliente) throws PersistenciaException {
         // Consulta SQL para insertar en la tabla Cliente
@@ -140,41 +138,6 @@ public class ClienteDAO implements IClienteDAO {
         }
     }
 
-    //??
-    @Override
-    public ClienteEntidad buscarPorId(int idCliente) throws PersistenciaException {
-        ClienteEntidad cliente = null;
-        // La consulta SQL para buscar un cliente por su ID.
-        String consulta = "SELECT ID_Cliente, Nombre, apellidoPaterno, apellidoaMaterno, estaEliminado,Fecha_Nacimiento, fechaHoraRegistro,Correo_Electronico,Geolocalizacion, Contrasena FROM Cliente WHERE ID_Cliente = ?";
-
-        try (Connection connection = conexionBD.crearConexion(); PreparedStatement stmt = connection.prepareStatement(consulta)) {
-            // Asignamos el ID del cliente a la consulta.
-            stmt.setInt(1, idCliente);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                // Creamos un nuevo objeto ClienteEntidad y le asignamos los valores obtenidos de la base de datos.
-                cliente = new ClienteEntidad();
-                cliente.setId(rs.getInt("ID_Cliente"));
-                cliente.setNombre(rs.getString("Nombre"));
-                cliente.setApellidoPaterno(rs.getString("Apellido_Paterno"));
-                cliente.setApellidoMaterno(rs.getString("Apellido_Materno"));
-                cliente.setFechaNacimiento(rs.getString("Fecha_Nacimiento"));
-                cliente.setCorreoElectronico(rs.getString("Correo"));
-                cliente.setGeolocalizacion(rs.getString("Geolocalizacion"));
-                cliente.setContrasena(rs.getString("Contrasena"));
-                cliente.setEstaEliminado(rs.getBoolean("estaEliminado"));
-                cliente.setFechaHoraRegistro(rs.getTimestamp("fechaHoraRegistro"));
-            }
-
-        } catch (SQLException e) {
-            // Si ocurre un error, lanzamos una excepción con un mensaje.
-            throw new PersistenciaException("Error al obtener el cliente con ID: " + idCliente, e);
-        }
-
-        return cliente;
-    }
-
     @Override
     public IConexionBD getConexionBD() {
         return conexionBD;
@@ -271,6 +234,41 @@ public class ClienteDAO implements IClienteDAO {
             throw new PersistenciaException("Error al buscar clientes", e);
         }
         return listaClientes;
+    }
+
+    //??
+    @Override
+    public ClienteEntidad buscarPorId(int idCliente) throws PersistenciaException {
+        ClienteEntidad cliente = null;
+        // La consulta SQL para buscar un cliente por su ID.
+        String consulta = "SELECT ID_Cliente, Nombre, apellidoPaterno, apellidoaMaterno, estaEliminado,Fecha_Nacimiento, fechaHoraRegistro,Correo_Electronico,Geolocalizacion, Contrasena FROM Cliente WHERE ID_Cliente = ?";
+
+        try (Connection connection = conexionBD.crearConexion(); PreparedStatement stmt = connection.prepareStatement(consulta)) {
+            // Asignamos el ID del cliente a la consulta.
+            stmt.setInt(1, idCliente);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                // Creamos un nuevo objeto ClienteEntidad y le asignamos los valores obtenidos de la base de datos.
+                cliente = new ClienteEntidad();
+                cliente.setId(rs.getInt("ID_Cliente"));
+                cliente.setNombre(rs.getString("Nombre"));
+                cliente.setApellidoPaterno(rs.getString("Apellido_Paterno"));
+                cliente.setApellidoMaterno(rs.getString("Apellido_Materno"));
+                cliente.setFechaNacimiento(rs.getString("Fecha_Nacimiento"));
+                cliente.setCorreoElectronico(rs.getString("Correo"));
+                cliente.setGeolocalizacion(rs.getString("Geolocalizacion"));
+                cliente.setContrasena(rs.getString("Contrasena"));
+                cliente.setEstaEliminado(rs.getBoolean("estaEliminado"));
+                cliente.setFechaHoraRegistro(rs.getTimestamp("fechaHoraRegistro"));
+            }
+
+        } catch (SQLException e) {
+            // Si ocurre un error, lanzamos una excepción con un mensaje.
+            throw new PersistenciaException("Error al obtener el cliente con ID: " + idCliente, e);
+        }
+
+        return cliente;
     }
 
 }

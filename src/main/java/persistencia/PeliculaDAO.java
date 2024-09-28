@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import utilerias.Tabla;
 
 public class PeliculaDAO implements IPeliculaDAO {
 
@@ -125,38 +126,36 @@ public class PeliculaDAO implements IPeliculaDAO {
     }
 
     @Override
-   public List<PeliculaEntidad> buscarPeliculasPorSucursalYCiudad(String ciudad, String sucursal) throws PersistenciaException {
-    List<PeliculaEntidad> peliculas = new ArrayList<>();
-    String consulta = "SELECT P.ID, P.titulo, P.poster "
-                    + "FROM Peliculas P "
-                    + "JOIN CatalogoSucursales CS ON P.ID = CS.ID_Pelicula "
-                    + "JOIN Sucursales S ON CS.ID_Sucursal = S.ID "
-                    + "WHERE S.ciudad = ? AND S.nombre = ? AND P.estaEliminada = FALSE";
+    public List<PeliculaEntidad> buscarPeliculasPorSucursalYCiudad(String ciudad, String sucursal) throws PersistenciaException {
+        List<PeliculaEntidad> peliculas = new ArrayList<>();
+        String consulta = "SELECT P.ID, P.titulo, P.poster "
+                + "FROM Peliculas P "
+                + "JOIN CatalogoSucursales CS ON P.ID = CS.ID_Pelicula "
+                + "JOIN Sucursales S ON CS.ID_Sucursal = S.ID "
+                + "WHERE S.ciudad = ? AND S.nombre = ? AND P.estaEliminada = FALSE";
 
-    try (Connection connection = conexionBD.crearConexion(); 
-         PreparedStatement ps = connection.prepareStatement(consulta)) {
-        ps.setString(1, ciudad);
-        ps.setString(2, sucursal);
+        try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
+            ps.setString(1, ciudad);
+            ps.setString(2, sucursal);
 
-        try (ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                PeliculaEntidad pelicula = new PeliculaEntidad();
-                pelicula.setId(rs.getInt("ID"));
-                pelicula.setTitulo(rs.getString("titulo"));
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    PeliculaEntidad pelicula = new PeliculaEntidad();
+                    pelicula.setId(rs.getInt("ID"));
+                    pelicula.setTitulo(rs.getString("titulo"));
 
-                // Convertir el BLOB a bytes para el poster
-                byte[] poster = rs.getBytes("poster");
-                pelicula.setPoster(poster);
+                    // Convertir el BLOB a bytes para el poster
+                    byte[] poster = rs.getBytes("poster");
+                    pelicula.setPoster(poster);
 
-                peliculas.add(pelicula);
+                    peliculas.add(pelicula);
+                }
             }
+        } catch (SQLException e) {
+            throw new PersistenciaException("Error al buscar películas por sucursal y ciudad", e);
         }
-    } catch (SQLException e) {
-        throw new PersistenciaException("Error al buscar películas por sucursal y ciudad", e);
+        return peliculas;
     }
-    return peliculas;
-}
-
 
     @Override
     public PeliculaEntidad buscarPorId(int id) throws PersistenciaException {
@@ -204,6 +203,46 @@ public class PeliculaDAO implements IPeliculaDAO {
         } catch (SQLException e) {
             throw new PersistenciaException("Error al eliminar la película", e);
         }
+    }
+
+    @Override
+    public List<PeliculaEntidad> buscarPeliculas(Tabla filtro) throws PersistenciaException {
+        List<PeliculaEntidad> peliculas = new ArrayList<>();
+        String consulta = "SELECT ID, titulo, clasificacion, duracion, genero, paisOrigen, sinopsis, linkTrailer, poster, estaEliminada FROM Peliculas "
+                + "WHERE estaEliminada = false "
+                + "LIMIT ? OFFSET ?";
+
+        try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
+            ps.setInt(1, filtro.getLimite());  // Límite de resultados
+            ps.setInt(2, filtro.getPagina() * filtro.getLimite());  // Offset para la paginación
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    PeliculaEntidad pelicula = new PeliculaEntidad(
+                            rs.getInt("ID"),
+                            rs.getString("titulo"),
+                            rs.getString("clasificacion"),
+                            rs.getInt("duracion"),
+                            rs.getString("genero"),
+                            rs.getString("paisOrigen"),
+                            rs.getString("sinopsis"),
+                            rs.getString("linkTrailer"),
+                            rs.getBoolean("estaEliminada"),
+                            rs.getBytes("poster") // Leer la imagen como un arreglo de bytes
+                            //rs.getBytes(null) // Leer la imagen como un arreglo de bytes
+                            
+                    );
+                    peliculas.add(pelicula);
+                }
+            } catch (Exception e) {
+                System.out.println("ERROR");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Persistencia");
+            throw new PersistenciaException("Error al listar las películas: " + e.getMessage(), e);
+        }
+
+        return peliculas;
     }
 
 }
