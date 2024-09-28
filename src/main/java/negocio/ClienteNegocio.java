@@ -25,25 +25,14 @@ public class ClienteNegocio implements IClienteNegocio {
     private IConexionBD conexionBD;
     private Connection cn;
 
-    /*
-    public ClienteNegocio(IClienteDAO clienteDAO) {
-        incializar();
-        this.clienteDAO = clienteDAO;
-        conexionBD = clienteDAO.getConexionBD();
-
-    }
-     */
-
     public ClienteNegocio() {
         incializar();
-        //this.clienteDAO = clienteDAO;
         IClienteDAO clienteDAO = new ClienteDAO(new ConexionBD());
         conexionBD = clienteDAO.getConexionBD();
     }
 
     private void incializar() {
         this.clienteDAO = new ClienteDAO(new ConexionBD());
-        //ClienteNegocio clienteNegocio = new ClienteNegocio(clienteDAO);
     }
 
     //Consultas
@@ -55,17 +44,7 @@ public class ClienteNegocio implements IClienteNegocio {
             throw new NegocioException("Error al leer los clientes desde la base de datos", e);
         }
     }
-
-    @Override
-    public ClienteDTO obtenerClientePorId(int id) throws NegocioException {
-        try {
-            ClienteEntidad clienteEntity = clienteDAO.buscarPorId(id);
-            return convertir.EntidadaDTO(clienteEntity);
-        } catch (PersistenciaException e) {
-            throw new NegocioException("Error al obtener el cliente por ID", e);
-        }
-    }
-
+    
     @Override
     public List<ClienteDTO> buscarporNombre(String nombre, Tabla Filtro) throws NegocioException {
         try {
@@ -79,6 +58,16 @@ public class ClienteNegocio implements IClienteNegocio {
             return listaDTOs;
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al buscar clientes: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public ClienteDTO obtenerClientePorId(int id) throws NegocioException {
+        try {
+            ClienteEntidad clienteEntity = clienteDAO.buscarPorId(id);
+            return convertir.EntidadaDTO(clienteEntity);
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al obtener el cliente por ID", e);
         }
     }
 

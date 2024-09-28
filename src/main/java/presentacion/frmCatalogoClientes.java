@@ -257,9 +257,12 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
         clientesLista.forEach(row -> {
             Object[] fila = new Object[7];
             fila[0] = row.getId();
-            fila[1] = row.getNombre();
-            fila[2] = row.getApellidoPaterno();
-            fila[3] = row.getApellidoMaterno();
+            fila[1] = row.getNombre()+row.getApellidoPaterno()+row.getApellidoMaterno();
+            fila[2] = row.getCorreoElectronico();
+            fila[4] = row.getFechaNacimiento();
+            fila[5] = row.getGeolocalizacion();
+            fila[6] = row.getContrasena();
+            fila[7] = "Eliminar";
             
             modeloTabla.addRow(fila);
         });

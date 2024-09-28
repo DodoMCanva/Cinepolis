@@ -29,6 +29,15 @@ public class Convertidor {
         clienteDTO.setFechaHoraRegistro((Timestamp) clienteEntidad.getFechaHoraRegistro());
         clienteDTO.setEstaEliminado(clienteEntidad.isEstaEliminado());
         return clienteDTO;
+        clienteEntidad.setNombre(clienteDTO.getNombre());
+        clienteEntidad.setApellidoPaterno(clienteDTO.getApellidoPaterno());
+        clienteEntidad.setApellidoMaterno(clienteDTO.getApellidoMaterno());
+        clienteEntidad.setCelular(clienteDTO.getCelular());
+        clienteEntidad.setCorreoElectronico(clienteDTO.getCorreoElectronico());
+        clienteEntidad.setFechaNacimiento(clienteDTO.getFechaNacimiento());
+        clienteEntidad.setContrasena(clienteDTO.getContrasena());
+        clienteEntidad.setFechaHoraRegistro(new Date()); 
+        return clienteEntidad;
     }
 
 }
