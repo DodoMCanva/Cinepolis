@@ -12,7 +12,6 @@ public class Tabla {
         this.textoBusqueda = textoBusqueda;
     }
 
-    // Getters y Setters
     public int getLimite() {
         return limite;
     }

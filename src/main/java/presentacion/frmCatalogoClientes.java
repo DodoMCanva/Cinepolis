@@ -31,23 +31,25 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
     private IClienteNegocio clienteNegocio;
 
     public frmCatalogoClientes() {
-        incializar();
+        //incializar();
         this.clienteNegocio = clienteNegocio;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         btnAtras.setEnabled(false);
+        /*
         this.cargarConfiguracionInicialTablaClientes();
         this.cargarTablaClientes();
+        */
     }
 
     private void incializar() {
-        try {
+        //try {
             IClienteDAO clienteDAO = new ClienteDAO(new ConexionBD());
             this.clienteNegocio = new ClienteNegocio(clienteDAO);
-        } catch (SQLException ex) {
+        /*} catch (SQLException ex) {
             Logger.getLogger(frmCatalogoClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
 
     @SuppressWarnings("unchecked")

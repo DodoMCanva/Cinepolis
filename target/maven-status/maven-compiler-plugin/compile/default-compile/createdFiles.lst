@@ -13,6 +13,7 @@ negocio\SalaNegocio.class
 presentacion\frmCatalogoClientes.class
 presentacion\frmDatosSucursal$1.class
 presentacion\frmInicioSesionCliente$5.class
+presentacion\frmCatalogoClientes$4.class
 persistencia\IPeliculaDAO.class
 persistencia\ClienteDAO.class
 presentacion\frmHorarios$2.class
@@ -45,6 +46,7 @@ negocio\BoletoNegocio.class
 presentacion\frmDatosPelicula$4.class
 presentacion\frmPagoEnEfectivo$1.class
 negocio\ISalaNegocio.class
+presentacion\frmCatalogoClientes$5.class
 presentacion\frmCatalogoSucursales$2.class
 utilerias\Convertidor.class
 persistencia\ConexionBD.class
@@ -54,6 +56,7 @@ dto\BoletoDTO.class
 utilerias\Utilidades.class
 presentacion\frmHorarios.class
 utilerias\ComboItems.class
+presentacion\frmCatalogoClientes$3.class
 presentacion\frmHorarios$1.class
 persistencia\IClienteDAO.class
 utilerias\JButtonCellEditor.class
@@ -90,6 +93,7 @@ presentacion\frmCatalogoFunciones$1.class
 presentacion\frmCatalogoPeliculas$3.class
 persistencia\SucursalDAO.class
 utilerias\Tabla.class
+presentacion\frmCatalogoClientes$2.class
 presentacion\frmInicioSesionCliente$3.class
 presentacion\frmCatalogoFunciones.class
 presentacion\frmRegistroCliente$1.class

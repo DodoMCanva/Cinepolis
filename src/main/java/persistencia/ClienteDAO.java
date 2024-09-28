@@ -1,6 +1,6 @@
 package persistencia;
 
-import dto.FiltroTablaDTO;
+import dto.ClienteDTO;
 import entidad.ClienteEntidad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import utilerias.Tabla;
 
 public class ClienteDAO implements IClienteDAO {
 
@@ -19,10 +21,107 @@ public class ClienteDAO implements IClienteDAO {
     }
 
     @Override
+    public ArrayList<ClienteDTO> leer() throws PersistenciaException {
+        ClienteDTO clienteDTO;
+        Connection con = null;
+        ResultSet rs = null;
+        ArrayList<ClienteDTO> lista = new ArrayList<>();
+        PreparedStatement ps = null;
+        try {
+            con = conexionBD.crearConexion();
+
+            // Consulta con JOIN entre Clientes y NombreCliente
+            String leer = "SELECT c.id, c.correoElectronico, c.fechaNacimiento, c.geolcl, c.psswrd, c.celular, c.EstaEliminado, c.Registro, "
+                    + "nc.Nombre, nc.apellidoPaterno, nc.apellidoMaterno "
+                    + "FROM Clientes c "
+                    + "JOIN NombreCliente nc ON c.id = nc.ID";
+
+            ps = con.prepareStatement(leer);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                clienteDTO = new ClienteDTO();
+
+                // Datos de la tabla Clientes
+                clienteDTO.setId(rs.getInt("id"));
+                clienteDTO.setCorreoElectronico(rs.getString("correoElectronico"));
+                clienteDTO.setFechaNacimiento(rs.getString("fechaNacimiento"));
+                clienteDTO.setGeolocalizacion(rs.getString("geolcl"));
+                clienteDTO.setContrasena(rs.getString("psswrd"));
+                clienteDTO.setCelular(rs.getString("celular"));
+                clienteDTO.setEstaEliminado(rs.getBoolean("EstaEliminado"));
+                clienteDTO.setFechaHoraRegistro(rs.getTimestamp("Registro"));
+
+                // Datos de la tabla NombreCliente
+                clienteDTO.setNombre(rs.getString("Nombre"));
+                clienteDTO.setApellidoPaterno(rs.getString("apellidoPaterno"));
+                clienteDTO.setApellidoMaterno(rs.getString("apellidoMaterno"));
+
+                lista.add(clienteDTO);
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return lista;
+        /*ClienteDTO clienteDTO;
+        Connection con = null;
+        ResultSet rs;
+        ArrayList<ClienteDTO> lista = new ArrayList<>();
+
+        try {
+            con = conexionBD.crearConexion();
+
+            String leer = "SELECT * FROM clientes";
+            String leerN = "SELECT * FROM NombreCliente";
+
+            PreparedStatement ps = con.prepareStatement(leer);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                clienteDTO = new ClienteDTO();
+                clienteDTO.setId(rs.getInt("id"));
+                //
+                clienteDTO.setNombre(rs.getString("Nombre"));
+                clienteDTO.setApellidoPaterno(rs.getString("Paterno"));
+                clienteDTO.setApellidoMaterno(rs.getString("Msterno"));
+                //
+                clienteDTO.setEstaEliminado(rs.getBoolean("EstaEliminado"));
+                clienteDTO.setFechaHoraRegistro(rs.getTimestamp("Registro"));
+                lista.add(clienteDTO);
+                rs.close();
+                ps.close();
+                con.close();
+
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error de conexion" + e.getMessage());
+        }
+        return lista;*/
+    }
+
+    @Override
     public void guardar(ClienteEntidad cliente) throws PersistenciaException {
         // Consulta SQL para insertar en la tabla Cliente
         String consultaCliente = "INSERT INTO Clientes (correoElectronico, fechaNacimiento, geolcl, psswrd, celular) VALUES (?, ?, ?, ?, ?)";
-        String consultaNombreCliente = "INSERT INTO NombreCliente (ID, Nombre, apellidoPaterno, apellidoMaterno) VALUES (?, ?, ?, ?)";
+        String consultaNombreCliente = "INSERT INTO NombreCliente (ID, nombre, apellidoPaterno, apellidoMaterno) VALUES (?, ?, ?, ?)";
 
         try (Connection connection = conexionBD.crearConexion()) {
             // Habilitar la generación de claves para obtener el ID del cliente insertado
@@ -84,7 +183,7 @@ public class ClienteDAO implements IClienteDAO {
     public String obtenerNombre(int ID_Cliente) throws PersistenciaException {
         String nombreCompleto = null;
         // Consulta SQL para buscar el nombre completo del cliente por su ID
-        String consulta = "SELECT Nombre, Apellido_Paterno, Apellido_Materno FROM NombreCliente WHERE ID = ?";
+        String consulta = "SELECT nombre, apellidoPaterno, apellidoMaterno FROM NombreCliente WHERE ID = ?";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement stmt = connection.prepareStatement(consulta)) {
             // Asignamos el ID del cliente a la consulta.
@@ -93,9 +192,9 @@ public class ClienteDAO implements IClienteDAO {
 
             if (rs.next()) {
                 // Obtenemos los valores del nombre y apellidos
-                String nombre = rs.getString("Nombre");
-                String apellidoPaterno = rs.getString("Apellido_Paterno");
-                String apellidoMaterno = rs.getString("Apellido_Materno");
+                String nombre = rs.getString("nombre");
+                String apellidoPaterno = rs.getString("apellidoPaterno");
+                String apellidoMaterno = rs.getString("apellidoMaterno");
 
                 // Combinamos el nombre completo
                 nombreCompleto = nombre + " " + apellidoPaterno + " " + apellidoMaterno;
@@ -122,7 +221,7 @@ public class ClienteDAO implements IClienteDAO {
                 if (rs.next()) {
                     // Si hay resultados, creamos y devolvemos un ClienteEntidad
                     ClienteEntidad cliente = new ClienteEntidad();
-                    
+
                     cliente.setCorreoElectronico(rs.getString("correoElectronico"));
                     cliente.setContrasena(rs.getString("psswrd"));
 
@@ -137,11 +236,12 @@ public class ClienteDAO implements IClienteDAO {
         }
     }
 
+    //??
     @Override
     public ClienteEntidad buscarPorId(int idCliente) throws PersistenciaException {
         ClienteEntidad cliente = null;
         // La consulta SQL para buscar un cliente por su ID.
-        String consulta = "SELECT ID_Cliente, Nombre, Apellido_Paterno, Apellido_Materno, estaEliminado,Fecha_Nacimiento, fechaHoraRegistro,Correo_Electronico,Geolocalizacion, Contrasena FROM Cliente WHERE ID_Cliente = ?";
+        String consulta = "SELECT ID_Cliente, Nombre, apellidoPaterno, apellidoaMaterno, estaEliminado,Fecha_Nacimiento, fechaHoraRegistro,Correo_Electronico,Geolocalizacion, Contrasena FROM Cliente WHERE ID_Cliente = ?";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement stmt = connection.prepareStatement(consulta)) {
             // Asignamos el ID del cliente a la consulta.
@@ -172,7 +272,17 @@ public class ClienteDAO implements IClienteDAO {
     }
 
     @Override
-    public List<ClienteEntidad> buscarClientesPorFiltro(FiltroTablaDTO filtro) throws PersistenciaException {
+    public IConexionBD getConexionBD() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<ClienteEntidad> buscarNombre(String nombre, Tabla Filtro) throws PersistenciaException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<ClienteEntidad> buscarClientes(Tabla filtro) throws PersistenciaException {
         List<ClienteEntidad> listaClientes = new ArrayList<>();
         // La consulta SQL para buscar clientes con un filtro específico.
         String consulta = "SELECT ID_Cliente, Nombre, Apellido_Paterno, Apellido_Materno, estaEliminado,"
@@ -205,13 +315,6 @@ public class ClienteDAO implements IClienteDAO {
             // Si ocurre un error, lanzamos una excepción con un mensaje.
             throw new PersistenciaException("Error al buscar clientes", e);
         }
-
         return listaClientes;
     }
-
-    @Override
-    public IConexionBD getConexionBD() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }

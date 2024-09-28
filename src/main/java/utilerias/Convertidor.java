@@ -13,6 +13,7 @@ public class Convertidor {
         clienteEntidad.setApellidoMaterno(clienteDTO.getApellidoMaterno());
         clienteEntidad.setEstaEliminado(clienteDTO.isEstaEliminado()); // Por defecto no está eliminado
         clienteEntidad.setId(clienteDTO.getId());
+        clienteEntidad.setId(clienteDTO.getId());
         clienteEntidad.setFechaHoraRegistro(new java.util.Date()); // Fecha actual
         return clienteEntidad;
     }
