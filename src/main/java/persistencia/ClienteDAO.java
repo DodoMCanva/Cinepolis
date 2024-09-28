@@ -273,7 +273,7 @@ public class ClienteDAO implements IClienteDAO {
 
     @Override
     public IConexionBD getConexionBD() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return conexionBD;
     }
 
     @Override

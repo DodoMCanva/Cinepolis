@@ -31,22 +31,21 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
     private IClienteNegocio clienteNegocio;
 
     public frmCatalogoClientes() {
-        //incializar();
+        incializar();
         this.clienteNegocio = clienteNegocio;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         btnAtras.setEnabled(false);
-        /*
         this.cargarConfiguracionInicialTablaClientes();
         this.cargarTablaClientes();
-        */
+        
     }
 
     private void incializar() {
         //try {
             IClienteDAO clienteDAO = new ClienteDAO(new ConexionBD());
-            this.clienteNegocio = new ClienteNegocio(clienteDAO);
+            this.clienteNegocio = new ClienteNegocio();
         /*} catch (SQLException ex) {
             Logger.getLogger(frmCatalogoClientes.class.getName()).log(Level.SEVERE, null, ex);
         }*/
@@ -256,16 +255,12 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
         }
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblClientes.getModel();
         clientesLista.forEach(row -> {
-            Object[] fila = new Object[5];
+            Object[] fila = new Object[7];
             fila[0] = row.getId();
             fila[1] = row.getNombre();
             fila[2] = row.getApellidoPaterno();
             fila[3] = row.getApellidoMaterno();
-            if (row.isEstaEliminado()) {
-                fila[4] = "Eliminado";
-            } else {
-                fila[4] = "No Eliminado";
-            }
+            
             modeloTabla.addRow(fila);
         });
     }

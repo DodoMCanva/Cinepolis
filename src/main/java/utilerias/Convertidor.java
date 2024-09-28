@@ -3,6 +3,7 @@ package utilerias;
 import entidad.ClienteEntidad;
 import java.sql.Timestamp;
 import dto.ClienteDTO;
+import java.util.Date;
 
 public class Convertidor {
 
@@ -11,10 +12,11 @@ public class Convertidor {
         clienteEntidad.setNombre(clienteDTO.getNombre());
         clienteEntidad.setApellidoPaterno(clienteDTO.getApellidoPaterno());
         clienteEntidad.setApellidoMaterno(clienteDTO.getApellidoMaterno());
-        clienteEntidad.setEstaEliminado(clienteDTO.isEstaEliminado()); // Por defecto no está eliminado
-        clienteEntidad.setId(clienteDTO.getId());
-        clienteEntidad.setId(clienteDTO.getId());
-        clienteEntidad.setFechaHoraRegistro(new java.util.Date()); // Fecha actual
+        clienteEntidad.setCelular(clienteDTO.getCelular());
+        clienteEntidad.setCorreoElectronico(clienteDTO.getCorreoElectronico());
+        clienteEntidad.setFechaNacimiento(clienteDTO.getFechaNacimiento());
+        clienteEntidad.setContrasena(clienteDTO.getContrasena());
+        clienteEntidad.setFechaHoraRegistro(new Date()); 
         return clienteEntidad;
     }
 

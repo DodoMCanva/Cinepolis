@@ -25,13 +25,25 @@ public class ClienteNegocio implements IClienteNegocio {
     private IConexionBD conexionBD;
     private Connection cn;
 
+    /*
     public ClienteNegocio(IClienteDAO clienteDAO) {
+        incializar();
         this.clienteDAO = clienteDAO;
         conexionBD = clienteDAO.getConexionBD();
 
     }
+     */
 
     public ClienteNegocio() {
+        incializar();
+        //this.clienteDAO = clienteDAO;
+        IClienteDAO clienteDAO = new ClienteDAO(new ConexionBD());
+        conexionBD = clienteDAO.getConexionBD();
+    }
+
+    private void incializar() {
+        this.clienteDAO = new ClienteDAO(new ConexionBD());
+        //ClienteNegocio clienteNegocio = new ClienteNegocio(clienteDAO);
     }
 
     //Consultas
@@ -109,7 +121,6 @@ public class ClienteNegocio implements IClienteNegocio {
         }
     }
 
-   
     public void eliminar(int idCliente) throws NegocioException {
         try {
             cn = conexionBD.crearConexion();
@@ -126,40 +137,40 @@ public class ClienteNegocio implements IClienteNegocio {
     }
 
     public boolean reglasNegocio(ClienteDTO e) {
-        String Nombre_Completo = e.getNombre()+ e.getApellidoPaterno() + e.getApellidoMaterno();
+        String Nombre_Completo = e.getNombre() + e.getApellidoPaterno() + e.getApellidoMaterno();
         if (Nombre_Completo.matches(".*\\d.*") || Nombre_Completo.contains("Panduro")) {
             return false;
         } else {
             return true;
         }
     }
-    
+
     public ClienteDTO autenticarCliente(ClienteDTO clienteDTO) throws NegocioException {
-            // Convertir el DTO a entidad si es necesario en el DAO
-            ClienteEntidad clienteEntidad = new ClienteEntidad(); // Si tienes un método de conversión
+        // Convertir el DTO a entidad si es necesario en el DAO
+        ClienteEntidad clienteEntidad = new ClienteEntidad(); // Si tienes un método de conversión
 
-            clienteEntidad.setCorreoElectronico(clienteDTO.getCorreoElectronico());
-            clienteEntidad.setContrasena(clienteDTO.getContrasena());
+        clienteEntidad.setCorreoElectronico(clienteDTO.getCorreoElectronico());
+        clienteEntidad.setContrasena(clienteDTO.getContrasena());
 
-            try {
-                // Llamar al DAO para buscar el cliente por correo y contraseña
-                ClienteEntidad clienteEncontrado = clienteDAO.buscarPorCorreoYContrasena(
-                        clienteEntidad.getCorreoElectronico(),
-                        clienteEntidad.getContrasena()
-                );
+        try {
+            // Llamar al DAO para buscar el cliente por correo y contraseña
+            ClienteEntidad clienteEncontrado = clienteDAO.buscarPorCorreoYContrasena(
+                    clienteEntidad.getCorreoElectronico(),
+                    clienteEntidad.getContrasena()
+            );
 
-                if (clienteEncontrado != null) {
-                    // Convertir de entidad a DTO para devolver
-                    clienteDTO.setId(clienteEncontrado.getId());
-                    clienteDTO.setNombre(clienteEncontrado.getNombre());
-                    // Rellenar otros campos que necesites del DTO si es necesario
+            if (clienteEncontrado != null) {
+                // Convertir de entidad a DTO para devolver
+                clienteDTO.setId(clienteEncontrado.getId());
+                clienteDTO.setNombre(clienteEncontrado.getNombre());
+                // Rellenar otros campos que necesites del DTO si es necesario
 
-                    return clienteDTO; // Retornar el DTO del cliente autenticado
-                } else {
-                    return null; // Si no se encontró, retornar null
-                }
-            } catch (PersistenciaException e) {
-                throw new NegocioException("Error al autenticar el cliente", e);
+                return clienteDTO; // Retornar el DTO del cliente autenticado
+            } else {
+                return null; // Si no se encontró, retornar null
             }
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al autenticar el cliente", e);
         }
+    }
 }
