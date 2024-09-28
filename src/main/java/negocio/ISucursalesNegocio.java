@@ -14,9 +14,10 @@ public interface ISucursalesNegocio {
 
     void eliminar(int id) throws NegocioException;
 
-  //  public List<SucursalDTO> buscarSucursal(Tabla filtro) throws NegocioException;
+    public List<SucursalDTO> buscarSucursal(Tabla filtro) throws NegocioException;
     
-   // List<SucursalDTO> buscarporNombre(String nombre, Tabla Filtro) throws NegocioException;
+    List<SucursalDTO> buscarporNombre(String nombre) throws NegocioException;
     
-   // List<SucursalDTO> buscarporDireccion(String dir, Tabla Filtro) throws NegocioException;
+    List<SucursalDTO> buscarporDireccion(String dir, Tabla Filtro) throws NegocioException;
+    
 }
