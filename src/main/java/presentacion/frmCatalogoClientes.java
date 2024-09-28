@@ -62,9 +62,9 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblClientes = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
-        btnAtras = new javax.swing.JButton();
         btnSiguiente = new javax.swing.JButton();
         lblNumeroPagCatClientes = new javax.swing.JLabel();
+        btnAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Catalogo Peliculas");
@@ -111,14 +111,6 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
         });
         jPanelCatalogoPeliculas.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, -1, -1));
 
-        btnAtras.setText("Atras");
-        btnAtras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtrasActionPerformed(evt);
-            }
-        });
-        jPanelCatalogoPeliculas.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, -1, -1));
-
         btnSiguiente.setText("Siguiente");
         btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,6 +121,14 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
 
         lblNumeroPagCatClientes.setText("numero Pag");
         jPanelCatalogoPeliculas.add(lblNumeroPagCatClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 560, -1, -1));
+
+        btnAtras.setText("Atras");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
+        jPanelCatalogoPeliculas.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, -1, -1));
 
         getContentPane().add(jPanelCatalogoPeliculas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 600));
 
