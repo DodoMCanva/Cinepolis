@@ -181,111 +181,114 @@ public class frmDatosPelicula extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxClasificacionActionPerformed
     private byte[] posterBytes; // Cambia String a byte[] para almacenar el póster
     private void btnGuardarDatosPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarDatosPeliActionPerformed
-     String duracionStr = txtDuracion.getText();
-    String titulo = txtTitulo.getText();
-    String pais = txtPais.getText();
-    String sinopsis = txtSinopsis.getText();
-    String linkTrailer = txtLinkTrailer.getText();
-    String clasificacion = cbxClasificacion.getSelectedItem().toString();
-    String genero = cbxGenero.getSelectedItem().toString();
+        String duracionStr = txtDuracion.getText();
+        String titulo = txtTitulo.getText();
+        String pais = txtPais.getText();
+        String sinopsis = txtSinopsis.getText();
+        String linkTrailer = txtLinkTrailer.getText();
+        String clasificacion = cbxClasificacion.getSelectedItem().toString();
+        String genero = cbxGenero.getSelectedItem().toString();
 
-    // Validación de campos vacíos
-    if (duracionStr.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingrese la duración de la película.");
-        return;
-    }
-    if (titulo.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingrese el título de la película.");
-        return;
-    }
-    if (pais.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingrese el país de origen de la película.");
-        return;
-    }
-    if (sinopsis.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingrese una sinopsis para la película.");
-        return;
-    }
-    if (linkTrailer.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingrese el link del trailer de la película.");
-        return;
-    }
-    // Validación para el póster
-    if (posterBytes == null || posterBytes.length == 0) {
-        JOptionPane.showMessageDialog(this, "Por favor, seleccione el póster de la película.");
-        return;
-    }
+        // Validación de campos vacíos
+        if (duracionStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese la duración de la película.");
+            return;
+        }
+        if (titulo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese el título de la película.");
+            return;
+        }
+        if (pais.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese el país de origen de la película.");
+            return;
+        }
+        if (sinopsis.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una sinopsis para la película.");
+            return;
+        }
+        if (linkTrailer.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese el link del trailer de la película.");
+            return;
+        }
+        // Validación para el póster
+        if (posterBytes == null || posterBytes.length == 0) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione el póster de la película.");
+            return;
+        }
 
-    // Convertir la duración a int
-    int duracion;
-    try {
-        duracion = Integer.parseInt(duracionStr);
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido para la duración.");
-        return;
-    }
+        // Convertir la duración a int
+        int duracion;
+        try {
+            duracion = Integer.parseInt(duracionStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido para la duración.");
+            return;
+        }
 
-    // Crear un objeto PeliculaDTO
-    PeliculaDTO peliculaDTO = new PeliculaDTO();
-    peliculaDTO.setDuracion(duracion); // Asignar duración como int
-    peliculaDTO.setTitulo(titulo);
-    peliculaDTO.setPaisOrigen(pais);
-    peliculaDTO.setSinopsis(sinopsis);
-    peliculaDTO.setLinkTrailer(linkTrailer);
-    peliculaDTO.setClasificacion(clasificacion);
-    peliculaDTO.setGenero(genero);
-    peliculaDTO.setPoster(posterBytes); // Asignar los bytes del póster
+        // Crear un objeto PeliculaDTO
+        PeliculaDTO peliculaDTO = new PeliculaDTO();
+        peliculaDTO.setDuracion(duracion); // Asignar duración como int
+        peliculaDTO.setTitulo(titulo);
+        peliculaDTO.setPaisOrigen(pais);
+        peliculaDTO.setSinopsis(sinopsis);
+        peliculaDTO.setLinkTrailer(linkTrailer);
+        peliculaDTO.setClasificacion(clasificacion);
+        peliculaDTO.setGenero(genero);
+        peliculaDTO.setPoster(posterBytes); // Asignar los bytes del póster
 
-    try {
-        // Llamar a la capa de negocio
-        PeliculaNegocio peliculaNegocio = new PeliculaNegocio();
-        peliculaNegocio.guardar(peliculaDTO);
-        JOptionPane.showMessageDialog(this, "Película registrada con éxito.");
-    } catch (NegocioException e) {
-        JOptionPane.showMessageDialog(this, "Error al registrar la película: " + e.getMessage());
-    }
+        try {
+            // Llamar a la capa de negocio
+            PeliculaNegocio peliculaNegocio = new PeliculaNegocio();
+            peliculaNegocio.guardar(peliculaDTO);
+            JOptionPane.showMessageDialog(this, "Película registrada con éxito.");
+            this.setVisible(false);
+            frmCatalogoPeliculas catalogoPeliculas = new frmCatalogoPeliculas();
+            catalogoPeliculas.setVisible(true); // Mostrar la nueva ventana
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(this, "Error al registrar la película: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnGuardarDatosPeliActionPerformed
- private String rutaPoster;
+    private String rutaPoster;
     private void btnSeleccionarPosterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarPosterActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-    // Filtrar solo imágenes
-    fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "jpg", "jpeg", "png"));
+        // Filtrar solo las imagenes
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "jpg", "jpeg", "png"));
 
-    // Mostrar el diálogo para seleccionar un archivo
-    int returnValue = fileChooser.showOpenDialog(this);
+        // Mostrar el diálogo para seleccionar un archivo
+        int returnValue = fileChooser.showOpenDialog(this);
 
-    // Si se seleccionó un archivo
-    if (returnValue == JFileChooser.APPROVE_OPTION) {
-        File selectedFile = fileChooser.getSelectedFile();
-        String ruta = selectedFile.getAbsolutePath();
+        // Si se seleccionó un archivo
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            String ruta = selectedFile.getAbsolutePath();
 
-        // Redimensionar la imagen al tamaño del JLabel (lblPoster)
-        ImageIcon icon = new ImageIcon(ruta);
-        Image img = icon.getImage(); // Obtener la imagen del ImageIcon
+            // Redimensionar la imagen al tamaño del label
+            ImageIcon icon = new ImageIcon(ruta);
+            Image img = icon.getImage(); // Obtener la imagen del ImageIcon
 
-        // Definir el tamaño deseado manualmente (por ejemplo, 230x290 píxeles)
-        int anchoDeseado = 230;
-        int altoDeseado = 290;
+            // Tamaño de imagen
+            int anchoDeseado = 230;
+            int altoDeseado = 290;
 
-        // Redimensionar la imagen al tamaño deseado
-        Image imgRedimensionada = img.getScaledInstance(anchoDeseado, altoDeseado, Image.SCALE_SMOOTH);
-        ImageIcon iconRedimensionado = new ImageIcon(imgRedimensionada);
+            // Redimensionar la imagen al tamaño deseado
+            Image imgRedimensionada = img.getScaledInstance(anchoDeseado, altoDeseado, Image.SCALE_SMOOTH);
+            ImageIcon iconRedimensionado = new ImageIcon(imgRedimensionada);
 
-        // Mostrar la imagen redimensionada en la etiqueta lblPoster
-        lblPoster.setIcon(iconRedimensionado);
-        lblPoster.setText(""); // Limpia cualquier texto previo
+            // Mostrar la imagen redimensionada en la etiqueta lblPoster
+            lblPoster.setIcon(iconRedimensionado);
+            lblPoster.setText(""); // Limpia cualquier texto previo
 
-        // Guardar la ruta para usarla más adelante
-        this.rutaPoster = ruta;  // Asegúrate de que rutaPoster esté definido como atributo de la clase
+            // Guardar la ruta para usarla más adelante
+            this.rutaPoster = ruta;
 
-        // Convertir la imagen seleccionada a byte[] para almacenarla
-        try {
-            // Leer el archivo seleccionado y convertirlo en un arreglo de bytes
-            this.posterBytes = Files.readAllBytes(selectedFile.toPath());
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen: " + e.getMessage());
+            // Convertir la imagen seleccionada a byte[] para almacenarla
+            try {
+                // Leer el archivo seleccionado y convertirlo en un arreglo de bytes
+                this.posterBytes = Files.readAllBytes(selectedFile.toPath());
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error al leer el archivo de imagen: " + e.getMessage());
+            }
         }
-    }
     }//GEN-LAST:event_btnSeleccionarPosterActionPerformed
 
 

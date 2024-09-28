@@ -154,9 +154,9 @@ private PeliculaNegocio peliculaNegocio = new PeliculaNegocio();
         }
     }
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-//        frmMetodosPagos regresar = new frmMetodosPagos();
-//        regresar.setVisible(true);
-//        this.dispose();
+        frmMenu regresar = new frmMenu();
+        regresar.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
