@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package presentacion;
 
 import dto.SucursalDTO;
@@ -29,7 +25,6 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
         initComponents();
         cargarTabla();
         ajustarColumnas();
-        initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         btnAtrasCatSucursles.setEnabled(false);
@@ -59,7 +54,7 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblSucursales.getModel();
         lista.forEach(row -> {
             Object[] fila = new Object[5];
-            String direccion = row.getCalle() + " " + row.getCiudad() + " " + row.getEstado() + " " + row.getCodigoPostal();
+            String direccion = row.getCalle() + " " + row.getCodigoPostal()+ " " + row.getCiudad() + " " + row.getEstado(); 
             fila[0] = row.getNombre();
             fila[1] = direccion;
             fila[2] = "Función";  // Texto del botón de función
@@ -118,7 +113,6 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
         modeloColumnas.getColumn(4).setCellEditor(new JButtonCellEditor("Eliminar", onEliminarClickListener));
     }
 
-    
     private void eliminar() throws NegocioException {
         int id = this.getIdSeleccionadoTabla();
         sucursalNegocio.eliminar(id);
@@ -154,10 +148,10 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
     private void ajustarColumnas() {
         // Ajustar el ancho de las columnas según el índice
         tblSucursales.getColumnModel().getColumn(0).setPreferredWidth(150); // Nombre
-        tblSucursales.getColumnModel().getColumn(1).setPreferredWidth(300); // Dirección
-        tblSucursales.getColumnModel().getColumn(2).setPreferredWidth(100); // Función (Botón)
-        tblSucursales.getColumnModel().getColumn(3).setPreferredWidth(100); // Salas (Botón)
-        tblSucursales.getColumnModel().getColumn(4).setPreferredWidth(100); // Eliminar (Botón)
+        tblSucursales.getColumnModel().getColumn(1).setPreferredWidth(250); // Dirección
+        tblSucursales.getColumnModel().getColumn(2).setPreferredWidth(250); // Función (Botón)
+        tblSucursales.getColumnModel().getColumn(3).setPreferredWidth(250); // Salas (Botón)
+        tblSucursales.getColumnModel().getColumn(4).setPreferredWidth(250); // Eliminar (Botón)
     }
 
     @SuppressWarnings("unchecked")
@@ -209,7 +203,7 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblSucursales);
 
-        jPanelCatalogoSucursales.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 800, 380));
+        jPanelCatalogoSucursales.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 850, 380));
 
         btnAgregar.setBackground(new java.awt.Color(153, 204, 255));
         btnAgregar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

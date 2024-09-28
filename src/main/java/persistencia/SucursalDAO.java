@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utilerias.Tabla;
 
 public class SucursalDAO implements ISurcursalDAO {
@@ -21,20 +23,46 @@ public class SucursalDAO implements ISurcursalDAO {
 
     @Override
     public void guardar(SucursalEntidad sucursal) throws SQLException {
-
-        String query = "INSERT INTO Sucursales (nombre, ciudad, estado, calle, codigoPostal, estaEliminado) VALUES (?, ?, ?, ?, ?, ?)";
+        // Consulta SQL para insertar en la tabla Sucursales
+        String consultaSucursal = "INSERT INTO Sucursales (nombre, ciudad) VALUES (?, ?)";
+        String consultaDirSucursal = "INSERT INTO Dir_Sucursal (ID, CP, calle, ciudad, estado) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = conexionBD.crearConexion()) {
+            // Habilitar la generación de claves para obtener el ID de la sucursal insertada
+            try (PreparedStatement psSucursal = connection.prepareStatement(consultaSucursal, Statement.RETURN_GENERATED_KEYS)) {
+                // Asignamos los valores a la consulta SQL para la tabla Sucursales
+                psSucursal.setString(1, sucursal.getNombre());
+                psSucursal.setString(2, sucursal.getCiudad());
 
-            try (PreparedStatement pstmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-                pstmt.setString(1, sucursal.getNombre());
-                pstmt.setString(2, sucursal.getCiudad());
-                pstmt.setString(3, sucursal.getEstado());
-                pstmt.setString(4, sucursal.getCalle());
-                pstmt.setString(5, sucursal.getCodigoPostal());
-                pstmt.setBoolean(6, sucursal.isEstaEliminado());
+                // Ejecutamos la consulta para guardar la sucursal
+                psSucursal.executeUpdate();
 
-                pstmt.executeUpdate();
+                // Obtener el ID de la sucursal insertada
+                ResultSet generatedKeys = psSucursal.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int idSucursal = generatedKeys.getInt(1); // Obtener el ID generado
+
+                    // Ahora insertar en la tabla Dir_Sucursal
+                    try (PreparedStatement psDirSucursal = connection.prepareStatement(consultaDirSucursal)) {
+                        psDirSucursal.setInt(1, idSucursal); // Usar el ID generado
+                        psDirSucursal.setString(2, sucursal.getCalle());
+                        psDirSucursal.setString(3, sucursal.getCodigoPostal());
+                        psDirSucursal.setString(4, sucursal.getCiudad()); // Ciudad también se guarda en la tabla de dirección
+                        psDirSucursal.setString(5, sucursal.getEstado());
+
+                        // Ejecutar la inserción en la tabla Dir_Sucursal
+                        psDirSucursal.executeUpdate();
+                    }
+                }
+                System.out.println("Sucursal y dirección guardadas correctamente en la base de datos");
+            }
+
+        } catch (SQLException e) {
+            try {
+                // Si ocurre un error, lanzamos una excepción con un mensaje.
+                throw new PersistenciaException("Error al guardar la sucursal", e);
+            } catch (PersistenciaException ex) {
+                Logger.getLogger(SucursalDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -63,12 +91,12 @@ public class SucursalDAO implements ISurcursalDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     SucursalEntidad sucursal = new SucursalEntidad();
-                    sucursal.setID(rs.getInt("sucursalID"));
-                    sucursal.setNombre(rs.getString("sucursalNombre"));
-                    sucursal.setCiudad(rs.getString("sucursalCiudad"));
-                    sucursal.setEstado(rs.getString("direccionEstado")); // Desde Dir_Sucursal
-                    sucursal.setCalle(rs.getString("direccionCalle")); // Desde Dir_Sucursal
-                    sucursal.setCodigoPostal(rs.getString("direccionCP")); // Desde Dir_Sucursal
+                    sucursal.setID(rs.getInt("ID"));
+                    sucursal.setNombre(rs.getString("nombre"));
+                    sucursal.setCiudad(rs.getString("ciudad"));
+                    sucursal.setEstado(rs.getString("estado")); // Desde Dir_Sucursal
+                    sucursal.setCalle(rs.getString("calle")); // Desde Dir_Sucursal
+                    sucursal.setCodigoPostal(rs.getString("CP")); // Desde Dir_Sucursal
                     sucursal.setFechaHoraRegistro(rs.getTimestamp("fechaHoraRegistro"));
 
                     sucursales.add(sucursal);

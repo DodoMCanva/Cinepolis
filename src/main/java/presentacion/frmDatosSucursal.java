@@ -1,16 +1,23 @@
 package presentacion;
 
+import dto.SucursalDTO;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import negocio.NegocioException;
+import negocio.SucursalNegocio;
 
 /**
  *
  * @author Valeria
  */
 public class frmDatosSucursal extends javax.swing.JFrame {
-
+    
     private Map<String, List<String>> ciudadesPorEstado;
 
     /**
@@ -20,7 +27,7 @@ public class frmDatosSucursal extends javax.swing.JFrame {
         initComponents();
         inicializarCiudadesPorEstado();
     }
-
+    
     private void inicializarCiudadesPorEstado() {
         ciudadesPorEstado = new HashMap<>();
         ciudadesPorEstado.put("Sonora", Arrays.asList("Hermosillo", "Nogales", "Obregón"));
@@ -79,7 +86,7 @@ public class frmDatosSucursal extends javax.swing.JFrame {
         jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
         cbxEstado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado", " ", " ", " " }));
+        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado", "Sonora" }));
         cbxEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxEstadoActionPerformed(evt);
@@ -120,6 +127,11 @@ public class frmDatosSucursal extends javax.swing.JFrame {
         btnGuardarSucursal.setBackground(new java.awt.Color(153, 204, 255));
         btnGuardarSucursal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnGuardarSucursal.setText("Guardar");
+        btnGuardarSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarSucursalActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnGuardarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 110, 30));
 
         txtCalle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -139,6 +151,7 @@ public class frmDatosSucursal extends javax.swing.JFrame {
         jPanel1.getAccessibleContext().setAccessibleName("");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -155,13 +168,64 @@ public class frmDatosSucursal extends javax.swing.JFrame {
 
         // Obtener las ciudades del estado seleccionado
         List<String> ciudades = ciudadesPorEstado.get(estadoSeleccionado);
-
+        
         if (ciudades != null) {
             for (String ciudad : ciudades) {
                 cbxCiudad.addItem(ciudad);
             }
         }
     }//GEN-LAST:event_cbxEstadoActionPerformed
+
+    private void btnGuardarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarSucursalActionPerformed
+       
+        String nombreSucursal = txtNombreSucursal.getText();
+        String calle = txtCalle.getText();
+        String codigoPostal = txtCodigoP.getText();
+        String ciudad = cbxCiudad.getSelectedItem().toString();
+        String estado = cbxEstado.getSelectedItem().toString();
+
+        // Validación de campos vacíos
+        if (nombreSucursal.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese el nombre de la sucursal.");
+            return;
+        }
+        if (calle.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese la calle de la sucursal.");
+            return;
+        }
+        if (codigoPostal.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese el código postal.");
+            return;
+        }
+        if (estado.equals("Estado")) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un estado.");
+            return;
+        }
+        if (ciudad.equals("Ciudad")) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una ciudad.");
+            return;
+        }
+
+        // Crear un objeto SucursalDTO
+        SucursalDTO sucursalDTO = new SucursalDTO();
+        sucursalDTO.setNombre(nombreSucursal);
+        sucursalDTO.setCalle(calle);
+        sucursalDTO.setCodigoPostal(codigoPostal);
+        sucursalDTO.setEstado(estado);
+        sucursalDTO.setCiudad(ciudad);
+        
+        try {
+            // Llamar a la capa de negocio
+            SucursalNegocio sucursalNegocio = new SucursalNegocio();
+            sucursalNegocio.agregarSucursal(sucursalDTO);
+            JOptionPane.showMessageDialog(this, "Sucursal registrada con éxito.");
+            this.setVisible(false);
+            frmCatalogoSucursales catalogoSucursales = new frmCatalogoSucursales();
+            catalogoSucursales.setVisible(true); // Mostrar la nueva ventana
+        } catch (SQLException ex) {
+            Logger.getLogger(frmDatosSucursal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnGuardarSucursalActionPerformed
 
     /**
      * @param args the command line arguments
