@@ -2,8 +2,12 @@ package negocio;
 
 import dto.PeliculaDTO;
 import entidad.PeliculaEntidad;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import persistencia.ConexionBD;
 import persistencia.IConexionBD;
 import persistencia.IPeliculaDAO;
@@ -14,13 +18,20 @@ import utilerias.Tabla;
 
 public class PeliculaNegocio implements IPeliculaNegocio {
 
-    private final IPeliculaDAO peliculaDAO;
+    private IPeliculaDAO peliculaDAO;
     private Convertidor convertir = new Convertidor();
+    private IConexionBD conexionBD;
+    private Connection cn;
 
     public PeliculaNegocio() {
         // Inicializamos ClienteDAO con una nueva instancia de ConexionBD
-        IConexionBD conexionBD = new ConexionBD();
-        this.peliculaDAO = new PeliculaDAO(conexionBD);
+        incializar();
+        IPeliculaDAO peliculaDAO = new PeliculaDAO(new ConexionBD());
+        conexionBD = new ConexionBD();
+    }
+
+    private void incializar() {
+        this.peliculaDAO = new PeliculaDAO(new ConexionBD());
     }
 
     @Override
@@ -83,14 +94,18 @@ public class PeliculaNegocio implements IPeliculaNegocio {
     }
 
     @Override
-    public PeliculaDTO eliminarPelicula(int id) throws NegocioException {
+    public void eliminarPelicula(int id) throws NegocioException {
         try {
             // Eliminar lógicamente la película
-            PeliculaEntidad peliculaEliminada = peliculaDAO.eliminarPelicula(id);
+            cn = conexionBD.crearConexion();
+            cn.setAutoCommit(false);
+            peliculaDAO.eliminarPelicula(id);
+            cn.commit();
             // Convertir la Entidad eliminada a DTO
-            return convertir.EntidadaDTO(peliculaEliminada);
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al eliminar la película", e);
+        } catch (SQLException ex) {
+            Logger.getLogger(PeliculaNegocio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -115,8 +130,21 @@ public class PeliculaNegocio implements IPeliculaNegocio {
         }
     }
 
-    
+    @Override
+    public List<PeliculaDTO> buscarporNombre(String nombre, Tabla filtro) throws NegocioException {
+        try {
+            nombre = nombre.replaceAll("\\s+", "");
+            List<PeliculaEntidad> listaEntidades = peliculaDAO.buscarporNombre(nombre, filtro);
+            List<PeliculaDTO> listaDTOs = new ArrayList<>();
+            for (PeliculaEntidad entidad : listaEntidades) {
+                PeliculaDTO TablaDTO = convertir.EntidadaDTO(entidad);
+                listaDTOs.add(TablaDTO);
+            }
 
-    
+            return listaDTOs;
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al buscar clientes: " + e.getMessage(), e);
+        }
+    }
 
 }
