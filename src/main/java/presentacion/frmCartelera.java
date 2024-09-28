@@ -60,22 +60,22 @@ public class frmCartelera extends javax.swing.JFrame {
     }
 
     private void mostrarPeliculas(String sucursal) {
-        try {
-            List<PeliculaEntidad> peliculas = peliculaNegocio.(sucursal);
-            if (peliculas.size() >= 5) {
-                lblPelicula1.setText(peliculas.get(0).getNombre());
-                lblPelicula2.setText(peliculas.get(1).getNombre());
-                lblPelicula3.setText(peliculas.get(2).getNombre());
-                lblPelicula4.setText(peliculas.get(3).getNombre());
-                lblPelicula5.setText(peliculas.get(4).getNombre());
-            } else {
-                // Muestra un mensaje de que no hay suficientes películas
-                JOptionPane.showMessageDialog(this, "No hay suficientes películas para mostrar.");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(frmCartelera.class.getName()).log(Level.SEVERE, null, ex);
+       // try {
+//            List<PeliculaEntidad> peliculas = peliculaNegocio.(sucursal);
+//            if (peliculas.size() >= 5) {
+//                lblPelicula1.setText(peliculas.get(0).getNombre());
+//                lblPelicula2.setText(peliculas.get(1).getNombre());
+//                lblPelicula3.setText(peliculas.get(2).getNombre());
+//                lblPelicula4.setText(peliculas.get(3).getNombre());
+//                lblPelicula5.setText(peliculas.get(4).getNombre());
+//            } else {
+//                // Muestra un mensaje de que no hay suficientes películas
+//                JOptionPane.showMessageDialog(this, "No hay suficientes películas para mostrar.");
+//            }
+//        } catch (SQLException ex) {
+         //   Logger.getLogger(frmCartelera.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
