@@ -32,23 +32,19 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
 
     public frmCatalogoClientes() {
         incializar();
-        this.clienteNegocio = clienteNegocio;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         btnAtras.setEnabled(false);
         this.cargarConfiguracionInicialTablaClientes();
         this.cargarTablaClientes();
-        
+
     }
 
     private void incializar() {
-        //try {
-            IClienteDAO clienteDAO = new ClienteDAO(new ConexionBD());
-            this.clienteNegocio = new ClienteNegocio();
-        /*} catch (SQLException ex) {
-            Logger.getLogger(frmCatalogoClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        IClienteDAO clienteDAO = new ClienteDAO(new ConexionBD());
+        this.clienteNegocio = new ClienteNegocio();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -255,7 +251,7 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblClientes.getModel();
         clientesLista.forEach(row -> {
             Object[] fila = new Object[7];
-            String NombreCompleto =(row.getNombre()+" "+row.getApellidoPaterno()+" "+row.getApellidoMaterno());
+            String NombreCompleto = (row.getNombre() + " " + row.getApellidoPaterno() + " " + row.getApellidoMaterno());
             fila[0] = row.getId();
             fila[1] = NombreCompleto;
             fila[2] = row.getCorreoElectronico();

@@ -9,6 +9,7 @@ import persistencia.IConexionBD;
 import persistencia.IPeliculaDAO;
 import persistencia.PeliculaDAO;
 import persistencia.PersistenciaException;
+import utilerias.Tabla;
 
 public class PeliculaNegocio implements IPeliculaNegocio {
 
@@ -35,7 +36,7 @@ public class PeliculaNegocio implements IPeliculaNegocio {
     }
 
     @Override
-    public List<PeliculaDTO> listarPeliculas() throws NegocioException {
+    public List<PeliculaDTO> buscarPeliculas(Tabla filtro) throws NegocioException {
         try {
             List<PeliculaEntidad> peliculasEntidad = peliculaDAO.listarPeliculas();
             List<PeliculaDTO> peliculasDTO = new ArrayList<>();

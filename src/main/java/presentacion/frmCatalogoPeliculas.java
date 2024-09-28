@@ -1,13 +1,21 @@
 package presentacion;
 
 import dto.PeliculaDTO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 import negocio.NegocioException;
 import negocio.PeliculaNegocio;
+import utilerias.JButtonCellEditor;
+import utilerias.JButtonRenderer;
+import utilerias.Tabla;
 
 /**
  *
@@ -15,10 +23,19 @@ import negocio.PeliculaNegocio;
  */
 public class frmCatalogoPeliculas extends javax.swing.JFrame {
 
+    private int pag = 0;
+    private final static int LIMITE = 10;
+    private PeliculaNegocio peliculaNegocio = new PeliculaNegocio();
+    
     public frmCatalogoPeliculas() {
         initComponents();
-        cargarPeliculasEnTabla();
+        cargarTabla();
         ajustarColumnas();
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        btnAtras.setEnabled(false);
+        this.cargarConfiguracionInicialTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -32,9 +49,9 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
         tblPeliculas = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        btnAtrasCatPeli = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
         lblnumPagCatPeli = new javax.swing.JLabel();
-        btnSiguienteCatPeli = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -98,19 +115,24 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
         });
         jPanelCatalogoPeliculas.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 90, -1, -1));
 
-        btnAtrasCatPeli.setText("Atras");
-        btnAtrasCatPeli.addActionListener(new java.awt.event.ActionListener() {
+        btnAtras.setText("Atras");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtrasCatPeliActionPerformed(evt);
+                btnAtrasActionPerformed(evt);
             }
         });
-        jPanelCatalogoPeliculas.add(btnAtrasCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 550, -1, -1));
+        jPanelCatalogoPeliculas.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 550, -1, -1));
 
         lblnumPagCatPeli.setText("NumPag");
         jPanelCatalogoPeliculas.add(lblnumPagCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 550, -1, -1));
 
-        btnSiguienteCatPeli.setText("Siguiente");
-        jPanelCatalogoPeliculas.add(btnSiguienteCatPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 550, -1, -1));
+        btnSiguiente.setText("Siguiente");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
+        jPanelCatalogoPeliculas.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 550, -1, -1));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,37 +144,98 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-private PeliculaNegocio peliculaNegocio = new PeliculaNegocio();
 
-    private void cargarPeliculasEnTabla() {
 
+    private void cargarTabla() {
         try {
-            // Obtener la lista de películas desde la capa de negocio
-            List<PeliculaDTO> listaPeliculas = peliculaNegocio.listarPeliculas();
-
-            // Crear un modelo de tabla
-            DefaultTableModel model = (DefaultTableModel) tblPeliculas.getModel();
-
-            // Limpiar las filas actuales de la tabla
-            model.setRowCount(0);
-
-            // Llenar la tabla con los datos de las películas
-            for (PeliculaDTO pelicula : listaPeliculas) {
-                model.addRow(new Object[]{
-                    pelicula.getId(),
-                    pelicula.getTitulo(),
-                    pelicula.getClasificacion(),
-                    pelicula.getDuracion(),
-                    pelicula.getGenero(),
-                    pelicula.getPaisOrigen(),
-                    pelicula.getSinopsis()
-                });
+            Tabla filtro = this.obtenerFiltrosTabla();
+            List<PeliculaDTO> Lista = this.peliculaNegocio.buscarPeliculas(filtro);
+            this.BorrarRegistrosTabla();
+            this.AgregarRegistrosTabla(Lista);
+            if (Lista.size() == 0) {
+                pag--;
+                int imp = pag + 1;
+                lblnumPagCatPeli.setText("Página " + imp);
+                this.cargarTabla();
             }
-        } catch (NegocioException e) {
-            // Mostrar el mensaje de error si ocurre una excepción
-            JOptionPane.showMessageDialog(this, "Error al cargar las películas: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (NegocioException ex) {
+            this.BorrarRegistrosTabla();
+            this.pag--;
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    private void AgregarRegistrosTabla(List<PeliculaDTO> Lista) {
+        if (Lista == null) {
+            return;
+        }
+        DefaultTableModel modeloTabla = (DefaultTableModel) this.tblPeliculas.getModel();
+        Lista.forEach(row -> {
+            Object[] fila = new Object[7];
+            String NombreCompleto = (row.getNombre() + " " + row.getApellidoPaterno() + " " + row.getApellidoMaterno());
+            fila[0] = row.getId();
+            fila[1] = NombreCompleto;
+            fila[2] = row.getCorreoElectronico();
+            fila[3] = row.getFechaNacimiento();
+            fila[4] = row.getGeolocalizacion();
+            fila[5] = row.getContrasena();
+            modeloTabla.addRow(fila);
+        });
+    }
+    
+    
+    private void cargarConfiguracionInicialTabla() {
+        ActionListener onEliminarClickListener = new ActionListener() {
+            final int columnaId = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    eliminar();
+                } catch (NegocioException ex) {
+                    Logger.getLogger(frmCatalogoClientes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        int indiceColumnaEliminar = 7;
+        TableColumnModel modeloColumnas = this.tblPeliculas.getColumnModel();
+        modeloColumnas = this.tblPeliculas.getColumnModel();
+        modeloColumnas.getColumn(indiceColumnaEliminar).setCellRenderer(new JButtonRenderer("Eliminar"));
+        modeloColumnas.getColumn(indiceColumnaEliminar).setCellEditor(new JButtonCellEditor("Eliminar", onEliminarClickListener));
+    }
+    
+    private void eliminar() throws NegocioException {
+        int id = this.getIdSeleccionadoTabla();
+        peliculaNegocio.eliminarPelicula(id);
+        cargarTabla();
+    }
+    private int getIdSeleccionadoTabla() {
+        int indiceFilaSeleccionada = this.tblPeliculas.getSelectedRow();
+        if (indiceFilaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) this.tblPeliculas.getModel();
+            int indiceColumnaId = 0;
+            int idSocioSeleccionado = (int) modelo.getValueAt(indiceFilaSeleccionada,
+                    indiceColumnaId);
+            return idSocioSeleccionado;
+        } else {
+            return 0;
+        }
+    }
+
+    private void BorrarRegistrosTabla() {
+        DefaultTableModel modeloTabla = (DefaultTableModel) this.tblPeliculas.getModel();
+        if (modeloTabla.getRowCount() > 0) {
+            for (int row = modeloTabla.getRowCount() - 1; row > -1; row--) {
+                modeloTabla.removeRow(row);
+            }
+        }
+    }
+
+    private Tabla obtenerFiltrosTabla() {
+        return new Tabla(this.LIMITE, this.pag, txtBuscarPelicula.getText());
+    }
+    
+    
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         frmMenu regresar = new frmMenu();
         regresar.setVisible(true);
@@ -165,9 +248,16 @@ private PeliculaNegocio peliculaNegocio = new PeliculaNegocio();
         this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void btnAtrasCatPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasCatPeliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAtrasCatPeliActionPerformed
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        if (pag == 0) {
+            btnAtras.setEnabled(false);
+        } else {
+            this.pag--;
+            int impresion = pag + 1;
+            lblnumPagCatPeli.setText("Página " + impresion);
+            this.cargarTabla();
+        }
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void txtBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarPeliculaActionPerformed
         // TODO add your handling code here:
@@ -187,6 +277,14 @@ private PeliculaNegocio peliculaNegocio = new PeliculaNegocio();
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        this.pag++;
+        int imp = pag + 1;
+        lblnumPagCatPeli.setText("Página " + imp);
+        this.cargarTabla();
+        btnAtras.setEnabled(true);
+    }//GEN-LAST:event_btnSiguienteActionPerformed
+
     private void ajustarColumnas() {
         // Establecer el ancho de la columna ID
         tblPeliculas.getColumnModel().getColumn(0).setPreferredWidth(50); // Ancho de la columna ID
@@ -202,9 +300,9 @@ private PeliculaNegocio peliculaNegocio = new PeliculaNegocio();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAtrasCatPeli;
+    private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnSiguienteCatPeli;
+    private javax.swing.JButton btnSiguiente;
     private javax.swing.JButton btnVolver;
     private javax.swing.JPanel jPanelCatalogoPeliculas;
     private javax.swing.JScrollPane jScrollPane1;

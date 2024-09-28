@@ -2,6 +2,7 @@ package negocio;
 
 import dto.PeliculaDTO;
 import java.util.List;
+import utilerias.Tabla;
 
 /**
  *
@@ -12,7 +13,7 @@ public interface IPeliculaNegocio {
     // Método para agregar una película, con posibles validaciones de negocio
     PeliculaDTO agregarPelicula(PeliculaDTO peliculaDTO) throws NegocioException;
 
-    List<PeliculaDTO> listarPeliculas() throws NegocioException;
+    List<PeliculaDTO> buscarPeliculas(Tabla filtro) throws NegocioException;
 
     PeliculaDTO guardar(PeliculaDTO peliculaDTO) throws NegocioException;
 
@@ -22,6 +23,5 @@ public interface IPeliculaNegocio {
     // Método para eliminar una película lógicamente
     PeliculaDTO eliminarPelicula(int id) throws NegocioException;
 
-//    // Método para restaurar una película que ha sido eliminada lógicamente
-//    PeliculaDTO restaurarPelicula(int id) throws NegocioException;
+
 }
