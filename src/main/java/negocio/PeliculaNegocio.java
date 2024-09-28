@@ -9,11 +9,13 @@ import persistencia.IConexionBD;
 import persistencia.IPeliculaDAO;
 import persistencia.PeliculaDAO;
 import persistencia.PersistenciaException;
+import utilerias.Convertidor;
 import utilerias.Tabla;
 
 public class PeliculaNegocio implements IPeliculaNegocio {
 
     private final IPeliculaDAO peliculaDAO;
+    private Convertidor convertir = new Convertidor();
 
     public PeliculaNegocio() {
         // Inicializamos ClienteDAO con una nueva instancia de ConexionBD
@@ -25,11 +27,11 @@ public class PeliculaNegocio implements IPeliculaNegocio {
     public PeliculaDTO agregarPelicula(PeliculaDTO peliculaDTO) throws NegocioException {
         try {
             // Convertir DTO a Entidad
-            PeliculaEntidad peliculaEntidad = convertirDTOaEntidad(peliculaDTO);
+            PeliculaEntidad peliculaEntidad = convertir.DTOaEntidad(peliculaDTO);
             // Agregar la película a través de la capa DAO
             PeliculaEntidad entidadAgregada = peliculaDAO.agregarPelicula(peliculaEntidad);
             // Convertir Entidad a DTO y devolver el resultado
-            return convertirEntidadADTO(entidadAgregada);
+            return convertir.EntidadaDTO(entidadAgregada);
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al agregar la película", e);
         }
@@ -38,14 +40,14 @@ public class PeliculaNegocio implements IPeliculaNegocio {
     @Override
     public List<PeliculaDTO> buscarPeliculas(Tabla filtro) throws NegocioException {
         try {
-            List<PeliculaEntidad> peliculasEntidad = peliculaDAO.listarPeliculas();
+            List<PeliculaEntidad> peliculasEntidad = peliculaDAO.buscarPeliculas(filtro);
             List<PeliculaDTO> peliculasDTO = new ArrayList<>();
-            // Convertir cada PeliculaEntidad a PeliculaDTO
             for (PeliculaEntidad entidad : peliculasEntidad) {
-                peliculasDTO.add(convertirEntidadADTO(entidad));
+                peliculasDTO.add(convertir.EntidadaDTO(entidad));
             }
             return peliculasDTO;
         } catch (PersistenciaException e) {
+            System.out.println("Negocio");
             throw new NegocioException("Error al listar las películas", e);
         }
     }
@@ -54,13 +56,13 @@ public class PeliculaNegocio implements IPeliculaNegocio {
     public PeliculaDTO guardar(PeliculaDTO peliculaDTO) throws NegocioException {
         try {
             // Convertir DTO a Entidad
-            PeliculaEntidad peliculaEntidad = convertirDTOaEntidad(peliculaDTO);
+            PeliculaEntidad peliculaEntidad = convertir.DTOaEntidad(peliculaDTO);
 
             // Guardar (actualizar o insertar) la película a través de la capa DAO
             PeliculaEntidad entidadGuardada = peliculaDAO.guardar(peliculaEntidad);
 
             // Convertir Entidad a DTO y devolver el resultado
-            return convertirEntidadADTO(entidadGuardada);
+            return convertir.EntidadaDTO(entidadGuardada);
 
         } catch (PersistenciaException e) {
             // Mostrar la excepción completa
@@ -74,7 +76,7 @@ public class PeliculaNegocio implements IPeliculaNegocio {
         try {
             PeliculaEntidad peliculaEntidad = peliculaDAO.buscarPorId(id);
             // Convertir Entidad a DTO
-            return convertirEntidadADTO(peliculaEntidad);
+            return convertir.EntidadaDTO(peliculaEntidad);
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al buscar la película por ID", e);
         }
@@ -86,7 +88,7 @@ public class PeliculaNegocio implements IPeliculaNegocio {
             // Eliminar lógicamente la película
             PeliculaEntidad peliculaEliminada = peliculaDAO.eliminarPelicula(id);
             // Convertir la Entidad eliminada a DTO
-            return convertirEntidadADTO(peliculaEliminada);
+            return convertir.EntidadaDTO(peliculaEliminada);
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al eliminar la película", e);
         }
@@ -113,34 +115,6 @@ public class PeliculaNegocio implements IPeliculaNegocio {
         }
     }
 
-    private PeliculaDTO convertirEntidadADTO(PeliculaEntidad entidad) {
-        return new PeliculaDTO(
-                entidad.getId(),
-                entidad.getTitulo(),
-                entidad.getClasificacion(),
-                entidad.getDuracion(),
-                entidad.getGenero(),
-                entidad.getPaisOrigen(),
-                entidad.getSinopsis(),
-                entidad.getLinkTrailer(),
-                entidad.isEstaEliminada(),
-                entidad.getPoster()
-        );
-    }
-
-    private PeliculaEntidad convertirDTOaEntidad(PeliculaDTO dto) {
-        return new PeliculaEntidad(
-                dto.getId(),
-                dto.getTitulo(),
-                dto.getClasificacion(),
-                dto.getDuracion(),
-                dto.getGenero(),
-                dto.getPaisOrigen(),
-                dto.getSinopsis(),
-                dto.getLinkTrailer(),
-                dto.isEstaEliminada(),
-                dto.getPoster()
-        );
-    }
+    
 
 }
