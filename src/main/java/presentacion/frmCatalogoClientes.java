@@ -143,7 +143,6 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String nombre = txtBuscar.getText();
-        System.out.println(nombre);
         if (!nombre.isEmpty()) {
             this.cargarTablaBusqueda(nombre);
         } else {

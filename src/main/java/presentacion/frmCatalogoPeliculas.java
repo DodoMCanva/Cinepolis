@@ -174,31 +174,31 @@ private PeliculaNegocio peliculaNegocio = new PeliculaNegocio();
     }//GEN-LAST:event_txtBuscarPeliculaActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-          String tituloBuscado = txtBuscarPelicula.getText().trim();
-    DefaultTableModel model = (DefaultTableModel) tblPeliculas.getModel();
-    TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
-    tblPeliculas.setRowSorter(sorter);
+        String tituloBuscado = txtBuscarPelicula.getText().trim();
+        DefaultTableModel model = (DefaultTableModel) tblPeliculas.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        tblPeliculas.setRowSorter(sorter);
 
-    // Aplicar filtro
-    if (tituloBuscado.length() == 0) {
-        sorter.setRowFilter(null); // Muestra todas las películas si el campo está vacío
-    } else {
-        sorter.setRowFilter(RowFilter.regexFilter("(?i)" + tituloBuscado)); // Filtro que ignora mayúsculas y minúsculas
-    }
+        // Aplicar filtro
+        if (tituloBuscado.length() == 0) {
+            sorter.setRowFilter(null); // Muestra todas las películas si el campo está vacío
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + tituloBuscado)); // Filtro que ignora mayúsculas y minúsculas
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-private void ajustarColumnas() {
-    // Establecer el ancho de la columna ID
-    tblPeliculas.getColumnModel().getColumn(0).setPreferredWidth(50); // Ancho de la columna ID
+    private void ajustarColumnas() {
+        // Establecer el ancho de la columna ID
+        tblPeliculas.getColumnModel().getColumn(0).setPreferredWidth(50); // Ancho de la columna ID
 
-    // Establecer el ancho de las demás columnas
-    tblPeliculas.getColumnModel().getColumn(1).setPreferredWidth(150); // Titulo
-    tblPeliculas.getColumnModel().getColumn(2).setPreferredWidth(100); // Clasificación
-    tblPeliculas.getColumnModel().getColumn(3).setPreferredWidth(70); // Minutos
-    tblPeliculas.getColumnModel().getColumn(4).setPreferredWidth(70); // Género
-    tblPeliculas.getColumnModel().getColumn(5).setPreferredWidth(100); // País
-    tblPeliculas.getColumnModel().getColumn(6).setPreferredWidth(300); // Sinopsis
-}
+        // Establecer el ancho de las demás columnas
+        tblPeliculas.getColumnModel().getColumn(1).setPreferredWidth(150); // Titulo
+        tblPeliculas.getColumnModel().getColumn(2).setPreferredWidth(100); // Clasificación
+        tblPeliculas.getColumnModel().getColumn(3).setPreferredWidth(70); // Minutos
+        tblPeliculas.getColumnModel().getColumn(4).setPreferredWidth(70); // Género
+        tblPeliculas.getColumnModel().getColumn(5).setPreferredWidth(100); // País
+        tblPeliculas.getColumnModel().getColumn(6).setPreferredWidth(300); // Sinopsis
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
