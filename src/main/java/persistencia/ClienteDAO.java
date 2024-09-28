@@ -79,42 +79,6 @@ public class ClienteDAO implements IClienteDAO {
             }
         }
         return lista;
-        /*ClienteDTO clienteDTO;
-        Connection con = null;
-        ResultSet rs;
-        ArrayList<ClienteDTO> lista = new ArrayList<>();
-
-        try {
-            con = conexionBD.crearConexion();
-
-            String leer = "SELECT * FROM clientes";
-            String leerN = "SELECT * FROM NombreCliente";
-
-            PreparedStatement ps = con.prepareStatement(leer);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                clienteDTO = new ClienteDTO();
-                clienteDTO.setId(rs.getInt("id"));
-                //
-                clienteDTO.setNombre(rs.getString("Nombre"));
-                clienteDTO.setApellidoPaterno(rs.getString("Paterno"));
-                clienteDTO.setApellidoMaterno(rs.getString("Msterno"));
-                //
-                clienteDTO.setEstaEliminado(rs.getBoolean("EstaEliminado"));
-                clienteDTO.setFechaHoraRegistro(rs.getTimestamp("Registro"));
-                lista.add(clienteDTO);
-                rs.close();
-                ps.close();
-                con.close();
-
-            }
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error de conexion" + e.getMessage());
-        }
-        return lista;*/
     }
 
     @Override
@@ -164,10 +128,9 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public void eliminar(int idCliente) throws PersistenciaException {
         // La consulta SQL para marcar un cliente como eliminado.
-        String consulta = "UPDATE Cliente SET estaEliminado = ? WHERE ID_Cliente = ? ";
+        String consulta = "UPDATE Clientes SET estaEliminado = ? WHERE ID_Cliente = ? ";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement stmt = connection.prepareStatement(consulta)) {
-            System.out.println("cliente" + idCliente);
             // Marcamos el cliente como eliminado en la base de datos.
             stmt.setBoolean(1, true);
             stmt.setInt(2, idCliente);
@@ -332,6 +295,7 @@ public class ClienteDAO implements IClienteDAO {
                 + "c.fechaNacimiento, c.fechaRegistro, c.correoElectronico, c.celular, c.geolcl, c.psswrd "
                 + "FROM Clientes c "
                 + "JOIN NombreCliente nc ON c.ID_Cliente = nc.ID "
+                + "WHERE c.estaEliminado = false "
                 + "LIMIT ? OFFSET ?";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
@@ -365,42 +329,4 @@ public class ClienteDAO implements IClienteDAO {
         return listaClientes;
     }
 
-    /*
-    @Override
-    public List<ClienteEntidad> buscarClientes(Tabla filtro) throws PersistenciaException {
-        List<ClienteEntidad> listaClientes = new ArrayList<>();
-        // La consulta SQL para buscar clientes con un filtro específico.
-        String consulta = "SELECT ID_Cliente, Nombre, Apellido_Paterno, Apellido_Materno, estaEliminado,"
-                + "Fecha_Nacimiento, fechaHoraRegistro,Correo_Electronico,Geolocalizacion, Contrasena from Clientes where Nombre LIKE ? LIMIT ? OFFSET ?";
-
-        try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
-
-            // Asignamos los valores del filtro a la consulta SQL.
-            ps.setString(1, "%" + filtro.getTextoBusqueda() + "%"); // Filtro de búsqueda por nombre
-            ps.setInt(2, filtro.getLimite());  // Límite de resultados
-            ps.setInt(3, filtro.getPagina() * filtro.getLimite()); // Offset para la paginación
-
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    // Creamos un nuevo objeto ClienteEntidad y le asignamos los valores obtenidos de la base de datos.
-                    ClienteEntidad cliente = new ClienteEntidad();
-                    cliente.setId(rs.getInt("ID_Cliente"));
-                    cliente.setNombre(rs.getString("Nombre"));
-                    cliente.setApellidoPaterno(rs.getString("Apellido_Paterno"));
-                    cliente.setApellidoMaterno(rs.getString("Apellido_Materno"));
-                    cliente.setFechaNacimiento(rs.getString("Fecha_Nacimiento"));
-                    cliente.setCorreoElectronico(rs.getString("Correo"));
-                    cliente.setGeolocalizacion(rs.getString("Geolocalizacion"));
-                    cliente.setContrasena(rs.getString("Contrasena"));
-                    cliente.setEstaEliminado(rs.getBoolean("estaEliminado"));
-                    cliente.setFechaHoraRegistro(rs.getTimestamp("fechaHoraRegistro"));
-                }
-            }
-        } catch (SQLException e) {
-            // Si ocurre un error, lanzamos una excepción con un mensaje.
-            throw new PersistenciaException("Error al buscar clientes", e);
-        }
-        return listaClientes;
-    
-}*/
 }

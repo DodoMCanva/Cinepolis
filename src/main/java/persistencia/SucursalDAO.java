@@ -100,10 +100,6 @@ public class SucursalDAO implements ISurcursalDAO {
     return sucursales;
 }
 
-//    @Override
-//    public ArrayList<SucursalDTO> leer() throws PersistenciaException {
-//        return (ArrayList<SucursalDTO>) obtenerTodas();
-//    }
     @Override
     public void eliminar(int id) throws SQLException {
         String query = "DELETE FROM Sucursales WHERE ID = ?";

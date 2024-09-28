@@ -17,7 +17,7 @@ public class Convertidor {
         clienteEntidad.setCorreoElectronico(clienteDTO.getCorreoElectronico());
         clienteEntidad.setFechaNacimiento(clienteDTO.getFechaNacimiento());
         clienteEntidad.setContrasena(clienteDTO.getContrasena());
-        clienteEntidad.setFechaHoraRegistro(clienteEntidad.getFechaHoraRegistro()); 
+        clienteEntidad.setFechaHoraRegistro(clienteDTO.getFechaHoraRegistro()); 
         clienteEntidad.setEstaEliminado(clienteDTO.isEstaEliminado());
         return clienteEntidad;
     }
@@ -32,7 +32,7 @@ public class Convertidor {
         clienteDTO.setCorreoElectronico(clienteEntidad.getCorreoElectronico());
         clienteDTO.setFechaNacimiento(clienteEntidad.getFechaNacimiento());
         clienteDTO.setContrasena(clienteEntidad.getContrasena());
-        clienteDTO.setFechaHoraRegistro((Timestamp) clienteEntidad.getFechaHoraRegistro());
+        clienteDTO.setFechaHoraRegistro(clienteEntidad.getFechaHoraRegistro());
         clienteDTO.setEstaEliminado(clienteEntidad.isEstaEliminado());
         return clienteDTO;
         

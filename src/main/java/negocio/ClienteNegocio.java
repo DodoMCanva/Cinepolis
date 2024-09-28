@@ -77,8 +77,8 @@ public class ClienteNegocio implements IClienteNegocio {
             List<ClienteEntidad> listaEntidades = clienteDAO.buscarClientes(filtro);
             List<ClienteDTO> listaDTOs = new ArrayList<>();
             for (ClienteEntidad entidad : listaEntidades) {
-                ClienteDTO clienteTablaDTO = convertir.EntidadaDTO(entidad);
-                listaDTOs.add(clienteTablaDTO);
+                ClienteDTO clienteDTO = convertir.EntidadaDTO(entidad);
+                listaDTOs.add(clienteDTO);
             }
 
             return listaDTOs;
@@ -118,7 +118,6 @@ public class ClienteNegocio implements IClienteNegocio {
             cn.commit();
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al eliminar el cliente: " + e.getMessage(), e);
-
         } catch (SQLException ex) {
             Logger.getLogger(ClienteNegocio.class
                     .getName()).log(Level.SEVERE, null, ex);

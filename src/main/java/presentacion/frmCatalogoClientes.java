@@ -255,15 +255,14 @@ public class frmCatalogoClientes extends javax.swing.JFrame {
         }
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblClientes.getModel();
         clientesLista.forEach(row -> {
-            Object[] fila = new Object[8];
+            Object[] fila = new Object[7];
+            String NombreCompleto =(row.getNombre()+" "+row.getApellidoPaterno()+" "+row.getApellidoMaterno());
             fila[0] = row.getId();
-            fila[1] = row.getNombre()+row.getApellidoPaterno()+row.getApellidoMaterno();
+            fila[1] = NombreCompleto;
             fila[2] = row.getCorreoElectronico();
-            fila[4] = row.getFechaNacimiento();
-            fila[5] = row.getGeolocalizacion();
-            fila[6] = row.getContrasena();
-            fila[7] = "Eliminar";
-            
+            fila[3] = row.getFechaNacimiento();
+            fila[4] = row.getGeolocalizacion();
+            fila[5] = row.getContrasena();
             modeloTabla.addRow(fila);
         });
     }

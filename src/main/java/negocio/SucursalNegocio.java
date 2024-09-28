@@ -4,7 +4,10 @@ import dto.SucursalDTO;
 import entidad.SucursalEntidad;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import persistencia.PersistenciaException;
 import persistencia.SucursalDAO;
 import utilerias.Tabla;
 
@@ -80,28 +83,30 @@ public class SucursalNegocio implements ISucursalesNegocio {
         }
     }
 
-    @Override
-   public List<SucursalDTO> buscarSucursal(Tabla filtro) throws NegocioException {
+   @Override
+public List<SucursalDTO> buscarSucursal(Tabla filtro) throws NegocioException {
     try {
-        // Aquí puedes implementar la lógica para usar el filtro y buscar sucursales
-        // Suponiendo que `filtro` tiene un método que devuelve criterios de búsqueda
+        // Implementación de la lógica para usar el filtro y buscar sucursales
         List<SucursalEntidad> sucursales = sucursalDAO.buscarSucursal(filtro);
-        return sucursales.stream()
-                         .map(this::convertirEntidadADTO)
-                         .collect(Collectors.toList());
-    } catch (SQLException e) {
-        throw new NegocioException("Error al buscar sucursales", e);
+        
+        // Convertir las entidades a DTO
+        return sucursales.stream().map(this::convertirEntidadADTO).collect(Collectors.toList());
+        
+    } catch (PersistenciaException ex) {
+        // Registrar el error y lanzar una excepción de negocio
+        Logger.getLogger(SucursalNegocio.class.getName()).log(Level.SEVERE, "Error en buscarSucursal", ex);
+        
+        // Lanza una excepción personalizada para que otras capas la manejen
+        throw new NegocioException("Error al buscar sucursales con el filtro especificado", ex);
     }
 }
     @Override
    public List<SucursalDTO> buscarporNombre(String nombre, Tabla filtro) throws NegocioException {
     try {
-        List<SucursalEntidad> sucursales = sucursalDAO.buscarporNombre(nombre);
-        return sucursales.stream()
-                         .map(this::convertirEntidadADTO)
-                         .collect(Collectors.toList());
-    } catch (SQLException e) {
-        throw new NegocioException("Error al buscar sucursales por nombre", e);
+        List<SucursalEntidad> sucursales = (List<SucursalEntidad>) sucursalDAO.buscarporNombre(nombre);
+        return sucursales.stream().map(this::convertirEntidadADTO).collect(Collectors.toList());
+    } catch (PersistenciaException ex) {
+        throw new NegocioException("Error al buscar sucursales por nombre", ex);
     }
 }
 
@@ -110,11 +115,9 @@ public List<SucursalDTO> buscarporDireccion(String dir, Tabla filtro) throws Neg
     try {
         List<SucursalEntidad> sucursales = sucursalDAO.buscarporDireccion(dir, filtro);
         return sucursales.stream().map(this::convertirEntidadADTO).collect(Collectors.toList());
-    } catch (SQLException e) {
-        throw new NegocioException("Error al buscar sucursales por dirección", e);
-    }   catch (PersistenciaException ex) {
-            Logger.getLogger(SucursalNegocio.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    } catch (PersistenciaException ex) {
+        throw new NegocioException("Error al buscar sucursales por dirección", ex);
+    }
 }
 }
 
