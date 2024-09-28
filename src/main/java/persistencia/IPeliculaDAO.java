@@ -1,7 +1,9 @@
 package persistencia;
 
+import dto.PeliculaDTO;
 import entidad.PeliculaEntidad;
 import java.util.List;
+import negocio.NegocioException;
 
 public interface IPeliculaDAO {
 
@@ -19,5 +21,7 @@ public interface IPeliculaDAO {
 
     // Método para eliminar una película 
     PeliculaEntidad eliminarPelicula(int id) throws PersistenciaException;
+
+    List<PeliculaEntidad> buscarPeliculasPorSucursalYCiudad(String ciudad, String sucursal) throws PersistenciaException;
 
 }

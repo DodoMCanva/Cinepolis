@@ -21,6 +21,9 @@ public interface IPeliculaNegocio {
 
     // Método para eliminar una película lógicamente
     PeliculaDTO eliminarPelicula(int id) throws NegocioException;
+    
+        List<PeliculaDTO> buscarPeliculasPorSucursalYCiudad(String ciudad, String sucursal) throws NegocioException;
+
 
 //    // Método para restaurar una película que ha sido eliminada lógicamente
 //    PeliculaDTO restaurarPelicula(int id) throws NegocioException;

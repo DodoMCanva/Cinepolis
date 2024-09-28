@@ -1,7 +1,15 @@
-
 package presentacion;
 
+import dto.PeliculaDTO;
+import entidad.PeliculaEntidad;
+import entidad.SucursalEntidad;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import negocio.PeliculaNegocio;
 import persistencia.SucursalDAO;
 
 /**
@@ -10,16 +18,65 @@ import persistencia.SucursalDAO;
  */
 public class frmCartelera extends javax.swing.JFrame {
 
+    private SucursalDAO sucursalDAO;
+    private PeliculaNegocio peliculaNegocio;
+
     /**
      * Creates new form frmCartelera
      */
     public frmCartelera() {
+//        this.sucursalDAO = sucursalDAO;
+//        this.peliculaNegocio= peliculaNegocio;
         initComponents();
-    
+        cargarCiudades(); // Llamar al método para cargar ciudades
     }
 
-    
-  
+    private void cargarCiudades() {
+        try {
+            List<String> ciudades = sucursalDAO.obtenerCiudades();
+            DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+            model.addElement("Seleccione una ciudad");
+            for (String ciudad : ciudades) {
+                model.addElement(ciudad);
+            }
+            cbxCiudad.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmCartelera.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void cargarSucursales(String ciudad) {
+        try {
+            List<SucursalEntidad> sucursales = sucursalDAO.obtenerPorCiudad(ciudad);
+            DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+            model.addElement("Seleccione una sucursal");
+            for (SucursalEntidad sucursal : sucursales) {
+                model.addElement(sucursal.getNombre());
+            }
+            cbxSucursal.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmCartelera.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void mostrarPeliculas(String sucursal) {
+        try {
+            List<PeliculaEntidad> peliculas = peliculaNegocio.(sucursal);
+            if (peliculas.size() >= 5) {
+                lblPelicula1.setText(peliculas.get(0).getNombre());
+                lblPelicula2.setText(peliculas.get(1).getNombre());
+                lblPelicula3.setText(peliculas.get(2).getNombre());
+                lblPelicula4.setText(peliculas.get(3).getNombre());
+                lblPelicula5.setText(peliculas.get(4).getNombre());
+            } else {
+                // Muestra un mensaje de que no hay suficientes películas
+                JOptionPane.showMessageDialog(this, "No hay suficientes películas para mostrar.");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(frmCartelera.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,6 +140,11 @@ public class frmCartelera extends javax.swing.JFrame {
         jPanel1.add(cbxCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, 120, 25));
 
         cbxSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sucursal", "Item 2", "Item 3", "Item 4" }));
+        cbxSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxSucursalActionPerformed(evt);
+            }
+        });
         jPanel1.add(cbxSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 120, 25));
 
         btnSiguiente.setText("Siguiente");
@@ -114,6 +176,11 @@ public class frmCartelera extends javax.swing.JFrame {
         jPanel1.add(lblPelicula2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 130, 160));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, -1, 25));
 
         btnAtras.setText("Atras");
@@ -152,19 +219,42 @@ public class frmCartelera extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void cbxCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCiudadActionPerformed
-        // TODO add your handling code here:
+        String ciudadSeleccionada = cbxCiudad.getSelectedItem().toString();
+        if (!ciudadSeleccionada.equals("Seleccione una ciudad")) {
+            cargarSucursales(ciudadSeleccionada); // Cargar sucursales según la ciudad seleccionada
+        }
+
     }//GEN-LAST:event_cbxCiudadActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // Aquí iría la lógica para buscar películas según la sucursal seleccionada
+        String sucursalSeleccionada = cbxSucursal.getSelectedItem().toString();
+        if (!sucursalSeleccionada.equals("Seleccione una sucursal")) {
+            // Lógica para mostrar películas de la sucursal seleccionada
+        }
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void cbxSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSucursalActionPerformed
+        String sucursalSeleccionada = cbxSucursal.getSelectedItem().toString();
+        if (!sucursalSeleccionada.equals("Seleccione una sucursal")) {
+            btnBuscar.setEnabled(true);
+        } else {
+            btnBuscar.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_cbxSucursalActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   /* public static void main(String args[]) {
+    /* public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-   /*     try {
+     */
+ /*     try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -183,7 +273,7 @@ public class frmCartelera extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-   /*     java.awt.EventQueue.invokeLater(new Runnable() {
+ /*     java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new frmCartelera().setVisible(true);
             }
