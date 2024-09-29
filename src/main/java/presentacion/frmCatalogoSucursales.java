@@ -54,7 +54,7 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblSucursales.getModel();
         lista.forEach(row -> {
             Object[] fila = new Object[5];
-            String direccion = row.getCalle() + " " + row.getCodigoPostal()+ " " + row.getCiudad() + " " + row.getEstado(); 
+            String direccion = row.getCalle() + " " + row.getCodigoPostal()+ ", " + row.getCiudad() + ", " + row.getEstado(); 
             fila[0] = row.getNombre();
             fila[1] = direccion;
             fila[2] = "Función";  // Texto del botón de función

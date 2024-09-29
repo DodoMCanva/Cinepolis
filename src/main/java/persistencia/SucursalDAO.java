@@ -23,43 +23,42 @@ public class SucursalDAO implements ISurcursalDAO {
 
     @Override
     public void guardar(SucursalEntidad sucursal) throws SQLException {
-        // Consulta SQL para insertar en la tabla Sucursales
         String consultaSucursal = "INSERT INTO Sucursales (nombre, ciudad) VALUES (?, ?)";
         String consultaDirSucursal = "INSERT INTO Dir_Sucursal (ID, CP, calle, ciudad, estado) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = conexionBD.crearConexion()) {
-            // Habilitar la generación de claves para obtener el ID de la sucursal insertada
+            // Habilitar la generación de claves
             try (PreparedStatement psSucursal = connection.prepareStatement(consultaSucursal, Statement.RETURN_GENERATED_KEYS)) {
-                // Asignamos los valores a la consulta SQL para la tabla Sucursales
                 psSucursal.setString(1, sucursal.getNombre());
                 psSucursal.setString(2, sucursal.getCiudad());
-
-                // Ejecutamos la consulta para guardar la sucursal
                 psSucursal.executeUpdate();
 
-                // Obtener el ID de la sucursal insertada
                 ResultSet generatedKeys = psSucursal.getGeneratedKeys();
                 if (generatedKeys.next()) {
-                    int idSucursal = generatedKeys.getInt(1); // Obtener el ID generado
+                    int idSucursal = generatedKeys.getInt(1);
+
+                    // Verifica que los datos no sean nulos antes de insertar en Dir_Sucursal
+                    if (sucursal.getCalle() == null || sucursal.getCodigoPostal() == null
+                            || sucursal.getEstado() == null) {
+                        System.out.println("Error: uno o más campos de dirección son nulos");
+                        return;
+                    }
 
                     // Ahora insertar en la tabla Dir_Sucursal
                     try (PreparedStatement psDirSucursal = connection.prepareStatement(consultaDirSucursal)) {
-                        psDirSucursal.setInt(1, idSucursal); // Usar el ID generado
-                        psDirSucursal.setString(2, sucursal.getCalle());
-                        psDirSucursal.setString(3, sucursal.getCodigoPostal());
-                        psDirSucursal.setString(4, sucursal.getCiudad()); // Ciudad también se guarda en la tabla de dirección
+                        psDirSucursal.setInt(1, idSucursal);
+                        psDirSucursal.setString(2, sucursal.getCodigoPostal());
+                        psDirSucursal.setString(3, sucursal.getCalle());
+                        psDirSucursal.setString(4, sucursal.getCiudad());
                         psDirSucursal.setString(5, sucursal.getEstado());
 
-                        // Ejecutar la inserción en la tabla Dir_Sucursal
                         psDirSucursal.executeUpdate();
                     }
                 }
                 System.out.println("Sucursal y dirección guardadas correctamente en la base de datos");
             }
-
         } catch (SQLException e) {
             try {
-                // Si ocurre un error, lanzamos una excepción con un mensaje.
                 throw new PersistenciaException("Error al guardar la sucursal", e);
             } catch (PersistenciaException ex) {
                 Logger.getLogger(SucursalDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,8 +78,8 @@ public class SucursalDAO implements ISurcursalDAO {
 
     @Override
     public List<SucursalEntidad> obtenerTodas(Tabla Filtro) throws SQLException {
-        String query = "SELECT S.ID ,S.nombre,S.ciudad, DS.estado, DS.calle ,DS.CP ,S.fechaRegistro AS fechaHoraRegistro FROM Sucursales S "
-                + "INNER JOIN Dir_Sucursal DS ON S.ID = DS.ID"
+        String query = "SELECT S.ID, S.nombre, S.ciudad, DS.estado, DS.calle, DS.CP, S.fechaRegistro AS fechaHoraRegistro FROM Sucursales S "
+                + "INNER JOIN Dir_Sucursal DS ON S.ID = DS.ID "
                 + "LIMIT ? OFFSET ?";
 
         List<SucursalEntidad> sucursales = new ArrayList<>();
@@ -107,7 +106,7 @@ public class SucursalDAO implements ISurcursalDAO {
     }
 
     public SucursalDTO obtenerPorId(int id) throws SQLException {
-        String query = "SELECT ID, nombre, ciudad FROM Sucursales WHERE ID = ?";
+        String query = "SELECT ID, nombre, ciudad, calle, CP, estado FROM Sucursales INNER JOIN Dir_Sucursal ON Sucursales.ID = Dir_Sucursal.ID WHERE Sucursales.ID = ?";
         SucursalDTO sucursal = null;
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(query)) {
@@ -118,6 +117,9 @@ public class SucursalDAO implements ISurcursalDAO {
                 sucursal.setIDSucursal(rs.getInt("ID"));
                 sucursal.setNombre(rs.getString("nombre"));
                 sucursal.setCiudad(rs.getString("ciudad"));
+                sucursal.setCalle(rs.getString("calle"));
+                sucursal.setCodigoPostal(rs.getString("CP")); // Asegúrate de tener un método setCodigoPostal() en tu DTO
+                sucursal.setEstado(rs.getString("estado")); // Asegúrate de tener un método setEstado() en tu DTO
             }
         }
         return sucursal;
@@ -199,7 +201,11 @@ public class SucursalDAO implements ISurcursalDAO {
 
     @Override
     public List<SucursalEntidad> buscarSucursal(Tabla filtro) throws PersistenciaException {
-        String query = "SELECT ID, nombre, ciudad FROM Sucursales WHERE 1=1";
+        String query = "SELECT S.ID, S.nombre, S.ciudad, DS.calle, DS.CP, DS.estado "
+                + "FROM Sucursales S "
+                + "INNER JOIN Dir_Sucursal DS ON S.ID = DS.ID "
+                + "WHERE 1=1";
+
         List<SucursalEntidad> sucursales = new ArrayList<>();
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement pstmt = connection.prepareStatement(query); ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
@@ -207,6 +213,9 @@ public class SucursalDAO implements ISurcursalDAO {
                 sucursal.setID(rs.getInt("ID"));
                 sucursal.setNombre(rs.getString("nombre"));
                 sucursal.setCiudad(rs.getString("ciudad"));
+                sucursal.setCalle(rs.getString("calle"));
+                sucursal.setCodigoPostal(rs.getString("CP"));
+                sucursal.setEstado(rs.getString("estado"));
                 sucursales.add(sucursal);
             }
         } catch (SQLException e) {

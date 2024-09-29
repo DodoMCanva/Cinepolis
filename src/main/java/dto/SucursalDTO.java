@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class SucursalDTO {
-    
+
     private int IDSucursal;
     private String nombre;
     private String estado;
@@ -14,11 +14,12 @@ public class SucursalDTO {
     private boolean estaEliminado;
     private java.util.Date fechaHoraRegistro;
 
-    public SucursalDTO(){
-    
+    public SucursalDTO() {
+
     }
-    public SucursalDTO(int IDSucursal,String nombre, String estado, String ciudad, String calle, String codigoPostal, boolean estaEliminado, Date fechaHoraRegistro) {
-       this.IDSucursal= IDSucursal;
+
+    public SucursalDTO(int IDSucursal, String nombre, String estado, String ciudad, String calle, String codigoPostal, boolean estaEliminado, Date fechaHoraRegistro) {
+        this.IDSucursal = IDSucursal;
         this.nombre = nombre;
         this.estado = estado;
         this.ciudad = ciudad;
@@ -26,6 +27,14 @@ public class SucursalDTO {
         this.codigoPostal = codigoPostal;
         this.estaEliminado = estaEliminado;
         this.fechaHoraRegistro = fechaHoraRegistro;
+    }
+
+    public int getIDSucursal() {
+        return IDSucursal;
+    }
+
+    public void setIDSucursal(int IDSucursal) {
+        this.IDSucursal = IDSucursal;
     }
 
     public String getNombre() {
@@ -84,16 +93,6 @@ public class SucursalDTO {
         this.fechaHoraRegistro = fechaHoraRegistro;
     }
 
-    public int getIDSucursal() {
-        return IDSucursal;
-    }
-
-    public void setIDSucursal(int IDSucursal) {
-        this.IDSucursal = IDSucursal;
-    }
-
-   
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -116,7 +115,4 @@ public class SucursalDTO {
         return Objects.equals(this.nombre, other.nombre);
     }
 
-    
-    
-    
 }
