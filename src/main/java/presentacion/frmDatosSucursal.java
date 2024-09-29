@@ -227,7 +227,7 @@ public class frmDatosSucursal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarSucursalActionPerformed
 
-  
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarSucursal;
     private javax.swing.JButton btnVolver;
