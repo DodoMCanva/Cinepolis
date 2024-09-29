@@ -35,6 +35,7 @@ public class frmCatalogoPeliculas extends javax.swing.JFrame {
         this.setResizable(false);
         btnAtras.setEnabled(false);
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
