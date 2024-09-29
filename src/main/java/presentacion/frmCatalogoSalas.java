@@ -9,8 +9,15 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import negocio.ClienteNegocio;
 import negocio.ISalaNegocio;
 import negocio.NegocioException;
+import negocio.SalaNegocio;
+import persistencia.ClienteDAO;
+import persistencia.ConexionBD;
+import persistencia.IClienteDAO;
+import persistencia.ISalaDAO;
+import persistencia.SalaDAO;
 import utilerias.JButtonCellEditor;
 import utilerias.JButtonRenderer;
 import utilerias.Tabla;
@@ -21,45 +28,55 @@ import utilerias.Tabla;
  */
 public class frmCatalogoSalas extends javax.swing.JFrame {
 
-     private int pag = 0;
+    private int pag = 0;
     private final static int LIMITE = 10;
-    private  ISalaNegocio salaNegocio;
+    private ISalaNegocio salaNegocio;
+    private int idSucursal;
 
     /**
      * Creates new form frmCatalogoSalas
      */
-    public frmCatalogoSalas(ISalaNegocio salaNegocio) {
-         this.salaNegocio = salaNegocio;
-    initComponents(); // Solo una vez
-    this.setLocationRelativeTo(null);
-    this.setResizable(false);
-    btnAtrasCatSalas.setEnabled(false);
-    this.cargarConfiguracionInicialTabla();
-    this.cargarTabla(); // Ahora está bien llamar a cargarTabla()
-    ajustarColumnas();
+    public frmCatalogoSalas(int idSucursal) {
+        incializar(idSucursal);
+        this.salaNegocio = salaNegocio;
+        initComponents(); // Solo una vez
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        btnAtrasCatSalas.setEnabled(false);
+        this.cargarConfiguracionInicialTabla();
+        this.cargarTabla(); // Ahora está bien llamar a cargarTabla()
+        ajustarColumnas();
     }
 
-        public void setSalaNegocio(ISalaNegocio salaNegocio) {
+    private void incializar(int n) {
+        this.idSucursal=idSucursal;
+        ISalaDAO salaDAO = new SalaDAO(new ConexionBD());
+        this.salaNegocio = new SalaNegocio(n);
+
+    }
+
+    public void setSalaNegocio(ISalaNegocio salaNegocio) {
         this.salaNegocio = salaNegocio;
         cargarTabla(); // Cargar la tabla después de establecer el negocio
     }
+
     private void cargarTabla() {
         try {
             Tabla filtro = this.obtenerFiltrosTabla();
             List<SalaDTO> lista = this.salaNegocio.buscarSalas(filtro);
             this.BorrarRegistrosTabla();
             this.AgregarRegistrosTabla(lista);
-            
+
             if (lista.size() == 0 && pag > 0) {
                 pag--; // Decrementa la página solo si hay más páginas
             }
-            
+
             lblNumPagCatSala.setText("Página " + (pag + 1));
-            
+
             // Habilitar/deshabilitar botones de paginación
             btnAtrasCatSalas.setEnabled(pag > 0);
             btnSiguienteCatSala.setEnabled(lista.size() == LIMITE);
-            
+
         } catch (NegocioException ex) {
             this.BorrarRegistrosTabla();
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
@@ -78,6 +95,7 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
             modeloTabla.addRow(fila);
         });
     }
+
     private int getIdSeleccionadoTabla() {
         int indiceFilaSeleccionada = this.tblSala.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
@@ -95,6 +113,7 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
         salaNegocio.eliminar(id);
         cargarTabla();
     }
+
     private void BorrarRegistrosTabla() {
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblSala.getModel();
         if (modeloTabla.getRowCount() > 0) {
@@ -107,25 +126,25 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
     private Tabla obtenerFiltrosTabla() {
         return new Tabla(this.LIMITE, this.pag, txtBuscarSala.getText());
     }
-    
-    private void cargarConfiguracionInicialTabla() {
-    TableColumnModel modeloColumnas = this.tblSala.getColumnModel();
 
-    // Configurar botón "Eliminar"
-    ActionListener onEliminarClickListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                  eliminar();
-            } catch (NegocioException ex) {
-                Logger.getLogger(frmCatalogoSalas.class.getName()).log(Level.SEVERE, null, ex);
+    private void cargarConfiguracionInicialTabla() {
+        TableColumnModel modeloColumnas = this.tblSala.getColumnModel();
+
+        // Configurar botón "Eliminar"
+        ActionListener onEliminarClickListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    eliminar();
+                } catch (NegocioException ex) {
+                    Logger.getLogger(frmCatalogoSalas.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-        }
-    };
-    
-    modeloColumnas.getColumn(1).setCellRenderer(new JButtonRenderer("Eliminar"));
-    modeloColumnas.getColumn(1).setCellEditor(new JButtonCellEditor("Eliminar", onEliminarClickListener));
-}
+        };
+
+        modeloColumnas.getColumn(1).setCellRenderer(new JButtonRenderer("Eliminar"));
+        modeloColumnas.getColumn(1).setCellEditor(new JButtonCellEditor("Eliminar", onEliminarClickListener));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -234,15 +253,15 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-                 frmDatosSucursal regresar = new frmDatosSucursal();
-                regresar.setVisible(true);
-                this.dispose();
+        frmDatosSucursal regresar = new frmDatosSucursal();
+        regresar.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-//        frmDatosSucursal agregar = new frmDatosSucursal();
-//        agregar.setVisible(true);
-//        this.dispose();
+        frmDatosSala agregar = new frmDatosSala(this.idSucursal);
+        agregar.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBuscarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarSalaActionPerformed
@@ -250,7 +269,7 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarSalaActionPerformed
 
     private void btnSiguienteCatSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteCatSalaActionPerformed
-this.pag++;
+        this.pag++;
         int imp = pag + 1;
         lblNumPagCatSala.setText("Página " + imp);
         this.cargarTabla();
@@ -264,13 +283,13 @@ this.pag++;
             int impresion = pag + 1;
             lblNumPagCatSala.setText("Página " + impresion);
             this.cargarTabla();
-                }
+        }
     }//GEN-LAST:event_btnAtrasCatSalasActionPerformed
- private void ajustarColumnas() {
+    private void ajustarColumnas() {
         // Ajustar el ancho de las columnas según el índice
         tblSala.getColumnModel().getColumn(0).setPreferredWidth(150); // Nombre de la Sala
         tblSala.getColumnModel().getColumn(1).setPreferredWidth(100); // Capacidad
-        
+
     }
 
 

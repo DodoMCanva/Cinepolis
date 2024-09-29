@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import persistencia.ISalaDAO;
 import persistencia.PersistenciaException;
+import persistencia.SalaDAO;
 import utilerias.Tabla;
 
 /**
@@ -18,10 +19,13 @@ import utilerias.Tabla;
  */
 public class SalaNegocio implements ISalaNegocio {
 
-    private ISalaDAO salaDAO;
+    private ISalaDAO salaDAO = new SalaDAO();
+    private int idSucursal;
 
-    public SalaNegocio(ISalaDAO salaDAO) {
-        this.salaDAO = salaDAO;
+    public SalaNegocio(int idSucursal) {
+
+        this.idSucursal = idSucursal;
+
     }
 
     public List<SalaDTO> consultar() throws NegocioException {
@@ -31,7 +35,7 @@ public class SalaNegocio implements ISalaNegocio {
 
             // Convertir cada entidad en un DTO
             for (SalaEntidad entidad : salasEntidad) {
-                SalaDTO dto = new SalaDTO(entidad.getId(), entidad.getNombre());
+                SalaDTO dto = new SalaDTO(entidad.getId(), entidad.getNombre(), entidad.getCapacidad(), entidad.getCosto());
                 salasDTO.add(dto);
             }
 
@@ -66,13 +70,13 @@ public class SalaNegocio implements ISalaNegocio {
     }
 
     @Override
-    public void guardar(SalaDTO salaDTO) throws NegocioException {
+    public void guardar(SalaDTO salaDTO, int idSucursal) throws NegocioException {
         try {
             // Crear la entidad a partir del DTO
             SalaEntidad entidad = new SalaEntidad();
             entidad.setNombre(salaDTO.getNombre());
 
-            salaDAO.guardar(entidad);
+            salaDAO.guardar(entidad, idSucursal);
 
             // Si necesitas devolver el ID generado, podrías agregarlo al DTO aquí:
             salaDTO.setId(entidad.getId());
@@ -99,7 +103,7 @@ public class SalaNegocio implements ISalaNegocio {
 
             // Convertir cada entidad en un DTO
             for (SalaEntidad entidad : salasEntidad) {
-                SalaDTO dto = new SalaDTO(entidad.getId(), entidad.getNombre());
+                SalaDTO dto = new SalaDTO(entidad.getId(), entidad.getNombre(), entidad.getCapacidad(), entidad.getCosto());
                 salasDTO.add(dto);
             }
 
@@ -117,7 +121,7 @@ public class SalaNegocio implements ISalaNegocio {
                 return null;
             }
             // Convertir la entidad en DTO
-            return new SalaDTO(entidad.getId(), entidad.getNombre());
+            return new SalaDTO(entidad.getId(), entidad.getNombre(), entidad.getCapacidad(), entidad.getCosto());
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al buscar la sala con ID: " + idSala, e);
         }

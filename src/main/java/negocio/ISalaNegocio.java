@@ -11,7 +11,7 @@ public interface ISalaNegocio {
 
     List<SalaDTO> consultar() throws NegocioException;
 
-    public void guardar(SalaDTO salaDTO) throws NegocioException;
+    public void guardar(SalaDTO salaDTO, int idSucursal) throws NegocioException;
 
     void eliminar(int idSala) throws NegocioException;
 

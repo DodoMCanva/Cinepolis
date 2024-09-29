@@ -2,14 +2,20 @@ package entidad;
 
 
 public class SalaEntidad {
-    private int id;
+          private int id;
     private String nombre;
-
+    private int costo;
+    private int capacidad;
+    private int idSucursal;
     
-    public SalaEntidad() {
-      
+    public SalaEntidad(){
+        
     }
-    public SalaEntidad(int id, String nombre) {
+            
+
+    public SalaEntidad(int id, String nombre,int costo, int capacidad) {
+        this.capacidad=capacidad;
+        this.costo= costo;
         this.id = id;
         this.nombre = nombre;
     }
@@ -26,14 +32,38 @@ public class SalaEntidad {
         return nombre;
     }
 
+    public int getIdSucursal() {
+        return idSucursal;
+    }
+
+    public void setIdSucursal(int idSucursal) {
+        this.idSucursal = idSucursal;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    public int getCosto() {
+        return costo;
+    }
+
+    public void setCosto(int costo) {
+        this.costo = costo;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.id;
+        int hash = 5;
+        hash = 79 * hash + this.id;
         return hash;
     }
 
@@ -51,5 +81,7 @@ public class SalaEntidad {
         final SalaEntidad other = (SalaEntidad) obj;
         return this.id == other.id;
     }
+
+    
     
 }

@@ -83,6 +83,13 @@ public class SucursalNegocio implements ISucursalesNegocio {
         entidad.setFechaHoraRegistro(dto.getFechaHoraRegistro());
         return entidad;
     }
+    public int obtenerIdSucursalPorNombre(String nombre) throws PersistenciaException {
+    int sucursal = sucursalDAO.buscarIdporNombre(nombre);
+    if (sucursal != 0) {
+        return sucursal;
+    }
+    throw new PersistenciaException("Sucursal no encontrada");
+}
 
     @Override
     public void eliminar(int id) {

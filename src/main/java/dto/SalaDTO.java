@@ -3,15 +3,27 @@ package dto;
 public class SalaDTO {
         private int id;
     private String nombre;
-    
+    private int costo;
+    private int capacidad;
+    private int idSucursal;
     public SalaDTO(){
         
     }
             
 
-    public SalaDTO(int id, String nombre) {
+    public SalaDTO(int id, String nombre,int costo, int capacidad) {
+        this.capacidad=capacidad;
+        this.costo= costo;
         this.id = id;
         this.nombre = nombre;
+    }
+
+    public int getIdSucursal() {
+        return idSucursal;
+    }
+
+    public void setIdSucursal(int idSucursal) {
+        this.idSucursal = idSucursal;
     }
 
     public int getId() {
@@ -28,6 +40,22 @@ public class SalaDTO {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getCosto() {
+        return costo;
+    }
+
+    public void setCosto(int costo) {
+        this.costo = costo;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
     }
 
     @Override

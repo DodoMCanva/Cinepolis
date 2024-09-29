@@ -14,7 +14,9 @@ public interface ISurcursalDAO {
 
     public List<SucursalEntidad> buscarporDireccion(String dir, Tabla Filtro) throws PersistenciaException;
 
-    SucursalEntidad buscarporNombre(String nombre) throws PersistenciaException;
+    List<SucursalEntidad> buscarporNombre(String nombre) throws PersistenciaException;
+
+    int buscarIdporNombre(String nombre) throws PersistenciaException;
 
     public List<SucursalEntidad> buscarSucursal(Tabla filtro) throws PersistenciaException;
 

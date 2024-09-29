@@ -15,10 +15,16 @@ import utilerias.Tabla;
 
 public class SucursalDAO implements ISurcursalDAO {
 
-    private IConexionBD conexionBD;
+    private IConexionBD conexionBD=new ConexionBD();
 
     public SucursalDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
+    }
+    
+   
+    
+    public SucursalDAO() {
+
     }
 
     @Override
@@ -180,7 +186,29 @@ public class SucursalDAO implements ISurcursalDAO {
     }
 
     @Override
-    public SucursalEntidad buscarporNombre(String nombre) throws PersistenciaException {
+    public List<SucursalEntidad> buscarporNombre(String nombre) throws PersistenciaException {
+        String query = "SELECT ID, nombre, ciudad FROM Sucursales WHERE nombre = ?";
+        List<SucursalEntidad> sucursal = new ArrayList<>();
+        try (Connection connection = conexionBD.crearConexion(); PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, nombre);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    SucursalEntidad ent=new SucursalEntidad();
+                    ent = new SucursalEntidad();
+                    ent.setID(rs.getInt("ID"));
+                    ent.setNombre(rs.getString("nombre"));
+                    ent.setCiudad(rs.getString("ciudad"));
+                    sucursal.add(ent);
+                }
+            }
+        } catch (SQLException e) {
+            throw new PersistenciaException("Error al buscar sucursal por nombre", e);
+        }
+        return sucursal;
+    }
+
+    @Override
+    public int buscarIdporNombre(String nombre) throws PersistenciaException {
         String query = "SELECT ID, nombre, ciudad FROM Sucursales WHERE nombre = ?";
         SucursalEntidad sucursal = null;
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement pstmt = connection.prepareStatement(query)) {
@@ -196,7 +224,7 @@ public class SucursalDAO implements ISurcursalDAO {
         } catch (SQLException e) {
             throw new PersistenciaException("Error al buscar sucursal por nombre", e);
         }
-        return sucursal;
+        return sucursal.getID();
     }
 
     @Override

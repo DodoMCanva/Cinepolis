@@ -8,6 +8,7 @@ presentacion\frmCatalogoPeliculas$1.class
 presentacion\frmCatalogoClientes.class
 presentacion\frmDatosSucursal$1.class
 presentacion\frmCatalogoSalas$5.class
+presentacion\frmDatosSala$2.class
 presentacion\frmDatosPelicula.class
 presentacion\frmDatosSucursal$2.class
 presentacion\frmInicioSesionCliente$1.class
@@ -15,12 +16,15 @@ presentacion\frmCatalogoPeliculas.class
 presentacion\frmResumenCompra$2.class
 presentacion\frmRegistroCliente.class
 presentacion\frmCatalogoSucursales$1.class
+presentacion\frmDatosSala$3.class
 presentacion\frmResumenCompra$1.class
 presentacion\frmRegistroCliente$4.class
+presentacion\frmDatosSala$4.class
 presentacion\frmPagoEnEfectivo$1.class
 presentacion\frmCatalogoSucursales$2.class
 presentacion\frmDatosPelicula$2.class
 presentacion\frmCatalogoSalas$6.class
+presentacion\frmDatosSala$1.class
 presentacion\frmResumenCompra.class
 presentacion\frmRegistroCliente$3.class
 presentacion\frmCatalogoPeliculas$2.class
@@ -31,6 +35,7 @@ presentacion\frmRegistroCliente$2.class
 presentacion\frmInicioSesionCliente.class
 presentacion\frmCatalogoClientes$1.class
 presentacion\frmPagoEnEfectivo.class
+presentacion\frmDatosSala.class
 presentacion\frmDatosPelicula$1.class
 presentacion\frmCartelera$1.class
 presentacion\frmCartelera.class

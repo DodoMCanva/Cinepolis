@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utilerias.Tabla;
 
 /**
@@ -16,16 +18,19 @@ import utilerias.Tabla;
  */
 public class SalaDAO implements ISalaDAO {
 
-    private IConexionBD conexionBD;
+    private IConexionBD conexionBD=new ConexionBD();
 
     public SalaDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
+    }
+    public SalaDAO(){
+        
     }
 
     @Override
     public ArrayList<SalaEntidad> leer() throws PersistenciaException {
         ArrayList<SalaEntidad> salas = new ArrayList<>();
-        String consulta = "SELECT id, nombre FROM Salas";
+        String consulta = "SELECT id, nombre, costo, capacidad FROM Salas";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta); ResultSet rs = ps.executeQuery()) {
 
@@ -33,6 +38,8 @@ public class SalaDAO implements ISalaDAO {
                 SalaEntidad sala = new SalaEntidad();
                 sala.setId(rs.getInt("id"));
                 sala.setNombre(rs.getString("nombre"));
+                sala.setCapacidad(rs.getInt("capacidad"));
+                sala.setCosto(rs.getInt("costo"));
                 salas.add(sala);
             }
 
@@ -44,25 +51,26 @@ public class SalaDAO implements ISalaDAO {
     }
 
     @Override
-    public void guardar(SalaEntidad sala) throws PersistenciaException {
-        String consulta = "INSERT INTO Salas (nombre) VALUES (?)";
+    public void guardar(SalaEntidad sala,int idSucursal) throws PersistenciaException {
+    String query = "INSERT INTO Salas (nombre, costo, capacidad, ID_Sucursal, estaEliminada, fechaRegistro) "
+            + "VALUES (?, ?, ?, ?, false, NOW())";
 
-        try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS)) {
+    try (Connection conn = (Connection) getConexionBD();
+            PreparedStatement stmt = conn.prepareStatement(query)) {
+        stmt.setString(1, sala.getNombre());
+        stmt.setDouble(2, sala.getCosto());
+        stmt.setInt(3, sala.getCapacidad());
+        stmt.setInt(4, idSucursal); // ID de la sucursal correspondiente
 
-            ps.setString(1, sala.getNombre());
-            ps.executeUpdate();
-
-            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    int idGenerado = generatedKeys.getInt(1);
-                    sala.setId(idGenerado); // Establece el ID generado
-                }
-            }
-
-        } catch (SQLException e) {
-            throw new PersistenciaException("Error al guardar la sala", e);
+        stmt.executeUpdate(); // Ejecutar la inserción
+    } catch (SQLException ex) {
+        try {
+            throw new SQLException("Error al insertar sala: " + ex.getMessage());
+        } catch (SQLException ex1) {
+            Logger.getLogger(SalaDAO.class.getName()).log(Level.SEVERE, null, ex1);
         }
     }
+}
 
     @Override
     public void eliminar(int idSala) throws PersistenciaException {
@@ -81,7 +89,7 @@ public class SalaDAO implements ISalaDAO {
     @Override
     public SalaEntidad buscarporNumero(int idSala) throws PersistenciaException {
         SalaEntidad sala = null;
-        String consulta = "SELECT id, nombre FROM Salas WHERE id = ?";
+        String consulta = "SELECT id, nombre, costo, capacidad FROM Salas WHERE id = ?";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
 
@@ -91,6 +99,8 @@ public class SalaDAO implements ISalaDAO {
                     sala = new SalaEntidad();
                     sala.setId(rs.getInt("id"));
                     sala.setNombre(rs.getString("nombre"));
+                    sala.setCapacidad(rs.getInt("capacidad"));
+                    sala.setCosto(rs.getInt("costo"));
                 }
             }
 
@@ -104,7 +114,7 @@ public class SalaDAO implements ISalaDAO {
     @Override
     public List<SalaEntidad> buscarSalas(Tabla filtro) throws PersistenciaException {
         List<SalaEntidad> salas = new ArrayList<>();
-    String consulta = "SELECT id, nombre FROM Salas LIMIT ? OFFSET ?";
+    String consulta = "SELECT id, nombre, capacidad, costo FROM Salas LIMIT ? OFFSET ?";
     
     try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
         int limite = filtro.getLimite();
@@ -123,6 +133,8 @@ public class SalaDAO implements ISalaDAO {
                 SalaEntidad sala = new SalaEntidad();
                 sala.setId(rs.getInt("id"));
                 sala.setNombre(rs.getString("nombre"));
+                sala.setCapacidad(rs.getInt("capacidad"));
+                sala.setCosto(rs.getInt("costo"));
                 salas.add(sala);
             }
         }
