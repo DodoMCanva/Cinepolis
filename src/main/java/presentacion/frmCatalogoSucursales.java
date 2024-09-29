@@ -9,13 +9,19 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import negocio.ISalaNegocio;
 import negocio.NegocioException;
+import negocio.SalaNegocio;
 import negocio.SucursalNegocio;
+import persistencia.ConexionBD;
+import persistencia.IConexionBD;
+import persistencia.ISalaDAO;
+import persistencia.SalaDAO;
 import utilerias.JButtonCellEditor;
 import utilerias.JButtonRenderer;
 import utilerias.Tabla;
 
-public class frmCatalogoSucursales extends javax.swing.JFrame {
+    public class frmCatalogoSucursales extends javax.swing.JFrame {
 
     private int pag = 0;
     private final static int LIMITE = 10;
@@ -89,14 +95,28 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
 
         // Configurar botón "Salas"
         ActionListener onSalasClickListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Aquí manejas el evento de clic para el botón "Salas"
-                JOptionPane.showMessageDialog(null, "Botón Salas presionado");
-            }
-        };
-        modeloColumnas.getColumn(3).setCellRenderer(new JButtonRenderer("Salas"));
-        modeloColumnas.getColumn(3).setCellEditor(new JButtonCellEditor("Salas", onSalasClickListener));
+    @Override
+public void actionPerformed(ActionEvent e) {
+    // Aquí manejas el evento de clic para el botón "Salas"
+    
+    // Crea la instancia de IConexionBD que necesites (esto dependerá de tu implementación)
+    IConexionBD conexionBD = new ConexionBD(); // Asegúrate de que MiConexionBD sea una implementación válida de IConexionBD
+
+    // Crea la instancia de ISalaDAO y pasa la conexión
+    ISalaDAO salaDAO = new SalaDAO(conexionBD);
+    
+    // Crea la instancia de ISalaNegocio
+    ISalaNegocio salaNegocio = new SalaNegocio(salaDAO);
+
+    // Abre la ventana de salas y pasa el negocio
+    frmCatalogoSalas catalogoSalas = new frmCatalogoSalas(salaNegocio);
+    catalogoSalas.setSalaNegocio(salaNegocio); // Establece el negocio en la ventana de salas
+    catalogoSalas.setVisible(true); // Muestra la ventana de salas
+    dispose(); // Cierra la ventana actual si es necesario
+}
+};
+modeloColumnas.getColumn(3).setCellRenderer(new JButtonRenderer("Salas"));
+modeloColumnas.getColumn(3).setCellEditor(new JButtonCellEditor("Salas", onSalasClickListener));
 
         // Configurar botón "Eliminar"
         ActionListener onEliminarClickListener = new ActionListener() {

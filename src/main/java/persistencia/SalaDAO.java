@@ -1,6 +1,5 @@
 package persistencia;
 
-
 import entidad.SalaEntidad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +25,7 @@ public class SalaDAO implements ISalaDAO {
     @Override
     public ArrayList<SalaEntidad> leer() throws PersistenciaException {
         ArrayList<SalaEntidad> salas = new ArrayList<>();
-        String consulta = "SELECT id, nombre FROM Sala";
+        String consulta = "SELECT id, nombre FROM Salas";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta); ResultSet rs = ps.executeQuery()) {
 
@@ -46,7 +45,7 @@ public class SalaDAO implements ISalaDAO {
 
     @Override
     public void guardar(SalaEntidad sala) throws PersistenciaException {
-        String consulta = "INSERT INTO Sala (nombre) VALUES (?)";
+        String consulta = "INSERT INTO Salas (nombre) VALUES (?)";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -67,7 +66,7 @@ public class SalaDAO implements ISalaDAO {
 
     @Override
     public void eliminar(int idSala) throws PersistenciaException {
-        String consulta = "DELETE FROM Sala WHERE id = ?";
+        String consulta = "DELETE FROM Salas WHERE id = ?";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
 
@@ -82,7 +81,7 @@ public class SalaDAO implements ISalaDAO {
     @Override
     public SalaEntidad buscarporNumero(int idSala) throws PersistenciaException {
         SalaEntidad sala = null;
-        String consulta = "SELECT id, nombre FROM Sala WHERE id = ?";
+        String consulta = "SELECT id, nombre FROM Salas WHERE id = ?";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
 
@@ -105,31 +104,41 @@ public class SalaDAO implements ISalaDAO {
     @Override
     public List<SalaEntidad> buscarSalas(Tabla filtro) throws PersistenciaException {
         List<SalaEntidad> salas = new ArrayList<>();
-        String consulta = "SELECT id, nombre FROM Sala LIMIT ? OFFSET ?";
+    String consulta = "SELECT id, nombre FROM Salas LIMIT ? OFFSET ?";
+    
+    try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
+        int limite = filtro.getLimite();
+        int pagina = filtro.getPagina() * filtro.getLimite();
+        
+        // Depuración de parámetros
+        System.out.println("Consulta SQL: " + consulta);
+        System.out.println("Límite: " + limite);
+        System.out.println("Página (Offset): " + pagina);
 
-        try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
+        ps.setInt(1, limite);
+        ps.setInt(2, pagina);
 
-            ps.setInt(1, filtro.getLimite());
-            ps.setInt(2, filtro.getPagina() * filtro.getLimite());
-
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    SalaEntidad sala = new SalaEntidad();
-                    sala.setId(rs.getInt("id"));
-                    sala.setNombre(rs.getString("nombre"));
-                    salas.add(sala);
-                }
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                SalaEntidad sala = new SalaEntidad();
+                sala.setId(rs.getInt("id"));
+                sala.setNombre(rs.getString("nombre"));
+                salas.add(sala);
             }
-
-        } catch (SQLException e) {
-            throw new PersistenciaException("Error al buscar las salas", e);
         }
 
-        return salas;
+    } catch (SQLException e) {
+        // Captura el error exacto
+        System.out.println("Error SQL: " + e.getMessage());
+        throw new PersistenciaException("Error al buscar las salas", e);
     }
+
+    return salas;
+
+    }   
 
     @Override
     public IConexionBD getConexionBD() {
-        return this.conexionBD;
+        return conexionBD;
     }
 }

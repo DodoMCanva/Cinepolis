@@ -28,28 +28,38 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
     /**
      * Creates new form frmCatalogoSalas
      */
-    public frmCatalogoSalas() {
-        initComponents();
-        cargarTabla();
-        ajustarColumnas();
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        btnAtrasCatSalas.setEnabled(false);
-        this.cargarConfiguracionInicialTabla();
-        this.cargarTabla();
+    public frmCatalogoSalas(ISalaNegocio salaNegocio) {
+         this.salaNegocio = salaNegocio;
+    initComponents(); // Solo una vez
+    this.setLocationRelativeTo(null);
+    this.setResizable(false);
+    btnAtrasCatSalas.setEnabled(false);
+    this.cargarConfiguracionInicialTabla();
+    this.cargarTabla(); // Ahora está bien llamar a cargarTabla()
+    ajustarColumnas();
     }
 
+        public void setSalaNegocio(ISalaNegocio salaNegocio) {
+        this.salaNegocio = salaNegocio;
+        cargarTabla(); // Cargar la tabla después de establecer el negocio
+    }
     private void cargarTabla() {
         try {
             Tabla filtro = this.obtenerFiltrosTabla();
-            List<SalaDTO> Lista = this.salaNegocio.buscarSalas(filtro);
+            List<SalaDTO> lista = this.salaNegocio.buscarSalas(filtro);
             this.BorrarRegistrosTabla();
-            this.AgregarRegistrosTabla(Lista);
-            if (Lista.size() == 0 && pag > 0) {
+            this.AgregarRegistrosTabla(lista);
+            
+            if (lista.size() == 0 && pag > 0) {
                 pag--; // Decrementa la página solo si hay más páginas
             }
+            
             lblNumPagCatSala.setText("Página " + (pag + 1));
+            
+            // Habilitar/deshabilitar botones de paginación
+            btnAtrasCatSalas.setEnabled(pag > 0);
+            btnSiguienteCatSala.setEnabled(lista.size() == LIMITE);
+            
         } catch (NegocioException ex) {
             this.BorrarRegistrosTabla();
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
@@ -224,15 +234,15 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        //        frmMetodosPagos regresar = new frmMetodosPagos();
-        //        regresar.setVisible(true);
-        //        this.dispose();
+                 frmDatosSucursal regresar = new frmDatosSucursal();
+                regresar.setVisible(true);
+                this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        frmDatosSucursal agregar = new frmDatosSucursal();
-        agregar.setVisible(true);
-        this.dispose();
+//        frmDatosSucursal agregar = new frmDatosSucursal();
+//        agregar.setVisible(true);
+//        this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBuscarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarSalaActionPerformed
@@ -258,7 +268,7 @@ this.pag++;
     }//GEN-LAST:event_btnAtrasCatSalasActionPerformed
  private void ajustarColumnas() {
         // Ajustar el ancho de las columnas según el índice
-        tblSala.getColumnModel().getColumn(0).setPreferredWidth(150); // Número de Sala
+        tblSala.getColumnModel().getColumn(0).setPreferredWidth(150); // Nombre de la Sala
         tblSala.getColumnModel().getColumn(1).setPreferredWidth(100); // Capacidad
         
     }
