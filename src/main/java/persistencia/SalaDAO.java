@@ -49,14 +49,13 @@ public class SalaDAO implements ISalaDAO {
 
         return salas;
     }
-
-    @Override
-    public void guardar(SalaEntidad sala,int idSucursal) throws PersistenciaException {
+@Override
+public void guardar(SalaEntidad sala, int idSucursal) throws PersistenciaException {
     String query = "INSERT INTO Salas (nombre, costo, capacidad, ID_Sucursal, estaEliminada, fechaRegistro) "
             + "VALUES (?, ?, ?, ?, false, NOW())";
 
-    try (Connection conn = (Connection) getConexionBD();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
+    try (Connection conn = conexionBD.crearConexion(); // Cambiado aquí
+         PreparedStatement stmt = conn.prepareStatement(query)) {
         stmt.setString(1, sala.getNombre());
         stmt.setDouble(2, sala.getCosto());
         stmt.setInt(3, sala.getCapacidad());
@@ -64,13 +63,10 @@ public class SalaDAO implements ISalaDAO {
 
         stmt.executeUpdate(); // Ejecutar la inserción
     } catch (SQLException ex) {
-        try {
-            throw new SQLException("Error al insertar sala: " + ex.getMessage());
-        } catch (SQLException ex1) {
-            Logger.getLogger(SalaDAO.class.getName()).log(Level.SEVERE, null, ex1);
-        }
+        throw new PersistenciaException("Error al insertar sala: " + ex.getMessage(), ex);
     }
 }
+
 
     @Override
     public void eliminar(int idSala) throws PersistenciaException {

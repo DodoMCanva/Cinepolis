@@ -84,6 +84,9 @@ public class SalaNegocio implements ISalaNegocio {
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al guardar la sala", e);
         }
+        if (idSucursal <= 0) {
+            throw new NegocioException("ID de sucursal no válido: " + idSucursal);
+        }
     }
 
     @Override
