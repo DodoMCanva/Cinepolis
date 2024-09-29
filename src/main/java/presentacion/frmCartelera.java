@@ -3,13 +3,25 @@ package presentacion;
 import dto.PeliculaDTO;
 import entidad.PeliculaEntidad;
 import entidad.SucursalEntidad;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import negocio.NegocioException;
 import negocio.PeliculaNegocio;
+import persistencia.ConexionBD;
+import persistencia.IConexionBD;
 import persistencia.SucursalDAO;
 
 /**
@@ -21,14 +33,20 @@ public class frmCartelera extends javax.swing.JFrame {
     private SucursalDAO sucursalDAO;
     private PeliculaNegocio peliculaNegocio;
 
-    /**
-     * Creates new form frmCartelera
-     */
     public frmCartelera() {
-//        this.sucursalDAO = sucursalDAO;
-//        this.peliculaNegocio= peliculaNegocio;
+        this(new ConexionBD(), new PeliculaNegocio()); // O usar objetos de conexión predeterminados
         initComponents();
-        cargarCiudades(); // Llamar al método para cargar ciudades
+
+    }
+
+    // Constructor con parámetros
+    public frmCartelera(IConexionBD conexionBD, PeliculaNegocio peliculaNegocio) {
+        this.sucursalDAO = new SucursalDAO(conexionBD);
+        this.peliculaNegocio = peliculaNegocio;
+        initComponents();
+
+        cargarCiudades(); // Llama al método para cargar ciudades
+        agregarEventoSeleccionCiudad();
     }
 
     private void cargarCiudades() {
@@ -45,6 +63,19 @@ public class frmCartelera extends javax.swing.JFrame {
         }
     }
 
+    private void agregarEventoSeleccionCiudad() {
+        cbxCiudad.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ciudadSeleccionada = (String) cbxCiudad.getSelectedItem();
+
+                if (!ciudadSeleccionada.equals("Seleccione una ciudad")) {
+                    cargarSucursales(ciudadSeleccionada);
+                }
+            }
+        });
+    }
+
     private void cargarSucursales(String ciudad) {
         try {
             List<SucursalEntidad> sucursales = sucursalDAO.obtenerPorCiudad(ciudad);
@@ -59,23 +90,52 @@ public class frmCartelera extends javax.swing.JFrame {
         }
     }
 
-    private void mostrarPeliculas(String sucursal) {
-       // try {
-//            List<PeliculaEntidad> peliculas = peliculaNegocio.(sucursal);
-//            if (peliculas.size() >= 5) {
-//                lblPelicula1.setText(peliculas.get(0).getNombre());
-//                lblPelicula2.setText(peliculas.get(1).getNombre());
-//                lblPelicula3.setText(peliculas.get(2).getNombre());
-//                lblPelicula4.setText(peliculas.get(3).getNombre());
-//                lblPelicula5.setText(peliculas.get(4).getNombre());
-//            } else {
-//                // Muestra un mensaje de que no hay suficientes películas
-//                JOptionPane.showMessageDialog(this, "No hay suficientes películas para mostrar.");
-//            }
-//        } catch (SQLException ex) {
-         //   Logger.getLogger(frmCartelera.class.getName()).log(Level.SEVERE, null, ex);
+    private Image convertirBytesAImagen(byte[] bytes) {
+        try {
+            return ImageIO.read(new ByteArrayInputStream(bytes));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null; // o una imagen por defecto
         }
-    
+    }
+
+    private Image redimensionarImagen(Image img, int ancho, int alto) {
+        return img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+    }
+
+    private void mostrarPeliculas(String sucursal, String ciudad) throws NegocioException {
+        List<PeliculaDTO> peliculas = peliculaNegocio.buscarPeliculasPorSucursalYCiudad(sucursal, ciudad);
+        if (peliculas.size() >= 5) {
+            for (int i = 0; i < 5; i++) {
+                Image img = redimensionarImagen(convertirBytesAImagen(peliculas.get(i).getPoster()),
+                        lblPelicula1.getWidth(), lblPelicula1.getHeight());
+                switch (i) {
+                    case 0:
+                        lblPelicula1.setIcon(new ImageIcon(img));
+                        lblPelicula1.repaint();
+                        break;
+                    case 1:
+                        lblPelicula2.setIcon(new ImageIcon(img));
+                        lblPelicula2.repaint();
+                        break;
+                    case 2:
+                        lblPelicula3.setIcon(new ImageIcon(img));
+                        lblPelicula3.repaint();
+                        break;
+                    case 3:
+                        lblPelicula4.setIcon(new ImageIcon(img));
+                        lblPelicula4.repaint();
+                        break;
+                    case 4:
+                        lblPelicula5.setIcon(new ImageIcon(img));
+                        lblPelicula5.repaint();
+                        break;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay suficientes películas para mostrar.");
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -227,11 +287,15 @@ public class frmCartelera extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxCiudadActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // Aquí iría la lógica para buscar películas según la sucursal seleccionada
-        String sucursalSeleccionada = cbxSucursal.getSelectedItem().toString();
-        if (!sucursalSeleccionada.equals("Seleccione una sucursal")) {
-            // Lógica para mostrar películas de la sucursal seleccionada
+        String sucursal = cbxSucursal.getSelectedItem().toString();
+        String ciudad = cbxCiudad.getSelectedItem().toString();
+
+        try {
+            mostrarPeliculas(sucursal, ciudad);
+        } catch (NegocioException ex) {
+            Logger.getLogger(frmCartelera.class.getName()).log(Level.SEVERE, null, ex);
         }
+
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
