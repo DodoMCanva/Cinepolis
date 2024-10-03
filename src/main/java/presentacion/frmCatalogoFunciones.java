@@ -212,9 +212,19 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
         jPanelCatalogoFunciones.add(btnBuscarFuncion, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 90, -1, -1));
 
         btnAtras.setText("Atras");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
         jPanelCatalogoFunciones.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 550, -1, -1));
 
         btnSiguiente.setText("Siguiente");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
         jPanelCatalogoFunciones.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 550, -1, -1));
 
         lblNumPagCatFuncio.setText("numeroPag");
@@ -241,6 +251,28 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
         agregar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAgregarFuncionActionPerformed
+
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        if (pag == 0) {
+            btnAtras.setEnabled(false);
+        } else {
+            this.pag--;
+            int impresion = pag + 1;
+            lblNumPagCatFuncio.setText("Página " + impresion);
+            this.cargarTabla();
+        }
+    }//GEN-LAST:event_btnSiguienteActionPerformed
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        if (pag == 0) {
+            btnAtras.setEnabled(false);
+        } else {
+            this.pag--;
+            int impresion = pag + 1;
+            lblNumPagCatFuncio.setText("Página " + impresion);
+            this.cargarTabla();
+        }
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

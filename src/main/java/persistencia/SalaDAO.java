@@ -53,7 +53,7 @@ public class SalaDAO implements ISalaDAO {
 
     public float obtenerCosto(int id) throws PersistenciaException {
         ArrayList<SalaEntidad> salas = new ArrayList<>();
-        String consulta = "SELECT costo FROM Salas WHERE id = ?";
+        String consulta = "SELECT costo FROM Salas WHERE iD = ?";
 
         try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta); ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
