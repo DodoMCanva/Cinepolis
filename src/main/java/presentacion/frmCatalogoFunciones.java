@@ -1,10 +1,17 @@
 package presentacion;
 
+import dto.FuncionDTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import negocio.FuncionNegocio;
 import negocio.IFuncionNegocio;
@@ -14,6 +21,7 @@ import persistencia.FuncionDAO;
 import persistencia.IFuncionDAO;
 import utilerias.JButtonCellEditor;
 import utilerias.JButtonRenderer;
+import utilerias.Tabla;
 
 public class frmCatalogoFunciones extends javax.swing.JFrame {
 
@@ -24,25 +32,105 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
 
     public frmCatalogoFunciones(int idSucursal) {
         incializar(idSucursal);
-        initComponents(); // Solo una vez
+        initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         btnAtras.setEnabled(false);
         this.cargarConfiguracionInicialTabla();
-        //this.cargarTabla();
-        //ajustarColumnas();
+        this.cargarTabla();
     }
 
     private void incializar(int n) {
-        this.idSucursal = idSucursal;
-        IFuncionDAO funcionDAO = (IFuncionDAO) new FuncionDAO((Connection) new ConexionBD());
-        this.funcionNegocio = new FuncionNegocio();
+        this.idSucursal = n;
+        IFuncionDAO funcionDAO = (IFuncionDAO) new FuncionDAO(new ConexionBD());
+        this.funcionNegocio = new FuncionNegocio(idSucursal);
+    }
+
+    public void setSalaNegocio(IFuncionNegocio salaNegocio) {
+        this.funcionNegocio = salaNegocio;
+        cargarTabla(); // Cargar la tabla después de establecer el negocio
+    }
+
+    private void cargarTabla() {
+        try {
+            Tabla filtro = this.obtenerFiltrosTabla();
+            List<FuncionDTO> lista = this.funcionNegocio.buscarFunciones(filtro, idSucursal);
+            this.BorrarRegistrosTabla();
+            this.AgregarRegistrosTabla(lista);
+
+            if (lista.size() == 0 && pag > 0) {
+                pag--; // Decrementa la página solo si hay más páginas
+            }
+
+            lblNumPagCatFuncio.setText("Página " + (pag + 1));
+
+            // Habilitar/deshabilitar botones de paginación
+            btnAtras.setEnabled(pag > 0);
+            btnSiguiente.setEnabled(lista.size() == LIMITE);
+
+        } catch (NegocioException ex) {
+            this.BorrarRegistrosTabla();
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void AgregarRegistrosTabla(List<FuncionDTO> lista) {
+        if (lista == null) {
+            return;
+        }
+        DefaultTableModel modeloTabla = (DefaultTableModel) this.tblFunciones.getModel();
+        lista.forEach(row -> {
+            Object[] fila = new Object[6];
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(row.getHoraFin());
+            cal.add(Calendar.MINUTE, 20);
+
+            Time Limpieza = new Time(cal.getTimeInMillis());
+            fila[0] = Limpieza;
+            fila[1] = row.getFechaHoraRegistro();
+            fila[2] = row.getHoraInicio();
+            fila[3] = row.getHoraFin();
+            fila[4] = row.getIdPelicula();
+            fila[5] = "Eliminar";
+            modeloTabla.addRow(fila);
+        });
+    }
+
+    private int getIdSeleccionadoTabla() {
+        int indiceFilaSeleccionada = this.tblFunciones.getSelectedRow();
+        if (indiceFilaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) this.tblFunciones.getModel();
+            int indiceColumnaId = 0;
+            int idSalaSeleccionada = (int) modelo.getValueAt(indiceFilaSeleccionada, indiceColumnaId);
+            return idSalaSeleccionada;
+        } else {
+            return 0;
+        }
+    }
+
+    private void eliminar() throws NegocioException {
+        int id = this.getIdSeleccionadoTabla();
+        funcionNegocio.eliminar(id);
+        cargarTabla();
+
+    }
+
+    private void BorrarRegistrosTabla() {
+        DefaultTableModel modeloTabla = (DefaultTableModel) this.tblFunciones.getModel();
+        if (modeloTabla.getRowCount() > 0) {
+            for (int row = modeloTabla.getRowCount() - 1; row > -1; row--) {
+                modeloTabla.removeRow(row);
+            }
+        }
+    }
+
+    private Tabla obtenerFiltrosTabla() {
+        return new Tabla(this.LIMITE, this.pag, "");
     }
 
     private void cargarConfiguracionInicialTabla() {
         TableColumnModel modeloColumnas = this.tblFunciones.getColumnModel();
 
-        // Configurar botón "Eliminar"
         ActionListener onEliminarClickListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,15 +142,8 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
             }
         };
 
-        modeloColumnas.getColumn(1).setCellRenderer(new JButtonRenderer("Eliminar"));
-        modeloColumnas.getColumn(1).setCellEditor(new JButtonCellEditor("Eliminar", onEliminarClickListener));
-    }
-
-    private void eliminar() throws NegocioException {
-        /*int id = this.getIdSeleccionadoTabla();
-        funcionNegocio.eliminar(id);
-        cargarTabla();
-         */
+        modeloColumnas.getColumn(5).setCellRenderer(new JButtonRenderer("Eliminar"));
+        modeloColumnas.getColumn(5).setCellEditor(new JButtonCellEditor("Eliminar", onEliminarClickListener));
     }
 
     @SuppressWarnings("unchecked")
@@ -109,7 +190,7 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Tiemp. Limpieza", "Fecha", "Inicio", "Fin", "Pelicula", "Eliminar"
+                "Fin + limpieza", "Fecha", "Inicio", "Fin", "Pelicula", "Eliminar"
             }
         ));
         jScrollPane1.setViewportView(tblFunciones);
@@ -156,7 +237,7 @@ public class frmCatalogoFunciones extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverFuncionActionPerformed
 
     private void btnAgregarFuncionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarFuncionActionPerformed
-        frmDatosFunciones agregar = new frmDatosFunciones();
+        frmDatosFunciones agregar = new frmDatosFunciones(idSucursal);
         agregar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAgregarFuncionActionPerformed

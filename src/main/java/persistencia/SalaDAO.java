@@ -18,13 +18,14 @@ import utilerias.Tabla;
  */
 public class SalaDAO implements ISalaDAO {
 
-    private IConexionBD conexionBD=new ConexionBD();
+    private IConexionBD conexionBD = new ConexionBD();
 
     public SalaDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
     }
-    public SalaDAO(){
-        
+
+    public SalaDAO() {
+
     }
 
     @Override
@@ -49,24 +50,37 @@ public class SalaDAO implements ISalaDAO {
 
         return salas;
     }
-@Override
-public void guardar(SalaEntidad sala, int idSucursal) throws PersistenciaException {
-    String query = "INSERT INTO Salas (nombre, costo, capacidad, ID_Sucursal, estaEliminada, fechaRegistro) "
-            + "VALUES (?, ?, ?, ?, false, NOW())";
 
-    try (Connection conn = conexionBD.crearConexion(); // Cambiado aquí
-         PreparedStatement stmt = conn.prepareStatement(query)) {
-        stmt.setString(1, sala.getNombre());
-        stmt.setDouble(2, sala.getCosto());
-        stmt.setInt(3, sala.getCapacidad());
-        stmt.setInt(4, idSucursal); // ID de la sucursal correspondiente
+    public float obtenerCosto(int id) throws PersistenciaException {
+        ArrayList<SalaEntidad> salas = new ArrayList<>();
+        String consulta = "SELECT costo FROM Salas WHERE id = ?";
 
-        stmt.executeUpdate(); // Ejecutar la inserción
-    } catch (SQLException ex) {
-        throw new PersistenciaException("Error al insertar sala: " + ex.getMessage(), ex);
+        try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                return rs.getInt("costo");
+            }
+
+        } catch (SQLException e) {
+            throw new PersistenciaException("Error al leer las salas", e);
+        }
+        return 0;
     }
-}
 
+    @Override
+    public void guardar(SalaEntidad sala, int idSucursal) throws PersistenciaException {
+        String query = "INSERT INTO Salas (nombre, costo, capacidad, ID_Sucursal, estaEliminada, fechaRegistro) "
+                + "VALUES (?, ?, ?, ?, false, NOW())";
+        System.out.println("id:"+idSucursal);
+        try (Connection conn = conexionBD.crearConexion(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, sala.getNombre());
+            stmt.setDouble(2, sala.getCosto());
+            stmt.setInt(3, sala.getCapacidad());
+            stmt.setInt(4, idSucursal);
+            stmt.executeUpdate(); 
+        } catch (SQLException ex) {
+            throw new PersistenciaException("Error al insertar sala: " + ex.getMessage(), ex);
+        }
+    }
 
     @Override
     public void eliminar(int idSala) throws PersistenciaException {
@@ -108,42 +122,40 @@ public void guardar(SalaEntidad sala, int idSucursal) throws PersistenciaExcepti
     }
 
     @Override
-    public List<SalaEntidad> buscarSalas(Tabla filtro) throws PersistenciaException {
+    public List<SalaEntidad> buscarSalas(Tabla filtro, int IDS) throws PersistenciaException {
         List<SalaEntidad> salas = new ArrayList<>();
-    String consulta = "SELECT id, nombre, capacidad, costo FROM Salas LIMIT ? OFFSET ?";
-    
-    try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
-        int limite = filtro.getLimite();
-        int pagina = filtro.getPagina() * filtro.getLimite();
-        
-        // Depuración de parámetros
-        System.out.println("Consulta SQL: " + consulta);
-        System.out.println("Límite: " + limite);
-        System.out.println("Página (Offset): " + pagina);
+        String consulta = "SELECT id, nombre, capacidad, costo, ID_Sucursal FROM Salas  WHERE ID_Sucursal = ?  LIMIT ? OFFSET ?";
 
-        ps.setInt(1, limite);
-        ps.setInt(2, pagina);
+        try (Connection connection = conexionBD.crearConexion(); PreparedStatement ps = connection.prepareStatement(consulta)) {
+            int limite = filtro.getLimite();
+            int pagina = filtro.getPagina() * filtro.getLimite();
+            System.out.println("Consulta SQL: " + consulta);
+            System.out.println("Límite: " + limite);
+            System.out.println("Página (Offset): " + pagina);
 
-        try (ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                SalaEntidad sala = new SalaEntidad();
-                sala.setId(rs.getInt("id"));
-                sala.setNombre(rs.getString("nombre"));
-                sala.setCapacidad(rs.getInt("capacidad"));
-                sala.setCosto(rs.getInt("costo"));
-                salas.add(sala);
+            ps.setInt(1, IDS);
+            ps.setInt(2, limite);
+            ps.setInt(3, pagina);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    SalaEntidad sala = new SalaEntidad();
+                    sala.setId(rs.getInt("id"));
+                    sala.setNombre(rs.getString("nombre"));
+                    sala.setCapacidad(rs.getInt("capacidad"));
+                    sala.setCosto(rs.getInt("costo"));
+                    salas.add(sala);
+                }
             }
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            throw new PersistenciaException("Error al buscar las salas", e);
         }
 
-    } catch (SQLException e) {
-        // Captura el error exacto
-        System.out.println("Error SQL: " + e.getMessage());
-        throw new PersistenciaException("Error al buscar las salas", e);
+        return salas;
+
     }
-
-    return salas;
-
-    }   
 
     @Override
     public IConexionBD getConexionBD() {

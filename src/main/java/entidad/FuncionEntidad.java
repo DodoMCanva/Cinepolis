@@ -2,24 +2,42 @@ package entidad;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class FuncionEntidad {
 
-    private int id;
+    private int ID;
     private float costo;
     private Time horaInicio;
     private Time horaFin;
     private int idPelicula;
+    private int idSucursal;
     private int idSala;
-    private boolean estaEliminada;
-    private Timestamp fechaRegistro;
+    private boolean estaEliminado;
+    private String fechaHoraRegistro;
 
-    public int getId() {
-        return id;
+    public FuncionEntidad(int ID, float costo, Time horaInicio, Time horaFin, int idPelicula, int idSucursal, int idSala, boolean estaEliminado, String fechaHoraRegistro) {
+        this.ID = ID;
+        this.costo = costo;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.idPelicula = idPelicula;
+        this.idSucursal = idSucursal;
+        this.idSala = idSala;
+        this.estaEliminado = estaEliminado;
+        this.fechaHoraRegistro = fechaHoraRegistro;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public FuncionEntidad() {
+    }
+
+    
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public float getCosto() {
@@ -54,6 +72,14 @@ public class FuncionEntidad {
         this.idPelicula = idPelicula;
     }
 
+    public int getIdSucursal() {
+        return idSucursal;
+    }
+
+    public void setIdSucursal(int idSucursal) {
+        this.idSucursal = idSucursal;
+    }
+
     public int getIdSala() {
         return idSala;
     }
@@ -62,20 +88,22 @@ public class FuncionEntidad {
         this.idSala = idSala;
     }
 
-    public boolean isEstaEliminada() {
-        return estaEliminada;
+    public boolean isEstaEliminado() {
+        return estaEliminado;
     }
 
-    public void setEstaEliminada(boolean estaEliminada) {
-        this.estaEliminada = estaEliminada;
+    public void setEstaEliminado(boolean estaEliminado) {
+        this.estaEliminado = estaEliminado;
     }
 
-    public Timestamp getFechaRegistro() {
-        return fechaRegistro;
+    public String getFechaHoraRegistro() {
+        return fechaHoraRegistro;
     }
 
-    public void setFechaRegistro(Timestamp fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
+    public void setFechaHoraRegistro(String fechaHoraRegistro) {
+        this.fechaHoraRegistro = fechaHoraRegistro;
     }
+
+    
 
 }

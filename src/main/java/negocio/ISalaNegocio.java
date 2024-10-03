@@ -15,7 +15,7 @@ public interface ISalaNegocio {
 
     void eliminar(int idSala) throws NegocioException;
 
-    public List<SalaDTO> buscarSalas(Tabla filtro) throws NegocioException;
+    public List<SalaDTO> buscarSalas(Tabla filtro, int ids) throws NegocioException;
 
     SalaDTO buscarporNumero(int idSala) throws NegocioException;
 

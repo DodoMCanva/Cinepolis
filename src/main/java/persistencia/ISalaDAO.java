@@ -16,7 +16,7 @@ public interface ISalaDAO {
 
     SalaEntidad buscarporNumero(int idSala) throws PersistenciaException;
 
-    public List<SalaEntidad> buscarSalas(Tabla filtro) throws PersistenciaException;
+    public List<SalaEntidad> buscarSalas(Tabla filtro, int IDS) throws PersistenciaException ;
 
     public IConexionBD getConexionBD();
 

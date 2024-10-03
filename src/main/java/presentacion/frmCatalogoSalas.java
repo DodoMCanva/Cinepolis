@@ -38,18 +38,19 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
      */
     public frmCatalogoSalas(int idSucursal) {
         incializar(idSucursal);
+        System.out.println(idSucursal);
         this.salaNegocio = salaNegocio;
         initComponents(); // Solo una vez
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         btnAtrasCatSalas.setEnabled(false);
         this.cargarConfiguracionInicialTabla();
-        this.cargarTabla(); // Ahora está bien llamar a cargarTabla()
+        this.cargarTabla();
         ajustarColumnas();
     }
 
     private void incializar(int n) {
-        this.idSucursal=idSucursal;
+        this.idSucursal=n;
         ISalaDAO salaDAO = new SalaDAO(new ConexionBD());
         this.salaNegocio = new SalaNegocio(n);
     }
@@ -62,7 +63,7 @@ public class frmCatalogoSalas extends javax.swing.JFrame {
     private void cargarTabla() {
         try {
             Tabla filtro = this.obtenerFiltrosTabla();
-            List<SalaDTO> lista = this.salaNegocio.buscarSalas(filtro);
+            List<SalaDTO> lista = this.salaNegocio.buscarSalas(filtro, idSucursal);
             this.BorrarRegistrosTabla();
             this.AgregarRegistrosTabla(lista);
 

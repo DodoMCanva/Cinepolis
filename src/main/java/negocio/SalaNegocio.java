@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package negocio;
 
 import dto.SalaDTO;
@@ -48,10 +45,7 @@ public class SalaNegocio implements ISalaNegocio {
     @Override
     public List<SalaDTO> leer() throws NegocioException {
         try {
-            // Obtenemos las entidades de la base de datos
             List<SalaEntidad> entidades = salaDAO.leer();
-
-            // Convertimos las entidades a DTOs
             List<SalaDTO> salasDTO = new ArrayList<>();
             for (SalaEntidad entidad : entidades) {
                 SalaDTO dto = new SalaDTO();
@@ -59,12 +53,8 @@ public class SalaNegocio implements ISalaNegocio {
                 dto.setNombre(entidad.getNombre());
                 salasDTO.add(dto);
             }
-
-            // Retornamos la lista de DTOs
             return salasDTO;
-
         } catch (PersistenciaException e) {
-            // Si ocurre un error en la capa de persistencia, lanzamos una excepción de negocio
             throw new NegocioException("Error al consultar las salas", e);
         }
     }
@@ -72,15 +62,9 @@ public class SalaNegocio implements ISalaNegocio {
     @Override
     public void guardar(SalaDTO salaDTO, int idSucursal) throws NegocioException {
         try {
-            // Crear la entidad a partir del DTO
             SalaEntidad entidad = new SalaEntidad();
             entidad.setNombre(salaDTO.getNombre());
-
-            salaDAO.guardar(entidad, idSucursal);
-
-            // Si necesitas devolver el ID generado, podrías agregarlo al DTO aquí:
-            salaDTO.setId(entidad.getId());
-
+            salaDAO.guardar(entidad, idSucursal);;
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al guardar la sala", e);
         }
@@ -99,9 +83,9 @@ public class SalaNegocio implements ISalaNegocio {
     }
 
     @Override
-    public List<SalaDTO> buscarSalas(Tabla filtro) throws NegocioException {
+    public List<SalaDTO> buscarSalas(Tabla filtro, int ids) throws NegocioException {
         try {
-            List<SalaEntidad> salasEntidad = salaDAO.buscarSalas(filtro);
+            List<SalaEntidad> salasEntidad = salaDAO.buscarSalas(filtro, ids);
             List<SalaDTO> salasDTO = new ArrayList<>();
 
             // Convertir cada entidad en un DTO
@@ -123,7 +107,6 @@ public class SalaNegocio implements ISalaNegocio {
             if (entidad == null) {
                 return null;
             }
-            // Convertir la entidad en DTO
             return new SalaDTO(entidad.getId(), entidad.getNombre(), entidad.getCapacidad(), entidad.getCosto());
         } catch (PersistenciaException e) {
             throw new NegocioException("Error al buscar la sala con ID: " + idSala, e);

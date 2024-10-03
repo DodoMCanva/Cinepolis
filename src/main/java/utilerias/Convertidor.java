@@ -3,7 +3,9 @@ package utilerias;
 import entidad.ClienteEntidad;
 import java.sql.Timestamp;
 import dto.ClienteDTO;
+import dto.FuncionDTO;
 import dto.PeliculaDTO;
+import entidad.FuncionEntidad;
 import entidad.PeliculaEntidad;
 import java.util.Date;
 
@@ -68,6 +70,31 @@ public class Convertidor {
                 dto.isEstaEliminada(),
                 dto.getPoster()
         );
+    }
+    public FuncionDTO EntidadaDTO(FuncionEntidad entidad) {
+        return new FuncionDTO(
+                entidad.getID(), 
+                entidad.getCosto(), 
+                entidad.getHoraInicio(), 
+                entidad.getHoraFin(), 
+                entidad.getIdPelicula(), 
+                entidad.getIdSucursal(), 
+                entidad.getIdSala(), 
+                entidad.isEstaEliminado(), 
+                entidad.getFechaHoraRegistro());
+    }
+
+    public FuncionEntidad DTOaEntidad(FuncionDTO dto) {
+        return new FuncionEntidad(
+                dto.getID(), 
+                dto.getCosto(), 
+                dto.getHoraInicio(), 
+                dto.getHoraFin(), 
+                dto.getIdPelicula(), 
+                dto.getIdSucursal(), 
+                dto.getIdSala(), 
+                dto.isEstaEliminado(), 
+                dto.getFechaHoraRegistro());
     }
 
 }

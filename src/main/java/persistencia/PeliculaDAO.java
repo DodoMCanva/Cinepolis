@@ -187,6 +187,43 @@ public class PeliculaDAO implements IPeliculaDAO {
             throw new PersistenciaException("Error al buscar la película", e);
         }
     }
+    public String buscarNombre(int id) throws PersistenciaException {
+        String query = "SELECT Titulo FROM Peliculas WHERE ID = ?";
+
+        try (Connection conexion = conexionBD.crearConexion(); PreparedStatement ps = conexion.prepareStatement(query)) {
+
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return 
+                            rs.getString("Titulo");
+                } else {
+                    throw new PersistenciaException("Película no encontrada");
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new PersistenciaException("Error al buscar la película", e);
+        }
+    }
+    public int buscarID(String nombre) throws PersistenciaException {
+        String query = "SELECT ID FROM Peliculas WHERE Titulo = ?";
+
+        try (Connection conexion = conexionBD.crearConexion(); PreparedStatement ps = conexion.prepareStatement(query)) {
+
+            ps.setString(1, nombre);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("ID");
+                } else {
+                    throw new PersistenciaException("Película no encontrada");
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new PersistenciaException("Error al buscar la película", e);
+        }
+    }
 
     @Override
     public void eliminarPelicula(int id) throws PersistenciaException {

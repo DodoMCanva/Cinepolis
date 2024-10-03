@@ -26,6 +26,7 @@ presentacion\frmCatalogoSalas.class
 presentacion\frmHorarios$2.class
 presentacion\frmCatalogoSalas$5.class
 negocio\IClienteNegocio.class
+presentacion\frmDatosFunciones$2.class
 presentacion\frmCatalogoSalas$2.class
 presentacion\frmCartelera$2.class
 presentacion\frmDatosSala$2.class
@@ -63,6 +64,7 @@ presentacion\frmDatosSucursal$3.class
 presentacion\frmResumenCompra$1.class
 dto\FuncionDTO.class
 presentacion\frmRegistroCliente$4.class
+presentacion\frmDatosFunciones$3.class
 presentacion\frmDatosSala$4.class
 negocio\BoletoNegocio.class
 presentacion\frmDatosPelicula$4.class
@@ -114,6 +116,7 @@ presentacion\frmMetodosPagos.class
 presentacion\frmMenu.class
 entidad\SalaEntidad.class
 presentacion\frmCatalogoSalas$1.class
+presentacion\frmDatosFunciones$1.class
 presentacion\frmMenu$3.class
 presentacion\frmRegistroCliente$2.class
 presentacion\frmInicioSesionCliente.class

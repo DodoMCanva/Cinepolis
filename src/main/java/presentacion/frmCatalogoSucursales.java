@@ -12,7 +12,9 @@ import javax.swing.table.TableColumnModel;
 import negocio.NegocioException;
 import negocio.SucursalNegocio;
 import persistencia.ConexionBD;
+import persistencia.FuncionDAO;
 import persistencia.IConexionBD;
+import persistencia.IFuncionDAO;
 import persistencia.ISalaDAO;
 import persistencia.PersistenciaException;
 import persistencia.SalaDAO;
@@ -80,16 +82,21 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
     }
 
     private void cargarConfiguracionInicialTabla() {
-        
-        
         TableColumnModel modeloColumnas = this.tblSucursales.getColumnModel();
-
-        // Configurar botón "Función"
         ActionListener onFuncionClickListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí manejas el evento de clic para el botón "Función"
-                JOptionPane.showMessageDialog(null, "Botón Función presionado");
+                IConexionBD conexionBD = new ConexionBD();
+                IFuncionDAO funcionDAO = new FuncionDAO(conexionBD);
+                int n = 0;
+                try {
+                    n = obtener();
+                } catch (PersistenciaException ex) {
+                    Logger.getLogger(frmCatalogoSucursales.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                frmCatalogoFunciones catalogoFunciones = new frmCatalogoFunciones(n);
+                catalogoFunciones.setVisible(true);
+                dispose();
             }
         };
         modeloColumnas.getColumn(2).setCellRenderer(new JButtonRenderer("Función"));
@@ -99,28 +106,17 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
         ActionListener onSalasClickListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí manejas el evento de clic para el botón "Salas"
-
-                // Crea la instancia de IConexionBD que necesites (esto dependerá de tu implementación)
-                IConexionBD conexionBD = new ConexionBD(); // Asegúrate de que MiConexionBD sea una implementación válida de IConexionBD
-
-                // Crea la instancia de ISalaDAO y pasa la conexión
+                IConexionBD conexionBD = new ConexionBD();
                 ISalaDAO salaDAO = new SalaDAO(conexionBD);
-
-                // Crea la instancia de ISalaNegocio
-                //ISalaNegocio salaNegocio = new SalaNegocio(salaDAO);
-              int n = 0;
+                int n = 0;
                 try {
                     n = obtener();
                 } catch (PersistenciaException ex) {
                     Logger.getLogger(frmCatalogoSucursales.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                // Abre la ventana de salas y pasa el negocio
                 frmCatalogoSalas catalogoSalas = new frmCatalogoSalas(n);
-
-               
-                catalogoSalas.setVisible(true); // Muestra la ventana de salas
-                dispose(); // Cierra la ventana actual si es necesario
+                catalogoSalas.setVisible(true);
+                dispose();
             }
         };
         modeloColumnas.getColumn(3).setCellRenderer(new JButtonRenderer("Salas"));
@@ -154,17 +150,17 @@ public class frmCatalogoSucursales extends javax.swing.JFrame {
     }
 
     private int getIdSeleccionadoTabla() throws PersistenciaException {
-        
-         SucursalDAO sucursalDAO=new SucursalDAO();
-        int idS=0;
+
+        SucursalDAO sucursalDAO = new SucursalDAO();
+        int idS = 0;
         int indiceFilaSeleccionada = this.tblSucursales.getSelectedRow();
         if (indiceFilaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) this.tblSucursales.getModel();
             int indiceColumnaId = 0;
-            String idSocioSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada,indiceColumnaId);
-            idS=sucursalDAO.buscarIdporNombre(idSocioSeleccionado);
+            String idSocioSeleccionado = (String) modelo.getValueAt(indiceFilaSeleccionada, indiceColumnaId);
+            idS = sucursalDAO.buscarIdporNombre(idSocioSeleccionado);
             return idS;
-            
+
         } else {
             return 0;
         }
